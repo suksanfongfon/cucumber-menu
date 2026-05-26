@@ -23,3 +23,4 @@ Re-run the scheduled task in Cowork (every 1 hour) and it will append new dishes
 ## Tech
 
 Plain HTML/CSS/JS — no framework, no dependencies. Mobile responsive, accessible, and fast.
+
