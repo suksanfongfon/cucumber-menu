@@ -1,448 +1,1073 @@
 <!doctype html>
 <html lang="th">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Cucumber Menu • เมนูแตงร้าน</title>
-  <meta name="description" content="Bilingual collection of dishes featuring cucumber — Thai and international recipes with sources.">
-  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E🥒%3C/text%3E%3C/svg%3E">
-  <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&family=Playfair+Display:wght@600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-  <style>
-    :root{
-      --green-50:#f0fdf4;
-      --green-100:#dcfce7;
-      --green-200:#bbf7d0;
-      --green-400:#4ade80;
-      --green-500:#22c55e;
-      --green-600:#16a34a;
-      --green-700:#15803d;
-      --green-800:#166534;
-      --green-900:#14532d;
-      --ink:#0b1f12;
-      --muted:#5b7060;
-      --paper:#fffefb;
-      --shadow:0 10px 30px -10px rgba(20,83,45,.18);
-      --shadow-lg:0 30px 60px -20px rgba(20,83,45,.25);
-    }
-    *{box-sizing:border-box}
-    html,body{margin:0;padding:0}
-    body{
-      font-family:'Prompt','Inter',system-ui,sans-serif;
-      color:var(--ink);
-      background:
-        radial-gradient(60% 80% at 80% -10%, #d1fadf 0%, transparent 60%),
-        radial-gradient(50% 60% at -10% 30%, #ecfccb 0%, transparent 60%),
-        linear-gradient(180deg, var(--paper) 0%, #f6fbf3 100%);
-      min-height:100vh;
-      -webkit-font-smoothing:antialiased;
-    }
-    .container{max-width:1240px;margin:0 auto;padding:0 24px}
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Cucumber Atlas · 104 เมนูแตงกวาจากทั่วโลก</title>
+<meta name="description" content="แผนที่เมนูแตงกวา/แตงร้านจาก 50+ ประเทศ — สูตรไทย เมดิเตอร์เรเนียน เอเชีย ค็อกเทล และอีกมากมาย">
+<meta property="og:title" content="Cucumber Atlas 🥒">
+<meta property="og:description" content="104 cucumber recipes from around the world">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%A5%92%3C/text%3E%3C/svg%3E">
 
-    /* ===== NAV ===== */
-    nav{
-      position:sticky;top:0;z-index:50;
-      backdrop-filter:saturate(140%) blur(14px);
-      -webkit-backdrop-filter:saturate(140%) blur(14px);
-      background:rgba(255,254,251,.78);
-      border-bottom:1px solid rgba(20,83,45,.08);
-    }
-    .nav-inner{display:flex;align-items:center;justify-content:space-between;height:68px}
-    .brand{display:flex;align-items:center;gap:12px;font-weight:700;font-size:18px;color:var(--green-800);text-decoration:none}
-    .brand .logo{
-      width:38px;height:38px;border-radius:12px;
-      background:linear-gradient(135deg,var(--green-400),var(--green-600));
-      display:grid;place-items:center;color:#fff;box-shadow:var(--shadow);
-      font-size:22px;
-    }
-    .lang-switch{display:flex;border:1px solid rgba(20,83,45,.15);border-radius:999px;overflow:hidden;background:#fff}
-    .lang-switch button{
-      border:0;background:transparent;padding:8px 16px;cursor:pointer;font:inherit;font-weight:600;color:var(--muted);
-      transition:.2s;
-    }
-    .lang-switch button.active{background:var(--green-600);color:#fff}
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400..900;1,9..144,400..800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Sarabun:wght@400;500;600;700&display=swap" rel="stylesheet">
 
-    /* ===== HERO ===== */
-    header.hero{padding:80px 0 56px;text-align:center;position:relative;overflow:hidden}
-    header.hero::before{
-      content:"";position:absolute;inset:auto auto -40% 50%;transform:translateX(-50%);
-      width:1100px;height:1100px;border-radius:50%;
-      background:radial-gradient(closest-side, rgba(34,197,94,.10), transparent 70%);
-      pointer-events:none;
-    }
-    .eyebrow{
-      display:inline-flex;align-items:center;gap:8px;
-      padding:6px 14px;border-radius:999px;
-      background:var(--green-100);color:var(--green-800);
-      font-weight:600;font-size:13px;letter-spacing:.04em;text-transform:uppercase;
-    }
-    h1{
-      font-family:'Playfair Display','Prompt',serif;
-      font-weight:800;
-      font-size:clamp(40px,6vw,72px);
-      line-height:1.02;letter-spacing:-.02em;
-      margin:18px 0 14px;
-      color:var(--green-900);
-    }
-    h1 .accent{
-      background:linear-gradient(90deg,var(--green-500),var(--green-700));
-      -webkit-background-clip:text;background-clip:text;color:transparent;
-    }
-    .sub{color:var(--muted);font-size:18px;max-width:680px;margin:0 auto;line-height:1.6}
-    .stats{display:flex;justify-content:center;gap:36px;margin-top:34px;flex-wrap:wrap}
-    .stat{text-align:center}
-    .stat .n{font-family:'Playfair Display',serif;font-weight:800;font-size:36px;color:var(--green-800)}
-    .stat .l{font-size:13px;color:var(--muted);text-transform:uppercase;letter-spacing:.08em}
+<style>
+  /* ---------- Tokens ---------- */
+  :root {
+    --bg: #fef7ed;           /* cream */
+    --bg-2: #ffe8e1;         /* peach mist */
+    --bg-3: #e6f4ee;         /* mint mist */
+    --surface: #ffffffcc;
+    --ink: #2d2438;          /* deep plum */
+    --ink-soft: #5b4d6b;
+    --ink-mute: #8a7c97;
+    --line: #e9dcd2;
+    --mint: #b8e6d8;
+    --mint-deep: #6cbfa3;
+    --peach: #ffcaa6;
+    --peach-deep: #ff9b78;
+    --pink: #ffc1cc;
+    --pink-deep: #f48ba2;
+    --lavender: #d9cdf5;
+    --lavender-deep: #9b86d6;
+    --lemon: #ffe79a;
+    --shadow-sm: 0 2px 8px #2d24381a;
+    --shadow-md: 0 8px 24px #2d24381f;
+    --shadow-lg: 0 18px 48px #2d243826;
+    --radius-sm: 12px;
+    --radius: 20px;
+    --radius-lg: 32px;
+  }
 
-    /* ===== TOOLBAR ===== */
-    .toolbar{
-      margin:48px 0 22px;display:flex;gap:14px;flex-wrap:wrap;align-items:center;
-      background:#fff;padding:14px;border-radius:18px;box-shadow:var(--shadow);
-      border:1px solid rgba(20,83,45,.06);
-    }
-    .search{flex:1;display:flex;align-items:center;gap:10px;min-width:240px;padding:8px 14px;border-radius:12px;background:var(--green-50)}
-    .search input{flex:1;border:0;background:transparent;font:inherit;outline:none;font-size:15px}
-    .search svg{flex-shrink:0;color:var(--green-700)}
-    select{
-      font:inherit;font-size:14px;border:1px solid rgba(20,83,45,.15);border-radius:12px;
-      padding:10px 14px;background:#fff;color:var(--ink);cursor:pointer;
-    }
-    .chip-row{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:24px}
-    .chip{
-      padding:6px 14px;border-radius:999px;background:#fff;
-      border:1px solid rgba(20,83,45,.12);font-size:13px;font-weight:500;
-      color:var(--muted);cursor:pointer;transition:.2s;
-    }
-    .chip:hover{border-color:var(--green-400);color:var(--green-700)}
-    .chip.active{background:var(--green-600);color:#fff;border-color:var(--green-600)}
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    font-family: 'Plus Jakarta Sans', 'Sarabun', system-ui, sans-serif;
+    font-size: 16px;
+    line-height: 1.55;
+    color: var(--ink);
+    background: var(--bg);
+    background-image:
+      radial-gradient(900px 600px at 8% -10%, #ffd6c2 0%, transparent 60%),
+      radial-gradient(800px 500px at 95% 5%, #d6efe3 0%, transparent 55%),
+      radial-gradient(700px 500px at 50% 110%, #e9defb 0%, transparent 60%);
+    overflow-x: hidden;
+  }
 
-    /* ===== CARDS ===== */
-    main{padding:0 0 80px}
-    .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:22px}
-    .card{
-      background:#fff;border-radius:20px;overflow:hidden;
-      box-shadow:var(--shadow);border:1px solid rgba(20,83,45,.06);
-      display:flex;flex-direction:column;
-      transition:transform .25s ease, box-shadow .25s ease;
-    }
-    .card:hover{transform:translateY(-4px);box-shadow:var(--shadow-lg)}
-    .card-head{
-      height:140px;position:relative;overflow:hidden;
-      background:linear-gradient(135deg,#bbf7d0 0%, #4ade80 50%, #16a34a 100%);
-      display:grid;place-items:center;
-    }
-    .card-head::before{
-      content:"";position:absolute;inset:-30% -10% auto auto;width:240px;height:240px;border-radius:50%;
-      background:radial-gradient(closest-side, rgba(255,255,255,.4), transparent 70%);
-    }
-    .card-head .glyph{font-size:64px;filter:drop-shadow(0 6px 12px rgba(0,0,0,.15));position:relative;z-index:1}
-    .flag{
-      position:absolute;top:12px;left:12px;
-      background:rgba(255,255,255,.9);backdrop-filter:blur(6px);
-      padding:4px 10px;border-radius:999px;font-size:12px;font-weight:600;color:var(--green-800);
-      display:flex;align-items:center;gap:6px;z-index:2;
-    }
-    .card-body{padding:20px 22px 22px;display:flex;flex-direction:column;gap:10px;flex:1}
-    .card-title{
-      font-family:'Playfair Display','Prompt',serif;font-weight:700;
-      font-size:20px;line-height:1.25;color:var(--green-900);margin:0;
-    }
-    .card-sub{font-size:13px;color:var(--muted);font-style:italic}
-    .card-desc{color:#3a4a3e;font-size:14px;line-height:1.55}
-    .card-meta{display:flex;flex-wrap:wrap;gap:6px;margin-top:auto;padding-top:12px}
-    .tag{
-      display:inline-flex;align-items:center;
-      padding:3px 10px;border-radius:999px;background:var(--green-50);
-      color:var(--green-800);font-size:12px;font-weight:500;
-    }
-    .card-actions{display:flex;justify-content:space-between;align-items:center;margin-top:14px;border-top:1px solid rgba(20,83,45,.06);padding-top:14px}
-    .card-actions a{
-      color:var(--green-700);text-decoration:none;font-weight:600;font-size:14px;
-      display:inline-flex;align-items:center;gap:6px;
-    }
-    .card-actions a:hover{color:var(--green-900)}
-    .id-pill{font-size:12px;color:var(--muted);font-weight:500}
+  /* ---------- Nav ---------- */
+  nav {
+    position: sticky; top: 0; z-index: 50;
+    backdrop-filter: blur(14px);
+    background: #fff8;
+    border-bottom: 1px solid #ffffff80;
+    padding: 12px 20px;
+  }
+  .nav-inner {
+    max-width: 1280px; margin: 0 auto;
+    display: flex; align-items: center; gap: 16px;
+  }
+  .brand {
+    display: flex; align-items: center; gap: 10px;
+    font-family: 'Fraunces', serif;
+    font-weight: 700; font-size: 22px;
+    color: var(--ink);
+    letter-spacing: -.02em;
+  }
+  .brand-emoji {
+    font-size: 28px; display: inline-block;
+    transform-origin: 50% 60%;
+    animation: wobble 6s ease-in-out infinite;
+  }
+  @keyframes wobble {
+    0%,100% { transform: rotate(-6deg); }
+    50%     { transform: rotate(8deg); }
+  }
+  .lang-toggle {
+    margin-left: auto;
+    display: flex; gap: 4px;
+    background: #fff;
+    padding: 4px; border-radius: 999px;
+    box-shadow: var(--shadow-sm);
+  }
+  .lang-toggle button {
+    border: 0; background: transparent;
+    padding: 6px 14px; border-radius: 999px;
+    cursor: pointer;
+    font: 600 14px 'Plus Jakarta Sans', sans-serif;
+    color: var(--ink-mute);
+    transition: .2s;
+  }
+  .lang-toggle button.active {
+    background: var(--ink);
+    color: #fff;
+  }
 
-    /* ===== EMPTY ===== */
-    .empty{text-align:center;padding:80px 20px;color:var(--muted)}
-    .empty h3{font-family:'Playfair Display',serif;color:var(--green-800)}
+  /* ---------- Hero ---------- */
+  .hero {
+    max-width: 1280px; margin: 0 auto;
+    padding: 60px 24px 32px;
+    position: relative;
+  }
+  .hero-eyebrow {
+    display: inline-block;
+    font: 600 13px 'Plus Jakarta Sans';
+    letter-spacing: .14em; text-transform: uppercase;
+    color: var(--mint-deep);
+    background: #fff;
+    padding: 8px 16px; border-radius: 999px;
+    box-shadow: var(--shadow-sm);
+    margin-bottom: 20px;
+  }
+  .hero h1 {
+    font-family: 'Fraunces', serif;
+    font-weight: 800; font-style: italic;
+    font-size: clamp(44px, 7vw, 86px);
+    line-height: 1.02; letter-spacing: -.03em;
+    margin: 0 0 18px;
+    color: var(--ink);
+  }
+  .hero h1 .accent {
+    font-style: normal;
+    background: linear-gradient(120deg, var(--mint-deep), var(--lavender-deep) 55%, var(--peach-deep));
+    -webkit-background-clip: text; background-clip: text; color: transparent;
+  }
+  .hero p.lede {
+    font-size: clamp(16px, 1.6vw, 19px);
+    color: var(--ink-soft);
+    max-width: 620px; margin: 0 0 32px;
+  }
+  .stats {
+    display: flex; flex-wrap: wrap; gap: 12px;
+    margin-top: 8px;
+  }
+  .stat {
+    background: #fff;
+    border-radius: var(--radius);
+    padding: 14px 20px;
+    box-shadow: var(--shadow-sm);
+    display: flex; align-items: baseline; gap: 10px;
+  }
+  .stat-num {
+    font-family: 'Fraunces', serif; font-weight: 800;
+    font-size: 28px; line-height: 1;
+    color: var(--ink);
+  }
+  .stat-lbl { font-size: 13px; color: var(--ink-mute); font-weight: 500; }
+  .stat:nth-child(1) { background: linear-gradient(135deg, #fff, var(--mint) 200%); }
+  .stat:nth-child(2) { background: linear-gradient(135deg, #fff, var(--peach) 200%); }
+  .stat:nth-child(3) { background: linear-gradient(135deg, #fff, var(--lavender) 200%); }
 
-    /* ===== FOOTER ===== */
-    footer{
-      padding:48px 0 36px;text-align:center;color:var(--muted);
-      border-top:1px solid rgba(20,83,45,.08);background:rgba(255,255,255,.5);
-    }
-    footer .heart{color:var(--green-600)}
+  /* ---------- Map section ---------- */
+  .map-section {
+    max-width: 1280px; margin: 24px auto 0;
+    padding: 0 24px;
+  }
+  .map-card {
+    background: #fff;
+    border-radius: var(--radius-lg);
+    padding: 24px;
+    box-shadow: var(--shadow-md);
+    position: relative;
+    overflow: hidden;
+  }
+  .map-head {
+    display: flex; align-items: flex-end; justify-content: space-between;
+    gap: 16px; flex-wrap: wrap; margin-bottom: 12px;
+  }
+  .map-head h2 {
+    font-family: 'Fraunces', serif; font-weight: 700;
+    font-size: 26px; margin: 0; letter-spacing: -.02em;
+  }
+  .map-head p {
+    margin: 4px 0 0; color: var(--ink-mute); font-size: 14px;
+  }
+  .map-legend {
+    display: flex; align-items: center; gap: 8px;
+    font-size: 12px; color: var(--ink-mute);
+  }
+  .legend-grad {
+    width: 120px; height: 10px; border-radius: 5px;
+    background: linear-gradient(90deg, #f3eee9, var(--mint-deep));
+  }
+  .map-wrap {
+    width: 100%;
+    aspect-ratio: 2 / 1;
+    max-height: 480px;
+    position: relative;
+  }
+  #worldmap { width: 100%; height: 100%; display: block; }
+  #worldmap .country {
+    fill: #f0e8e0;
+    stroke: #fff;
+    stroke-width: .5;
+    transition: fill .2s;
+    cursor: default;
+  }
+  #worldmap .country.has-recipes { cursor: pointer; }
+  #worldmap .country.has-recipes:hover {
+    fill: var(--peach-deep) !important;
+    filter: drop-shadow(0 2px 4px #ff9b7855);
+  }
+  #worldmap .country.selected {
+    fill: var(--lavender-deep) !important;
+  }
+  .map-tip {
+    position: absolute;
+    background: var(--ink);
+    color: #fff;
+    padding: 8px 12px;
+    border-radius: 10px;
+    font-size: 13px;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity .15s;
+    z-index: 5;
+    box-shadow: var(--shadow-md);
+    white-space: nowrap;
+  }
+  .map-tip .tip-count { font-weight: 700; color: var(--peach); }
+  .map-empty-hint {
+    margin-top: 8px;
+    font-size: 12px;
+    color: var(--ink-mute);
+    text-align: center;
+  }
 
-    @media(max-width:640px){
-      .nav-inner{height:60px}
-      header.hero{padding:48px 0 36px}
-      .stats{gap:24px}
-      .stat .n{font-size:28px}
-    }
+  /* ---------- Controls ---------- */
+  .controls {
+    max-width: 1280px; margin: 28px auto 0;
+    padding: 0 24px;
+  }
+  .controls-row {
+    display: flex; gap: 12px; flex-wrap: wrap; align-items: center;
+  }
+  .search-box {
+    flex: 1 1 280px;
+    position: relative;
+  }
+  .search-box input {
+    width: 100%;
+    padding: 14px 18px 14px 48px;
+    border: 0;
+    border-radius: 999px;
+    background: #fff;
+    box-shadow: var(--shadow-sm);
+    font: 500 15px 'Plus Jakarta Sans', 'Sarabun', sans-serif;
+    color: var(--ink);
+    outline: none;
+    transition: box-shadow .2s;
+  }
+  .search-box input:focus {
+    box-shadow: 0 0 0 3px var(--mint), var(--shadow-md);
+  }
+  .search-box::before {
+    content: '🔍';
+    position: absolute; left: 18px; top: 50%;
+    transform: translateY(-50%);
+    font-size: 16px; opacity: .55;
+  }
+  .clear-search {
+    position: absolute; right: 8px; top: 50%;
+    transform: translateY(-50%);
+    border: 0; background: var(--bg-2);
+    width: 30px; height: 30px; border-radius: 50%;
+    cursor: pointer; font-size: 14px;
+    display: none;
+  }
+  .clear-search.show { display: flex; align-items: center; justify-content: center; }
 
-    /* Modal */
-    .modal-bg{position:fixed;inset:0;background:rgba(20,83,45,.5);backdrop-filter:blur(6px);z-index:100;display:none;align-items:center;justify-content:center;padding:20px}
-    .modal-bg.open{display:flex}
-    .modal{background:#fff;max-width:640px;width:100%;border-radius:24px;overflow:hidden;box-shadow:var(--shadow-lg);max-height:90vh;overflow-y:auto}
-    .modal-head{padding:24px 28px;background:linear-gradient(135deg,var(--green-100),var(--green-50));display:flex;justify-content:space-between;align-items:start;gap:16px}
-    .modal-head h2{margin:0;font-family:'Playfair Display',serif;font-size:26px;color:var(--green-900);line-height:1.2}
-    .close-btn{background:rgba(255,255,255,.7);border:0;width:36px;height:36px;border-radius:50%;cursor:pointer;font-size:18px;flex-shrink:0;color:var(--green-800)}
-    .modal-body{padding:24px 28px;display:flex;flex-direction:column;gap:18px}
-    .modal-section h4{margin:0 0 6px;color:var(--green-700);font-size:13px;text-transform:uppercase;letter-spacing:.06em}
-    .modal-section p{margin:0;line-height:1.6;color:#2a3a2d}
-    .modal-actions{padding:16px 28px 24px}
-    .btn{display:inline-flex;align-items:center;gap:8px;padding:12px 22px;border-radius:999px;background:var(--green-600);color:#fff;text-decoration:none;font-weight:600;transition:.2s}
-    .btn:hover{background:var(--green-700);transform:translateY(-1px)}
-  </style>
+  .sort-select {
+    padding: 12px 38px 12px 18px;
+    border: 0; border-radius: 999px;
+    background: #fff;
+    box-shadow: var(--shadow-sm);
+    font: 600 14px 'Plus Jakarta Sans', sans-serif;
+    color: var(--ink);
+    cursor: pointer;
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg width='10' height='6' viewBox='0 0 10 6' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%232d2438' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 16px center;
+  }
+
+  .chips {
+    margin-top: 14px;
+    display: flex; flex-wrap: wrap; gap: 8px;
+  }
+  .chip {
+    border: 0;
+    padding: 8px 14px;
+    border-radius: 999px;
+    background: #fff;
+    color: var(--ink-soft);
+    font: 600 13px 'Plus Jakarta Sans', 'Sarabun', sans-serif;
+    cursor: pointer;
+    box-shadow: var(--shadow-sm);
+    transition: .15s;
+    white-space: nowrap;
+  }
+  .chip:hover { transform: translateY(-1px); }
+  .chip.active { background: var(--ink); color: #fff; }
+  .chip .count {
+    margin-left: 6px;
+    background: #00000010;
+    padding: 1px 7px;
+    border-radius: 999px;
+    font-size: 11px;
+  }
+  .chip.active .count { background: #ffffff25; color: #fff; }
+
+  .results-bar {
+    max-width: 1280px; margin: 24px auto 0;
+    padding: 0 24px;
+    display: flex; align-items: center; justify-content: space-between;
+    font-size: 14px; color: var(--ink-mute);
+    flex-wrap: wrap; gap: 8px;
+  }
+  .results-bar strong { color: var(--ink); font-weight: 700; }
+
+  /* ---------- Recipe grid ---------- */
+  .grid {
+    max-width: 1280px; margin: 16px auto 80px;
+    padding: 0 24px;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 18px;
+  }
+  .card {
+    background: #fff;
+    border-radius: var(--radius);
+    padding: 22px;
+    box-shadow: var(--shadow-sm);
+    cursor: pointer;
+    transition: .25s cubic-bezier(.2,.8,.2,1);
+    display: flex; flex-direction: column; gap: 10px;
+    position: relative;
+    overflow: hidden;
+    border: 2px solid transparent;
+  }
+  .card::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: var(--card-tint, transparent);
+    opacity: .55;
+    z-index: 0;
+    pointer-events: none;
+  }
+  .card > * { position: relative; z-index: 1; }
+  .card:hover {
+    transform: translateY(-4px) rotate(-.4deg);
+    box-shadow: var(--shadow-lg);
+    border-color: #ffffff;
+  }
+  .card-top {
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .flag {
+    font-size: 32px; line-height: 1;
+    filter: drop-shadow(0 2px 4px #0002);
+  }
+  .country-tag {
+    font-size: 11px; font-weight: 600;
+    letter-spacing: .04em;
+    color: var(--ink-soft);
+    background: #ffffff90;
+    padding: 4px 10px;
+    border-radius: 999px;
+    text-transform: uppercase;
+  }
+  .card h3 {
+    font-family: 'Fraunces', serif;
+    font-weight: 700;
+    font-size: 19px;
+    line-height: 1.22;
+    margin: 4px 0 0;
+    letter-spacing: -.01em;
+  }
+  .card .alt-name {
+    font-size: 13px;
+    color: var(--ink-mute);
+    margin: -2px 0 0;
+    font-style: italic;
+  }
+  .card .desc {
+    font-size: 13.5px;
+    color: var(--ink-soft);
+    line-height: 1.5;
+    margin: 4px 0 0;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  .card .ings {
+    margin-top: auto;
+    padding-top: 12px;
+    border-top: 1px dashed #00000015;
+    font-size: 12px;
+    color: var(--ink-mute);
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .no-results {
+    text-align: center;
+    padding: 80px 20px;
+    color: var(--ink-mute);
+  }
+  .no-results .emoji { font-size: 48px; margin-bottom: 12px; }
+  .no-results h3 {
+    font-family: 'Fraunces', serif;
+    font-size: 24px; color: var(--ink); margin: 0 0 6px;
+  }
+
+  /* ---------- Modal ---------- */
+  .modal-bg {
+    position: fixed; inset: 0;
+    background: #2d243899;
+    backdrop-filter: blur(8px);
+    display: none;
+    align-items: center; justify-content: center;
+    z-index: 100;
+    padding: 20px;
+    animation: fadeIn .25s ease;
+  }
+  .modal-bg.open { display: flex; }
+  @keyframes fadeIn { from { opacity: 0 } }
+  .modal {
+    background: var(--bg);
+    background-image:
+      radial-gradient(500px 300px at 10% -20%, #ffd6c2 0%, transparent 60%),
+      radial-gradient(400px 240px at 110% 110%, #d6efe3 0%, transparent 60%);
+    border-radius: var(--radius-lg);
+    max-width: 720px; width: 100%;
+    max-height: 90vh; overflow-y: auto;
+    padding: 36px;
+    position: relative;
+    box-shadow: var(--shadow-lg);
+    animation: slideUp .35s cubic-bezier(.2,.8,.2,1);
+  }
+  @keyframes slideUp { from { transform: translateY(24px); opacity: 0; } }
+  .modal-close {
+    position: absolute; top: 16px; right: 16px;
+    width: 38px; height: 38px;
+    border: 0; border-radius: 50%;
+    background: #fff; color: var(--ink);
+    font-size: 22px; cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    box-shadow: var(--shadow-sm);
+    transition: .15s;
+  }
+  .modal-close:hover { transform: rotate(90deg); }
+  .modal-flag {
+    font-size: 56px; line-height: 1;
+    margin-bottom: 14px;
+    display: inline-block;
+    filter: drop-shadow(0 4px 8px #0002);
+  }
+  .modal-country {
+    font-size: 12px; font-weight: 700;
+    letter-spacing: .14em; text-transform: uppercase;
+    color: var(--peach-deep);
+    margin-bottom: 6px;
+  }
+  .modal h2 {
+    font-family: 'Fraunces', serif; font-weight: 800;
+    font-size: clamp(26px, 4vw, 36px);
+    line-height: 1.1; letter-spacing: -.02em;
+    margin: 0 0 6px;
+  }
+  .modal .alt {
+    color: var(--ink-soft); font-size: 16px; font-style: italic;
+    margin: 0 0 18px;
+  }
+  .modal .desc-en {
+    font-size: 16px; line-height: 1.55;
+    color: var(--ink-soft);
+    padding: 14px 18px;
+    background: #ffffffaa;
+    border-radius: var(--radius-sm);
+    margin-bottom: 24px;
+  }
+  .modal section { margin-bottom: 22px; }
+  .modal section h4 {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 12px; font-weight: 700;
+    letter-spacing: .12em; text-transform: uppercase;
+    color: var(--mint-deep);
+    margin: 0 0 10px;
+    display: flex; align-items: center; gap: 8px;
+  }
+  .modal section h4::before {
+    content: ''; width: 24px; height: 2px;
+    background: var(--mint-deep); border-radius: 2px;
+  }
+  .ingredient-list {
+    display: flex; flex-wrap: wrap; gap: 8px;
+  }
+  .ing-tag {
+    background: #fff;
+    padding: 6px 12px;
+    border-radius: 999px;
+    font-size: 13px;
+    color: var(--ink);
+    box-shadow: var(--shadow-sm);
+  }
+  .method-text {
+    font-size: 15px; line-height: 1.7;
+    color: var(--ink);
+    background: #fff;
+    padding: 18px;
+    border-radius: var(--radius-sm);
+    box-shadow: var(--shadow-sm);
+  }
+  .modal-link {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: var(--ink); color: #fff;
+    padding: 12px 22px;
+    border-radius: 999px;
+    text-decoration: none;
+    font-weight: 600; font-size: 14px;
+    transition: .15s;
+  }
+  .modal-link:hover { transform: translateY(-2px); box-shadow: var(--shadow-md); }
+
+  /* ---------- Footer ---------- */
+  footer {
+    max-width: 1280px; margin: 0 auto;
+    padding: 40px 24px 60px;
+    text-align: center;
+    color: var(--ink-mute);
+    font-size: 13px;
+  }
+  footer .heart { color: var(--pink-deep); }
+  footer a { color: inherit; }
+
+  /* ---------- Mobile ---------- */
+  @media (max-width: 640px) {
+    .hero { padding: 36px 20px 20px; }
+    .map-card { padding: 16px; border-radius: var(--radius); }
+    .map-wrap { aspect-ratio: 16 / 11; }
+    .modal { padding: 24px; border-radius: var(--radius); }
+    .stat-num { font-size: 22px; }
+  }
+</style>
 </head>
 <body>
-  <nav>
-    <div class="container nav-inner">
-      <a class="brand" href="#"><span class="logo">🥒</span> <span data-i18n="brand">Cucumber Menu</span></a>
-      <div class="lang-switch">
-        <button data-lang="th" class="active">ไทย</button>
-        <button data-lang="en">EN</button>
-      </div>
-    </div>
-  </nav>
 
-  <header class="hero">
-    <div class="container">
-      <span class="eyebrow" data-i18n="eyebrow">🌿 รวมเมนูที่มีแตงร้าน</span>
-      <h1 data-i18n-html="hero_title"></h1>
-      <p class="sub" data-i18n="hero_sub"></p>
-      <div class="stats">
-        <div class="stat"><div class="n" id="stat-total">0</div><div class="l" data-i18n="stat_total">เมนู</div></div>
-        <div class="stat"><div class="n" id="stat-countries">0</div><div class="l" data-i18n="stat_countries">ประเทศ</div></div>
-        <div class="stat"><div class="n" id="stat-updated">—</div><div class="l" data-i18n="stat_updated">อัปเดต</div></div>
-      </div>
+<nav>
+  <div class="nav-inner">
+    <div class="brand">
+      <span class="brand-emoji">🥒</span>
+      <span>Cucumber Atlas</span>
     </div>
-  </header>
-
-  <main class="container">
-    <div class="toolbar">
-      <div class="search">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
-        <input id="q" type="search" placeholder="ค้นหาชื่อเมนู ส่วนประกอบ หรือประเทศ…">
-      </div>
-      <select id="country"><option value="">— ทุกประเทศ —</option></select>
-    </div>
-    <div class="chip-row" id="chips"></div>
-
-    <div class="grid" id="grid"></div>
-    <div class="empty" id="empty" style="display:none">
-      <h3 data-i18n="empty_title">ไม่พบเมนูที่ตรงกับการค้นหา</h3>
-      <p data-i18n="empty_sub">ลองล้างคำค้นหาหรือเลือกประเทศอื่น</p>
-    </div>
-  </main>
-
-  <footer>
-    <div class="container">
-      <div><span class="heart">🥒</span> <span data-i18n="footer_made">สร้างด้วยใจสำหรับคนรักแตงร้าน</span></div>
-      <div style="opacity:.7;margin-top:6px;font-size:13px">© 2026 Cucumber Menu • <span data-i18n="footer_data">ข้อมูลอัปเดตอัตโนมัติทุก 1 ชั่วโมง</span></div>
-    </div>
-  </footer>
-
-  <!-- Modal -->
-  <div class="modal-bg" id="modal" onclick="if(event.target===this)closeModal()">
-    <div class="modal">
-      <div class="modal-head">
-        <div>
-          <h2 id="m-title"></h2>
-          <div id="m-sub" style="font-style:italic;color:var(--muted);margin-top:4px"></div>
-        </div>
-        <button class="close-btn" onclick="closeModal()">✕</button>
-      </div>
-      <div class="modal-body">
-        <div class="modal-section"><h4 data-i18n="m_country">ประเทศ</h4><p id="m-country"></p></div>
-        <div class="modal-section"><h4 data-i18n="m_ingredients">ส่วนประกอบ</h4><p id="m-ingr"></p></div>
-        <div class="modal-section"><h4 data-i18n="m_method">วิธีทำ</h4><p id="m-method"></p></div>
-      </div>
-      <div class="modal-actions"><a id="m-src" class="btn" target="_blank" rel="noopener">🔗 <span data-i18n="m_source">ดูสูตรเต็มจากแหล่งที่มา</span></a></div>
+    <div class="lang-toggle" role="tablist" aria-label="language">
+      <button data-lang="th" class="active" type="button">ไทย</button>
+      <button data-lang="en" type="button">EN</button>
     </div>
   </div>
+</nav>
 
+<header class="hero">
+  <span class="hero-eyebrow" data-i18n="eyebrow">🥒 รวมเมนูแตงกวา · ทั่วโลก</span>
+  <h1 data-i18n="title-html">เมนูแตงกวา <span class="accent">จากครัวทุกมุมโลก</span></h1>
+  <p class="lede" data-i18n="lede">
+    104 สูตรอาหารและเครื่องดื่ม จากกว่า 50 ประเทศ
+    ตั้งแต่ยำแตงร้านไทย กิมจิเกาหลี ไปจนค็อกเทลแตงกวา —
+    คลิกที่แผนที่หรือชิปประเทศเพื่อสำรวจ
+  </p>
+  <div class="stats">
+    <div class="stat"><span class="stat-num" id="stat-recipes">104</span><span class="stat-lbl" data-i18n="stat-recipes">เมนู</span></div>
+    <div class="stat"><span class="stat-num" id="stat-countries">50+</span><span class="stat-lbl" data-i18n="stat-countries">ประเทศ</span></div>
+    <div class="stat"><span class="stat-num" id="stat-thai">23</span><span class="stat-lbl" data-i18n="stat-thai">สูตรไทย</span></div>
+  </div>
+</header>
+
+<section class="map-section">
+  <div class="map-card">
+    <div class="map-head">
+      <div>
+        <h2 data-i18n="map-title">🗺️ แผนที่เมนูแตงกวา</h2>
+        <p data-i18n="map-sub">คลิกประเทศที่ระบายสี — สีเข้มกว่า = มีเมนูมากกว่า</p>
+      </div>
+      <div class="map-legend">
+        <span data-i18n="legend-few">น้อย</span>
+        <span class="legend-grad"></span>
+        <span data-i18n="legend-many">มาก</span>
+      </div>
+    </div>
+    <div class="map-wrap">
+      <svg id="worldmap" viewBox="0 0 980 480" preserveAspectRatio="xMidYMid meet"></svg>
+      <div class="map-tip" id="maptip"></div>
+    </div>
+    <div class="map-empty-hint" data-i18n="map-hint">💡 ประเทศที่ไม่อยู่ในแผนที่ เช่น "International / Cocktail" จะแสดงในรายการด้านล่าง</div>
+  </div>
+</section>
+
+<section class="controls">
+  <div class="controls-row">
+    <div class="search-box">
+      <input id="search" type="search" placeholder="ค้นหาเมนู วัตถุดิบ หรือประเทศ…" data-i18n-ph="search-ph" aria-label="search">
+      <button class="clear-search" id="clear-search" aria-label="clear">✕</button>
+    </div>
+    <select class="sort-select" id="sort">
+      <option value="id">เริ่มต้น</option>
+      <option value="name">ชื่อ A→Z</option>
+      <option value="country">ประเทศ</option>
+    </select>
+  </div>
+  <div class="chips" id="chips"></div>
+</section>
+
+<div class="results-bar">
+  <div>พบ <strong id="result-count">0</strong> <span data-i18n="result-word">เมนู</span></div>
+  <div id="active-filter" style="font-style:italic;"></div>
+</div>
+
+<main class="grid" id="grid"></main>
+
+<div class="no-results" id="empty" style="display:none">
+  <div class="emoji">🥒❓</div>
+  <h3 data-i18n="empty-title">ยังไม่เจอเมนูที่ใช่</h3>
+  <p data-i18n="empty-sub">ลองค้นคำอื่น หรือกดปุ่ม "ทั้งหมด" ดูเมนูเต็ม</p>
+</div>
+
+<div class="modal-bg" id="modal" role="dialog" aria-modal="true">
+  <div class="modal" id="modal-body"></div>
+</div>
+
+<footer>
+  <div>🥒 Cucumber Atlas · made with <span class="heart">♥</span> · <a href="https://github.com/suksanfongfon/cucumber-menu">github</a></div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/d3@7/dist/d3.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/topojson-client@3/dist/topojson-client.min.js"></script>
 <script>
-const DATA = [{"id": 1, "name_th": "แกงจืดแตงร้านยัดไส้หมูสับ", "name_en": "Clear Soup with Stuffed Cucumber", "desc_en": "Cucumber stuffed with seasoned ground pork in a clear pork broth.", "country_th": "ไทย", "country_en": "Thailand", "flag": "🇹🇭", "ingredients_th": "แตงร้าน, หมูสับ, รากผักชี, กระเทียม, พริกไทย, น้ำซุปกระดูกหมู, ต้นหอม", "method_th": "ปอกเปลือกแตงร้านตัดเป็นท่อนคว้านไส้ออก หมักหมูสับกับเครื่องปรุงแล้วยัดเข้าไป ต้มในน้ำซุปจนแตงร้านนุ่มและไส้สุก โรยต้นหอม", "url": "https://www.wongnai.com/recipes/ugc/37438f0cdad9463b82fd49c5be0e3acc", "added": "2026-05-26 08:53"}, {"id": 2, "name_th": "ต้มจืดแตงร้านยัดไส้หมูสับเห็ดหอม", "name_en": "Stuffed Cucumber & Shiitake Clear Soup", "desc_en": "Cucumber stuffed with pork and shiitake mushroom, simmered in clear broth.", "country_th": "ไทย", "country_en": "Thailand", "flag": "🇹🇭", "ingredients_th": "แตงร้าน, หมูสับ, เห็ดหอม, วุ้นเส้น, กระเทียม, ซีอิ๊วขาว", "method_th": "ยัดไส้หมูสับและเห็ดหอมในแตงร้าน ต้มในน้ำซุปใส เคี่ยว 15 นาที", "url": "https://www.wongnai.com/recipes/ugc/69532bd045d5428281640bba443e7099", "added": "2026-05-26 08:53"}, {"id": 3, "name_th": "แตงร้านผัดหมูสับ", "name_en": "Stir-fried Cucumber with Minced Pork", "desc_en": "Quick stir-fry of cucumber slices with garlic, ground pork, and oyster sauce.", "country_th": "ไทย", "country_en": "Thailand", "flag": "🇹🇭", "ingredients_th": "แตงร้าน, หมูสับ, กระเทียม, น้ำมันหอย, ซีอิ๊วขาว, น้ำตาล", "method_th": "เจียวกระเทียมหอม ผัดหมูสับให้สุก ใส่แตงร้านหั่นชิ้น ปรุงรส ผัดเร็วๆ", "url": "https://www.wongnai.com/recipes/ugc/32e3fd97cb68493bb4ba2fabd69a68ed", "added": "2026-05-26 08:53"}, {"id": 4, "name_th": "แตงร้านยัดไส้ทอด", "name_en": "Crispy Stuffed Cucumber", "desc_en": "Cucumber stuffed with shrimp/pork, battered and deep-fried.", "country_th": "ไทย", "country_en": "Thailand", "flag": "🇹🇭", "ingredients_th": "แตงร้าน, หมูสับ, กุ้งสับ, แป้งทอดกรอบ", "method_th": "ยัดไส้แล้วชุบแป้งทอดจนกรอบ เสิร์ฟกับน้ำจิ้ม", "url": "https://cookpad.com/th/recipes/3252863", "added": "2026-05-26 08:53"}, {"id": 5, "name_th": "ยำแตงร้าน", "name_en": "Spicy Thai Cucumber Salad (Yum Tang Ran)", "desc_en": "Thai-style spicy salad with cucumber, protein, lime, and chili.", "country_th": "ไทย", "country_en": "Thailand", "flag": "🇹🇭", "ingredients_th": "แตงร้าน, หมูสับ/กุ้ง, หอมแดง, มะนาว, น้ำปลา, พริกขี้หนู", "method_th": "หั่นแตงร้านบาง คลุกกับเนื้อสัตว์ลวก และน้ำยำรสจัด", "url": "https://www.wongnai.com/recipes/ugc/4e6d05e674164095ae571140d05141aa", "added": "2026-05-26 08:53"}, {"id": 6, "name_th": "ยำแตงร้านหมูยอ", "name_en": "Cucumber & Vietnamese Pork Sausage Salad", "desc_en": "Spicy Thai salad of cucumber and Mu-Yor sausage.", "country_th": "ไทย", "country_en": "Thailand", "flag": "🇹🇭", "ingredients_th": "แตงร้าน, หมูยอ, หอมแดง, ขึ้นฉ่าย, น้ำยำ", "method_th": "หั่นหมูยอเป็นชิ้นพอคำ ผสมกับแตงร้านและน้ำยำ", "url": "https://www.wongnai.com/recipes/tags/thai-food-recipes", "added": "2026-05-26 08:53"}, {"id": 7, "name_th": "ยำแตงร้านปลากระป๋อง", "name_en": "Cucumber & Canned Sardine Salad", "desc_en": "Spicy salad with cucumber and canned sardines in tomato sauce.", "country_th": "ไทย", "country_en": "Thailand", "flag": "🇹🇭", "ingredients_th": "แตงร้าน, ปลากระป๋องในซอสมะเขือเทศ, หอมแดง, มะนาว, พริก", "method_th": "คลุกปลากระป๋องกับแตงร้านหั่นและน้ำยำ", "url": "https://cookpad.com/th/search/%E0%B9%81%E0%B8%95%E0%B8%87%E0%B8%A3%E0%B9%89%E0%B8%B2%E0%B8%99", "added": "2026-05-26 08:53"}, {"id": 8, "name_th": "ยำแตงร้านทูน่า", "name_en": "Cucumber Tuna Salad — Thai Style", "desc_en": "Spicy-sour Thai salad of cucumber and tuna.", "country_th": "ไทย", "country_en": "Thailand", "flag": "🇹🇭", "ingredients_th": "แตงร้าน, ทูน่ากระป๋อง, หอมใหญ่, มะนาว, พริก", "method_th": "ผสมทูน่ากับแตงร้านหั่นและน้ำยำเปรี้ยวเผ็ด", "url": "https://cookpad.com/th/search/%E0%B9%81%E0%B8%95%E0%B8%87%E0%B8%A3%E0%B9%89%E0%B8%B2%E0%B8%99", "added": "2026-05-26 08:53"}, {"id": 9, "name_th": "ตำแตง (ส้มตำแตงร้าน)", "name_en": "Thai Cucumber Som Tam", "desc_en": "Pounded cucumber salad with chili, lime, palm sugar, and peanuts.", "country_th": "ไทย (อีสาน)", "country_en": "Thailand (Isan)", "flag": "🇹🇭", "ingredients_th": "แตงร้าน, พริก, กระเทียม, มะนาว, น้ำปลา, น้ำตาลปี๊บ, ถั่วลิสง", "method_th": "ตำพริกกระเทียมในครก ใส่แตงร้านสับและปรุงรส", "url": "https://www.wongnai.com/recipes?q=%E0%B8%95%E0%B8%B3%E0%B9%81%E0%B8%95%E0%B8%87", "added": "2026-05-26 08:53"}, {"id": 10, "name_th": "แกงเลียงแตงร้าน", "name_en": "Spicy Mixed-Vegetable Soup with Cucumber", "desc_en": "Light pepper-and-herb soup with cucumber, pumpkin, and dried shrimp.", "country_th": "ไทย", "country_en": "Thailand", "flag": "🇹🇭", "ingredients_th": "แตงร้าน, กุ้งแห้ง, พริกไทย, หอมแดง, กะปิ, ใบแมงลัก, ฟักทอง", "method_th": "โขลกพริกแกงเลียง ต้มน้ำซุป ใส่แตงร้านและผักต่างๆ", "url": "https://cooking.kapook.com/", "added": "2026-05-26 08:53"}, {"id": 11, "name_th": "แตงร้านผัดไข่", "name_en": "Cucumber Stir-fried with Egg", "desc_en": "Cucumber sautéed with garlic and scrambled egg.", "country_th": "ไทย", "country_en": "Thailand", "flag": "🇹🇭", "ingredients_th": "แตงร้าน, ไข่ไก่, กระเทียม, ซีอิ๊วขาว, น้ำมันหอย", "method_th": "ผัดแตงร้านกับกระเทียม ตอกไข่ลงไปคนให้สุก", "url": "https://cooking.kapook.com/", "added": "2026-05-26 08:53"}, {"id": 12, "name_th": "ผัดแตงร้านกุ้ง", "name_en": "Stir-fried Cucumber with Shrimp", "desc_en": "Cucumber and shrimp stir-fry in oyster sauce.", "country_th": "ไทย", "country_en": "Thailand", "flag": "🇹🇭", "ingredients_th": "แตงร้าน, กุ้งสด, กระเทียม, น้ำมันหอย, ซอสปรุงรส", "method_th": "ผัดกุ้งกับกระเทียมจนหอม ใส่แตงร้านผัดเร็ว", "url": "https://www.wongnai.com/recipes/tags/thai-food-recipes", "added": "2026-05-26 08:53"}, {"id": 13, "name_th": "อาจาด (เครื่องเคียงสะเต๊ะ)", "name_en": "Ajad — Cucumber Relish for Satay", "desc_en": "Sweet-sour cucumber relish served with grilled satay.", "country_th": "ไทย", "country_en": "Thailand", "flag": "🇹🇭", "ingredients_th": "แตงร้าน, หอมแดง, พริกชี้ฟ้า, น้ำส้มสายชู, น้ำตาล, เกลือ", "method_th": "ต้มน้ำตาล น้ำส้ม เกลือ พักให้เย็น เทราดแตงร้านหั่นและหอมแดง", "url": "https://cooking.kapook.com/", "added": "2026-05-26 08:53"}, {"id": 14, "name_th": "แตงร้านดอง 3 รส", "name_en": "Thai 3-Flavor Pickled Cucumber", "desc_en": "Cucumber pickled in sweet-sour-salty brine with chili and garlic.", "country_th": "ไทย", "country_en": "Thailand", "flag": "🇹🇭", "ingredients_th": "แตงร้าน, น้ำส้มสายชู, น้ำตาล, เกลือ, พริก, กระเทียม", "method_th": "ดองแตงร้านในน้ำเชื่อมเปรี้ยวหวานเค็ม 1-2 วัน", "url": "https://cooking.kapook.com/", "added": "2026-05-26 08:53"}, {"id": 15, "name_th": "ข้าวคลุกกะปิ (แตงร้านเครื่องเคียง)", "name_en": "Shrimp Paste Fried Rice (with Cucumber Side)", "desc_en": "Rice fried with shrimp paste; cucumber served on the side.", "country_th": "ไทย", "country_en": "Thailand", "flag": "🇹🇭", "ingredients_th": "ข้าว, กะปิ, หมูหวาน, ไข่ฝอย, แตงร้าน, มะม่วงดิบ, ถั่วฝักยาว", "method_th": "ผัดข้าวกับกะปิ จัดเครื่องเคียงรอบจาน รวมถึงแตงร้านหั่น", "url": "https://cooking.kapook.com/", "added": "2026-05-26 08:53"}, {"id": 16, "name_th": "ข้าวยำปักษ์ใต้", "name_en": "Southern Thai Herbed Rice Salad", "desc_en": "Mixed rice with herbs, cucumber, coconut and budu sauce.", "country_th": "ไทย (ใต้)", "country_en": "Thailand (South)", "flag": "🇹🇭", "ingredients_th": "ข้าว, ตะไคร้, ใบมะกรูด, แตงร้านสับ, มะพร้าวคั่ว, กุ้งแห้ง, น้ำบูดู", "method_th": "หั่นผักเครื่องสมุนไพรรวมแตงร้านสับ ราดน้ำบูดู", "url": "https://www.wongnai.com/recipes/tags/thai-food-recipes", "added": "2026-05-26 08:53"}, {"id": 17, "name_th": "น้ำพริก + แตงร้าน (ผักเคียง)", "name_en": "Thai Chili Dip with Fresh Cucumber", "desc_en": "Cucumber served raw with traditional Thai chili dip.", "country_th": "ไทย", "country_en": "Thailand", "flag": "🇹🇭", "ingredients_th": "น้ำพริกกะปิ/น้ำพริกอ่อง, แตงร้านหั่น, ผักสด", "method_th": "เสิร์ฟแตงร้านสดเป็นผักจิ้มน้ำพริก", "url": "https://cooking.kapook.com/", "added": "2026-05-26 08:53"}, {"id": 18, "name_th": "ข้าวมันไก่ (แตงร้านเครื่องเคียง)", "name_en": "Hainanese Chicken Rice with Cucumber", "desc_en": "Cucumber slices served on the side of chicken rice.", "country_th": "ไทย", "country_en": "Thailand", "flag": "🇹🇭", "ingredients_th": "ข้าวมัน, ไก่ต้ม, น้ำจิ้มเต้าเจี้ยว, แตงร้านหั่น, ผักชี", "method_th": "วางแตงร้านสดเป็นเครื่องเคียงคู่ข้าวมันไก่", "url": "https://cooking.kapook.com/", "added": "2026-05-26 08:53"}, {"id": 19, "name_th": "ข้าวหมูแดง/หมูกรอบ + แตงร้าน", "name_en": "BBQ Pork & Crispy Pork Rice with Cucumber", "desc_en": "Cucumber as side garnish for red pork rice.", "country_th": "ไทย", "country_en": "Thailand", "flag": "🇹🇭", "ingredients_th": "ข้าว, หมูแดง, หมูกรอบ, น้ำราด, แตงร้าน, ต้นหอม, ไข่ต้ม", "method_th": "วางแตงร้านหั่นเป็นเครื่องเคียง", "url": "https://cooking.kapook.com/", "added": "2026-05-26 08:53"}, {"id": 20, "name_th": "ข้าวขาหมู + แตงร้านดอง", "name_en": "Stewed Pork Leg Rice with Pickled Cucumber", "desc_en": "Cucumber pickles cut through the richness of pork leg.", "country_th": "ไทย", "country_en": "Thailand", "flag": "🇹🇭", "ingredients_th": "ข้าว, ขาหมูตุ๋น, คะน้า, แตงร้านดอง", "method_th": "เสิร์ฟแตงร้านดองคู่ข้าวขาหมูเพื่อตัดเลี่ยน", "url": "https://cooking.kapook.com/", "added": "2026-05-26 08:53"}, {"id": 21, "name_th": "ขนมจีน + ผักเหนาะแตงร้าน", "name_en": "Rice Noodles with Fresh Cucumber Side", "desc_en": "Cucumber among the fresh-vegetable accompaniments to Khanom Jeen.", "country_th": "ไทย", "country_en": "Thailand", "flag": "🇹🇭", "ingredients_th": "ขนมจีน, น้ำยา/แกง, ถั่วงอก, ผักดอง, แตงร้านสด", "method_th": "วางแตงร้านสดเป็นผักเหนาะคู่ขนมจีน", "url": "https://cooking.kapook.com/", "added": "2026-05-26 08:53"}, {"id": 22, "name_th": "กุ้งแช่น้ำปลา (แตงเครื่องเคียง)", "name_en": "Raw Shrimp in Fish Sauce with Cucumber", "desc_en": "Cucumber slices balance the spicy raw-shrimp appetizer.", "country_th": "ไทย", "country_en": "Thailand", "flag": "🇹🇭", "ingredients_th": "กุ้งสด, น้ำปลา, กระเทียม, พริก, มะนาว, แตงร้านหั่น", "method_th": "วางแตงร้านหั่นบางเป็นเครื่องเคียงตัดความเผ็ด", "url": "https://cooking.kapook.com/", "added": "2026-05-26 08:53"}, {"id": 23, "name_th": "ปอเปี๊ยะสด (มีแตงร้าน)", "name_en": "Fresh Spring Rolls with Cucumber", "desc_en": "Soft rice paper rolls filled with cucumber, shrimp, and Chinese sausage.", "country_th": "ไทย/จีน", "country_en": "Thai-Chinese", "flag": "🇹🇭", "ingredients_th": "แผ่นแป้ง, แตงร้าน, แครอท, ถั่วงอก, กุ้ง, กุนเชียง, น้ำจิ้ม", "method_th": "ห่อไส้รวมแตงร้านในแผ่นแป้งเปียก", "url": "https://cooking.kapook.com/", "added": "2026-05-26 08:53"}, {"id": 24, "name_th": "หมูแดดเดียว/ไก่แดดเดียว + แตงร้าน", "name_en": "Sun-Dried Pork/Chicken with Cucumber", "desc_en": "Crispy fried sun-dried meat with cucumber and chili sauce.", "country_th": "ไทย", "country_en": "Thailand", "flag": "🇹🇭", "ingredients_th": "เนื้อสัตว์แดดเดียวทอด, ข้าวเหนียว, แตงร้านสด, น้ำจิ้มแจ่ว", "method_th": "ทอดเนื้อ เสิร์ฟพร้อมแตงร้านสดและน้ำจิ้ม", "url": "https://cooking.kapook.com/", "added": "2026-05-26 08:53"}, {"id": 25, "name_th": "ผัดไทย (แตงเคียง)", "name_en": "Pad Thai with Cucumber Garnish", "desc_en": "Classic Pad Thai served with raw cucumber on the side.", "country_th": "ไทย", "country_en": "Thailand", "flag": "🇹🇭", "ingredients_th": "เส้นจันท์, กุ้ง, ไข่, ถั่วงอก, แตงร้าน, มะนาว", "method_th": "วางแตงร้านดิบหั่นเป็นเครื่องเคียงผัดไทย", "url": "https://www.wongnai.com/recipes/tags/thai-food-recipes", "added": "2026-05-26 08:53"}, {"id": 26, "name_th": "ไส้กรอกอีสาน + แตงร้าน", "name_en": "Isan Fermented Sausage with Cucumber", "desc_en": "Fried Northeastern sausage served with raw cucumber, ginger, chili.", "country_th": "ไทย (อีสาน)", "country_en": "Thailand (Isan)", "flag": "🇹🇭", "ingredients_th": "ไส้กรอกอีสานหมัก, แตงร้าน, ขิงสด, พริกขี้หนู, กะหล่ำปลี", "method_th": "ทอดไส้กรอก เสิร์ฟพร้อมแตงร้านและผักเคียง", "url": "https://cooking.kapook.com/", "added": "2026-05-26 08:53"}, {"id": 27, "name_th": "ตับหวาน + แตงร้าน", "name_en": "Sweet-Glazed Pork Liver with Cucumber", "desc_en": "Caramelized liver served with cucumber side.", "country_th": "ไทย", "country_en": "Thailand", "flag": "🇹🇭", "ingredients_th": "ตับหมู, น้ำตาล, ซีอิ๊วดำ, แตงร้านเครื่องเคียง", "method_th": "ผัดตับหวาน เสิร์ฟพร้อมแตงร้าน", "url": "https://cooking.kapook.com/", "added": "2026-05-26 08:53"}, {"id": 28, "name_th": "ขนมเบื้องญวน (แตงในไส้)", "name_en": "Vietnamese-Style Crispy Pancake with Cucumber", "desc_en": "Thin pancake folded around shrimp, pork, and cucumber.", "country_th": "ไทย/เวียดนาม", "country_en": "Thai-Vietnamese", "flag": "🇹🇭", "ingredients_th": "แป้งข้าวเจ้า, ไส้กุ้งหมูสับ, แตงร้านสับ, ผักสด", "method_th": "ทอดแป้งบาง สอดไส้พร้อมแตงร้าน", "url": "https://cooking.kapook.com/", "added": "2026-05-26 08:53"}, {"id": 29, "name_th": "Tzatziki (ซอสโยเกิร์ตแตงกวา)", "name_en": "Tzatziki", "desc_en": "Greek yogurt-cucumber-garlic-dill dip.", "country_th": "กรีก", "country_en": "Greece", "flag": "🇬🇷", "ingredients_th": "แตงกวา/แตงร้านขูด, กรีกโยเกิร์ต, กระเทียม, น้ำมันมะกอก, ผักชีลาว, มะนาว", "method_th": "ขูดแตงกวาบีบน้ำออก ผสมโยเกิร์ตและเครื่องปรุง", "url": "https://www.themediterraneandish.com/cucumber-recipes/", "added": "2026-05-26 08:53"}, {"id": 30, "name_th": "Greek Salad (Horiatiki)", "name_en": "Greek Salad (Horiatiki)", "desc_en": "Cucumber, tomato, onion, olive, oregano, feta cheese.", "country_th": "กรีก", "country_en": "Greece", "flag": "🇬🇷", "ingredients_th": "แตงกวา, มะเขือเทศ, หัวหอม, มะกอก, ฟีต้า, ออริกาโน, น้ำมันมะกอก", "method_th": "หั่นผักหยาบ คลุกกับน้ำมันและฟีต้า", "url": "https://www.themediterraneandish.com/cucumber-recipes/", "added": "2026-05-26 08:53"}, {"id": 31, "name_th": "Fattoush", "name_en": "Fattoush", "desc_en": "Lebanese chopped salad with cucumber, tomato, herbs, and crispy pita.", "country_th": "เลบานอน", "country_en": "Lebanon", "flag": "🇱🇧", "ingredients_th": "แตงกวา, มะเขือเทศ, ผักกาด, พิต้ากรอบ, ซูแม็ค, มะนาว, น้ำมันมะกอก", "method_th": "คลุกผักกับน้ำสลัดและพิต้าทอด", "url": "https://www.themediterraneandish.com/cucumber-recipes/", "added": "2026-05-26 08:53"}, {"id": 32, "name_th": "Tabouleh (สอดแตง)", "name_en": "Tabouleh with Cucumber", "desc_en": "Bulgur, parsley, mint, cucumber, tomato, lemon.", "country_th": "เลบานอน", "country_en": "Lebanon", "flag": "🇱🇧", "ingredients_th": "บูลเกอร์, ผักชีฝรั่ง, แตงกวา, มะเขือเทศ, มะนาว, น้ำมันมะกอก", "method_th": "สับผักละเอียดผสมกับบูลเกอร์แช่", "url": "https://www.themediterraneandish.com/cucumber-recipes/", "added": "2026-05-26 08:53"}, {"id": 33, "name_th": "Cacik", "name_en": "Cacik (Turkish Yogurt-Cucumber Dip)", "desc_en": "Yogurt, cucumber, garlic, mint, olive oil.", "country_th": "ตุรกี", "country_en": "Turkey", "flag": "🇹🇷", "ingredients_th": "แตงกวา, โยเกิร์ต, กระเทียม, มินต์, น้ำมันมะกอก", "method_th": "ผสมโยเกิร์ตและแตงกวาขูด เสิร์ฟเย็น", "url": "https://www.themediterraneandish.com/cucumber-recipes/", "added": "2026-05-26 08:53"}, {"id": 34, "name_th": "Gazpacho", "name_en": "Gazpacho", "desc_en": "Spanish cold tomato-cucumber-pepper soup.", "country_th": "สเปน", "country_en": "Spain", "flag": "🇪🇸", "ingredients_th": "มะเขือเทศ, แตงกวา, พริกหวาน, กระเทียม, ขนมปัง, น้ำมันมะกอก, น้ำส้ม", "method_th": "ปั่นผักทั้งหมดให้ละเอียด แช่เย็น เสิร์ฟเป็นซุปเย็น", "url": "https://food52.com/story/24423-best-cucumber-recipes", "added": "2026-05-26 08:53"}, {"id": 35, "name_th": "Gazpacho Martini", "name_en": "Gazpacho Martini", "desc_en": "Savory cocktail: chilled gazpacho with gin or vodka.", "country_th": "สเปน/ค็อกเทล", "country_en": "Spain (Cocktail)", "flag": "🇪🇸", "ingredients_th": "Gazpacho, จิน/วอดก้า, แตงกวา, มะเขือเทศเชอร์รี่", "method_th": "ผสม Gazpacho เย็นกับจิน เสิร์ฟในแก้วมาร์ตินี่", "url": "https://joybauer.com/healthy-recipes/gazpacho-martini-savory-summer-cocktail/", "added": "2026-05-26 08:53"}, {"id": 36, "name_th": "Shirazi Salad", "name_en": "Shirazi Salad", "desc_en": "Persian cucumber-tomato-onion salad with lime and mint.", "country_th": "อิหร่าน", "country_en": "Iran", "flag": "🇮🇷", "ingredients_th": "แตงกวา, มะเขือเทศ, หัวหอม, มะนาว, มินต์, น้ำมันมะกอก", "method_th": "หั่นเต๋าผักทุกอย่างคลุกกับน้ำมะนาว", "url": "https://www.visiontimes.com/2025/07/31/international-cucumber-recipes.html", "added": "2026-05-26 08:53"}, {"id": 37, "name_th": "Mast-o-Khiar", "name_en": "Mast-o-Khiar", "desc_en": "Persian yogurt-cucumber dip with mint, walnut, and raisin.", "country_th": "อิหร่าน", "country_en": "Iran", "flag": "🇮🇷", "ingredients_th": "แตงกวา, โยเกิร์ต, ผักชีลาว, มินต์, วอลนัท, ลูกเกด", "method_th": "ผสมโยเกิร์ตข้นกับแตงกวาและสมุนไพร", "url": "https://www.visiontimes.com/2025/07/31/international-cucumber-recipes.html", "added": "2026-05-26 08:53"}, {"id": 38, "name_th": "Mizeria (สลัดแตงกวาโปแลนด์)", "name_en": "Mizeria", "desc_en": "Polish cucumber salad with sour cream and dill.", "country_th": "โปแลนด์", "country_en": "Poland", "flag": "🇵🇱", "ingredients_th": "แตงกวา, ครีมเปรี้ยว, ผักชีลาว, น้ำส้มสายชู, น้ำตาล, เกลือ", "method_th": "หั่นแตงกวาบาง คลุกครีมเปรี้ยวกับผักชีลาว", "url": "https://www.visiontimes.com/2025/07/31/international-cucumber-recipes.html", "added": "2026-05-26 08:53"}, {"id": 39, "name_th": "Uborkasaláta", "name_en": "Uborkasaláta", "desc_en": "Hungarian thinly-sliced cucumber salad with paprika and vinegar.", "country_th": "ฮังการี", "country_en": "Hungary", "flag": "🇭🇺", "ingredients_th": "แตงกวา, น้ำส้มสายชู, น้ำตาล, ปาปริก้า, กระเทียม", "method_th": "หั่นแตงกวาบางมาก คลุกกับน้ำส้มเปรี้ยวหวาน โรยปาปริก้า", "url": "https://www.visiontimes.com/2025/07/31/international-cucumber-recipes.html", "added": "2026-05-26 08:53"}, {"id": 40, "name_th": "Schmorgurken", "name_en": "Schmorgurken", "desc_en": "German braised cucumber with bacon and onion.", "country_th": "เยอรมัน", "country_en": "Germany", "flag": "🇩🇪", "ingredients_th": "แตงกวาตุ๋น, หัวหอม, เบคอน, ผักชีลาว, ครีม", "method_th": "ตุ๋นแตงกวากับเบคอนและหัวหอมในครีม", "url": "https://www.visiontimes.com/2025/07/31/international-cucumber-recipes.html", "added": "2026-05-26 08:53"}, {"id": 41, "name_th": "Tarator (ซุปแตงกวาเย็น)", "name_en": "Tarator", "desc_en": "Bulgarian cold cucumber-yogurt soup with walnut and dill.", "country_th": "บัลแกเรีย", "country_en": "Bulgaria", "flag": "🇧🇬", "ingredients_th": "แตงกวา, โยเกิร์ต, กระเทียม, ผักชีลาว, วอลนัท, น้ำมันมะกอก", "method_th": "ปั่นแตงกวาและโยเกิร์ตเข้ากัน เสิร์ฟเย็น", "url": "https://www.visiontimes.com/2025/07/31/international-cucumber-recipes.html", "added": "2026-05-26 08:53"}, {"id": 42, "name_th": "Okroshka (ซุปเย็นรัสเซีย)", "name_en": "Okroshka", "desc_en": "Russian cold soup with kvass, cucumber, egg, potato, sausage.", "country_th": "รัสเซีย", "country_en": "Russia", "flag": "🇷🇺", "ingredients_th": "Kvass, แตงกวา, ไข่ต้ม, มันฝรั่ง, หัวไชเท้า, ไส้กรอก, ครีมเปรี้ยว, ผักชีลาว", "method_th": "หั่นวัตถุดิบทั้งหมดเป็นเต๋า เทควาสและครีมเปรี้ยว", "url": "https://www.visiontimes.com/2025/07/31/international-cucumber-recipes.html", "added": "2026-05-26 08:53"}, {"id": 43, "name_th": "Sunomono", "name_en": "Sunomono", "desc_en": "Japanese cucumber salad with sweet rice vinegar and wakame.", "country_th": "ญี่ปุ่น", "country_en": "Japan", "flag": "🇯🇵", "ingredients_th": "แตงกวาญี่ปุ่น, น้ำส้มข้าว, น้ำตาล, เกลือ, สาหร่ายวากาเมะ, งา", "method_th": "หั่นบาง รีดน้ำ คลุกกับน้ำส้มหวาน", "url": "https://cinnamonsnail.com/sunomono-japanese-cucumber-salad/", "added": "2026-05-26 08:53"}, {"id": 44, "name_th": "Kappa Maki (ซูชิแตงกวา)", "name_en": "Kappa Maki", "desc_en": "Japanese cucumber sushi roll.", "country_th": "ญี่ปุ่น", "country_en": "Japan", "flag": "🇯🇵", "ingredients_th": "ข้าวซูชิ, สาหร่ายโนริ, แตงกวา, น้ำส้ม", "method_th": "ห่อแตงกวาในข้าวและสาหร่ายตัดเป็นชิ้น", "url": "https://www.themediterraneandish.com/cucumber-recipes/", "added": "2026-05-26 08:53"}, {"id": 45, "name_th": "Oi Muchim (ยำแตงเผ็ด)", "name_en": "Oi Muchim", "desc_en": "Korean spicy cucumber salad with gochugaru and sesame.", "country_th": "เกาหลี", "country_en": "Korea", "flag": "🇰🇷", "ingredients_th": "แตงกวา, โคชูการุ, ซีอิ๊ว, น้ำส้มข้าว, น้ำตาล, กระเทียม, น้ำมันงา, งาคั่ว", "method_th": "หั่นแตงกวา คลุกกับซอสเผ็ดเปรี้ยวหวาน", "url": "https://mykoreankitchen.com/korean-spicy-cucumber-salad/", "added": "2026-05-26 08:53"}, {"id": 46, "name_th": "Oi Sobagi (กิมจิแตงกวา)", "name_en": "Oi Sobagi", "desc_en": "Korean stuffed cucumber kimchi.", "country_th": "เกาหลี", "country_en": "Korea", "flag": "🇰🇷", "ingredients_th": "แตงกวา, กุ้ยช่าย, แครอท, โคชูการุ, น้ำปลา, กระเทียม, ขิง", "method_th": "ผ่ากลางแตงกวายัดไส้กิมจิ หมัก 1 วัน", "url": "https://www.koreanbapsang.com/oi-muchim-korean-style-cucumber-salad/", "added": "2026-05-26 08:53"}, {"id": 47, "name_th": "Oi Naengguk (ซุปเย็นแตงเกาหลี)", "name_en": "Oi Naengguk", "desc_en": "Korean chilled cucumber soup.", "country_th": "เกาหลี", "country_en": "Korea", "flag": "🇰🇷", "ingredients_th": "แตงกวา, ซีอิ๊ว, น้ำส้มข้าว, กระเทียม, น้ำเย็น, น้ำแข็ง, งา", "method_th": "หั่นแตงกวาเส้น เทน้ำซุปใสเย็น", "url": "https://kimchimari.com/korean-cucumber-salad/", "added": "2026-05-26 08:53"}, {"id": 48, "name_th": "Pai Huang Gua (แตงกวาทุบจีน)", "name_en": "Pai Huang Gua", "desc_en": "Chinese smashed cucumber salad with garlic and chili oil.", "country_th": "จีน", "country_en": "China", "flag": "🇨🇳", "ingredients_th": "แตงกวา, ซีอิ๊ว, น้ำส้มดำ, น้ำมันงา, กระเทียม, น้ำมันพริก", "method_th": "ทุบแตงกวาให้แตก คลุกกับซอสเผ็ดเปรี้ยว", "url": "https://food52.com/story/24423-best-cucumber-recipes", "added": "2026-05-26 08:53"}, {"id": 49, "name_th": "Liang Ban Huang Gua", "name_en": "Liang Ban Huang Gua", "desc_en": "Chinese cold-tossed cucumber with sesame oil and vinegar.", "country_th": "จีน", "country_en": "China", "flag": "🇨🇳", "ingredients_th": "แตงกวา, ซีอิ๊ว, น้ำส้ม, น้ำมันงา, กระเทียม", "method_th": "หั่นแตงกวาเฉียง คลุกซอสเย็น", "url": "https://food52.com/story/24423-best-cucumber-recipes", "added": "2026-05-26 08:53"}, {"id": 50, "name_th": "Kachumber", "name_en": "Kachumber", "desc_en": "Indian chopped cucumber-tomato-onion salad with cumin.", "country_th": "อินเดีย", "country_en": "India", "flag": "🇮🇳", "ingredients_th": "แตงกวา, มะเขือเทศ, หัวหอม, ผักชี, มะนาว, ยี่หร่าคั่ว, เกลือ, พริก", "method_th": "สับวัตถุดิบทุกอย่างเป็นเต๋าเล็ก คลุกรวมกัน", "url": "https://smittenkitchen.com/2020/08/kachumber-cooler/", "added": "2026-05-26 08:53"}, {"id": 51, "name_th": "Raita", "name_en": "Raita", "desc_en": "Indian yogurt-cucumber side with cumin and mint.", "country_th": "อินเดีย", "country_en": "India", "flag": "🇮🇳", "ingredients_th": "แตงกวาขูด, โยเกิร์ต, ยี่หร่าคั่ว, ผักชี, มินต์, เกลือ", "method_th": "ผสมแตงกวากับโยเกิร์ตและเครื่องเทศ", "url": "https://www.themediterraneandish.com/cucumber-recipes/", "added": "2026-05-26 08:53"}, {"id": 52, "name_th": "Kakadiche Dhirde (cucumber pancake)", "name_en": "Kakadiche Dhirde", "desc_en": "Indian Maharashtrian cucumber pancake with coconut.", "country_th": "อินเดีย", "country_en": "India", "flag": "🇮🇳", "ingredients_th": "แตงกวาขูด, แป้งข้าวเจ้า, มะพร้าวขูด, ขิง, น้ำตาลโตนด", "method_th": "ผสมเป็นแป้ง ทอดเป็นแพนเค้ก", "url": "https://www.visiontimes.com/2025/07/31/international-cucumber-recipes.html", "added": "2026-05-26 08:53"}, {"id": 53, "name_th": "Cucumber Chutney", "name_en": "South Indian Cucumber Chutney", "desc_en": "Cucumber chutney with coconut, mustard, curry leaves.", "country_th": "อินเดีย (ใต้)", "country_en": "India (South)", "flag": "🇮🇳", "ingredients_th": "แตงกวา, มะพร้าวขูด, ขิง, พริก, มัสตาร์ด, ใบกะหรี่", "method_th": "ปั่นเครื่องผสม คลุกแตงกวาขูด เสิร์ฟกับโดซา", "url": "https://www.themediterraneandish.com/cucumber-recipes/", "added": "2026-05-26 08:53"}, {"id": 54, "name_th": "Es Timun Serut", "name_en": "Es Timun Serut", "desc_en": "Indonesian shaved cucumber-lime cooler.", "country_th": "อินโดนีเซีย", "country_en": "Indonesia", "flag": "🇮🇩", "ingredients_th": "แตงกวาขูด, น้ำมะนาว, น้ำเชื่อม, น้ำแข็ง", "method_th": "ขูดแตงกวา ผสมกับมะนาวและน้ำเชื่อม เสิร์ฟกับน้ำแข็ง", "url": "https://www.visiontimes.com/2025/07/31/international-cucumber-recipes.html", "added": "2026-05-26 08:53"}, {"id": 55, "name_th": "Acar (แตงกวาดองมาเลย์)", "name_en": "Acar", "desc_en": "Malay-Indonesian sweet-sour pickled cucumber-carrot-pineapple.", "country_th": "มาเลเซีย/อินโดฯ", "country_en": "Malaysia/Indonesia", "flag": "🇲🇾", "ingredients_th": "แตงกวา, แครอท, สับปะรด, น้ำส้ม, น้ำตาล, ขมิ้น, ถั่วคั่ว, งา", "method_th": "ผัดเครื่องเทศแล้วคลุกผักดอง 1 คืน", "url": "https://www.visiontimes.com/2025/07/31/international-cucumber-recipes.html", "added": "2026-05-26 08:53"}, {"id": 56, "name_th": "Gỏi Dưa Leo (สลัดแตงเวียดนาม)", "name_en": "Gỏi Dưa Leo", "desc_en": "Vietnamese cucumber salad with peanuts and fish-sauce dressing.", "country_th": "เวียดนาม", "country_en": "Vietnam", "flag": "🇻🇳", "ingredients_th": "แตงกวา, แครอท, ถั่วลิสง, น้ำปลา, น้ำตาล, น้ำมะนาว, พริก", "method_th": "หั่นแตงกวาคลุกกับน้ำสลัดเปรี้ยวหวาน", "url": "https://www.themediterraneandish.com/cucumber-recipes/", "added": "2026-05-26 08:53"}, {"id": 57, "name_th": "Banh Mi (ขนมปังเวียดนาม)", "name_en": "Bánh Mì", "desc_en": "Vietnamese baguette with pâté, pork, cucumber, pickled veg.", "country_th": "เวียดนาม", "country_en": "Vietnam", "flag": "🇻🇳", "ingredients_th": "บาแกตต์, หมู/ไก่/ตับบด, แตงกวา, แครอท/หัวไชเท้าดอง, ผักชี, พริก, มายองเนส", "method_th": "ทาเครื่องในขนมปังพร้อมแตงกวาเส้น", "url": "https://www.themediterraneandish.com/cucumber-recipes/", "added": "2026-05-26 08:53"}, {"id": 58, "name_th": "Spring Roll เวียดนาม (Gỏi cuốn)", "name_en": "Vietnamese Spring Rolls (Gỏi Cuốn)", "desc_en": "Rice paper rolls with shrimp, pork, herbs, and cucumber.", "country_th": "เวียดนาม", "country_en": "Vietnam", "flag": "🇻🇳", "ingredients_th": "แผ่นข้าว, กุ้ง, หมู, เส้นหมี่, ผักกาด, แตงกวา, สะระแหน่, น้ำจิ้มถั่ว", "method_th": "ม้วนวัตถุดิบในแผ่นข้าวเปียก เสิร์ฟกับน้ำจิ้ม", "url": "https://www.themediterraneandish.com/cucumber-recipes/", "added": "2026-05-26 08:53"}, {"id": 59, "name_th": "Cucumber Tea Sandwich", "name_en": "Cucumber Tea Sandwich", "desc_en": "Classic British finger sandwich with thin cucumber and butter.", "country_th": "อังกฤษ", "country_en": "United Kingdom", "flag": "🇬🇧", "ingredients_th": "ขนมปังขาว, เนย, แตงกวาบางเฉียบ, เกลือ, พริกไทย, ครีมชีส (ตัวเลือก)", "method_th": "ทาเนย วางแตงกวาบาง ตัดขอบขนมปังเป็นชิ้นเล็ก", "url": "https://food52.com/story/24423-best-cucumber-recipes", "added": "2026-05-26 08:53"}, {"id": 60, "name_th": "Pimm's Cup", "name_en": "Pimm's Cup", "desc_en": "British summer cocktail with Pimm's, lemonade, and cucumber slices.", "country_th": "อังกฤษ", "country_en": "United Kingdom", "flag": "🇬🇧", "ingredients_th": "Pimm's No.1, น้ำเลมอน/ขิง, แตงกวา, สตรอเบอรี, มินต์, ส้ม", "method_th": "ผสมทั้งหมดในเหยือก เสิร์ฟกับแตงกวาแท่ง", "url": "https://punchdrink.com/articles/everybody-loves-a-cucumber-cocktail-recipe/", "added": "2026-05-26 08:53"}, {"id": 61, "name_th": "California Roll", "name_en": "California Roll", "desc_en": "Sushi roll with crab, avocado, and cucumber.", "country_th": "อเมริกัน/ญี่ปุ่น", "country_en": "USA/Japan", "flag": "🇺🇸", "ingredients_th": "ข้าวซูชิ, สาหร่าย, ปูอัด, อะโวคาโด, แตงกวา, งา", "method_th": "ม้วนข้าวกับไส้ตัดเป็นชิ้น", "url": "https://www.themediterraneandish.com/cucumber-recipes/", "added": "2026-05-26 08:53"}, {"id": 62, "name_th": "Dill Pickle", "name_en": "Dill Pickle", "desc_en": "American cucumber pickle with dill and garlic.", "country_th": "อเมริกัน", "country_en": "USA", "flag": "🇺🇸", "ingredients_th": "แตงกวา, น้ำส้มสายชู, น้ำตาล, เกลือ, ผักชีลาว, กระเทียม", "method_th": "ดองแตงกวาในน้ำเกลือผสมผักชีลาว 1-2 สัปดาห์", "url": "https://www.thekitchn.com/cucumber-recipes-22926223", "added": "2026-05-26 08:53"}, {"id": 63, "name_th": "Bread and Butter Pickles", "name_en": "Bread and Butter Pickles", "desc_en": "Sweet American pickles with onion and mustard seed.", "country_th": "อเมริกัน", "country_en": "USA", "flag": "🇺🇸", "ingredients_th": "แตงกวา, หัวหอม, น้ำส้ม, น้ำตาล, มัสตาร์ดซีด, ขมิ้น", "method_th": "ต้มน้ำดองหวาน ราดแตงกวาในขวด พักให้เย็น", "url": "https://www.thekitchn.com/cucumber-recipes-22926223", "added": "2026-05-26 08:53"}, {"id": 64, "name_th": "Cucumber Avocado Cold Soup", "name_en": "Cucumber Avocado Cold Soup", "desc_en": "Chilled blended soup of cucumber, avocado, and yogurt.", "country_th": "อเมริกัน", "country_en": "USA", "flag": "🇺🇸", "ingredients_th": "แตงกวา, อะโวคาโด, โยเกิร์ต, มะนาว, ผักชี, กระเทียม", "method_th": "ปั่นทุกอย่างให้เนียน เสิร์ฟแช่เย็น", "url": "https://food52.com/story/24423-best-cucumber-recipes", "added": "2026-05-26 08:53"}, {"id": 65, "name_th": "Cucumber Mint Lemonade", "name_en": "Cucumber Mint Lemonade", "desc_en": "Refreshing summer drink with cucumber juice, lime, and mint.", "country_th": "สากล", "country_en": "International", "flag": "🌍", "ingredients_th": "แตงกวา, มะนาว, ใบมินต์, น้ำตาล, น้ำเปล่า, น้ำแข็ง", "method_th": "ปั่นแตงกวา กรอง ผสมน้ำมะนาวและน้ำเชื่อมมินต์", "url": "https://food52.com/story/24423-best-cucumber-recipes", "added": "2026-05-26 08:53"}, {"id": 66, "name_th": "Cucumber Gin Cocktail (Don't Be Naive)", "name_en": "Don't Be Naive — Cucumber Gin Cocktail", "desc_en": "Cucumber-infused gin with ginger syrup and a drop of sesame oil.", "country_th": "ค็อกเทล (USA)", "country_en": "Cocktail (USA)", "flag": "🍸", "ingredients_th": "Gin หมักแตงกวา, น้ำเชื่อมขิง, น้ำมะนาว, น้ำมันงา", "method_th": "ผสมจิน-แตงกวา ขิง มะนาว เขย่า เสิร์ฟพร้อมหยดน้ำมันงา", "url": "https://imbibemagazine.com/recipe/dont-be-naive-cucumber-gin-cocktail/", "added": "2026-05-26 08:53"}, {"id": 67, "name_th": "Kachumber Cooler (cocktail)", "name_en": "Kachumber Cooler", "desc_en": "Cocktail muddling cucumber, cilantro, chili with gin and lime.", "country_th": "ค็อกเทล (Indian-inspired)", "country_en": "Cocktail (Indian)", "flag": "🍸", "ingredients_th": "แตงกวา, พริก, ผักชี, จิน, น้ำมะนาว, น้ำเชื่อม", "method_th": "บดแตงกวา-พริก-ผักชี ผสมจินและมะนาว เขย่า", "url": "https://smittenkitchen.com/2020/08/kachumber-cooler/", "added": "2026-05-26 08:53"}, {"id": 68, "name_th": "Cucumber Margarita", "name_en": "Cucumber Margarita", "desc_en": "Tequila cocktail blended with fresh cucumber and lime.", "country_th": "ค็อกเทล (เม็กซิโก)", "country_en": "Cocktail (Mexico)", "flag": "🍸", "ingredients_th": "เตกีล่า, แตงกวา, มะนาว, เกลือ, น้ำเชื่อม", "method_th": "ปั่นแตงกวา ผสมเตกีล่าและมะนาว ขอบแก้วเกลือ", "url": "https://punchdrink.com/articles/everybody-loves-a-cucumber-cocktail-recipe/", "added": "2026-05-26 08:53"}, {"id": 69, "name_th": "Cucumber Water (Spa Water)", "name_en": "Spa Cucumber Water", "desc_en": "Cold water infused with cucumber slices, lemon, and mint.", "country_th": "สากล", "country_en": "International", "flag": "🌍", "ingredients_th": "น้ำเปล่า, แตงกวาฝาน, มะนาว, มินต์", "method_th": "แช่แตงกวา-มะนาว-มินต์ในน้ำเย็น 1 ชม.", "url": "https://food52.com/story/24423-best-cucumber-recipes", "added": "2026-05-26 08:53"}, {"id": 70, "name_th": "Jamaican Cucumber Juice", "name_en": "Jamaican Cucumber Juice", "desc_en": "Blended cucumber juice with lime, ginger, and sweetener.", "country_th": "จาเมกา", "country_en": "จาเมกา", "flag": "🍽️", "ingredients_th": "แตงกวา, น้ำมะนาว, น้ำตาล, ขิง, น้ำแข็ง", "method_th": "ปั่นแตงกวากับเครื่องดื่ม กรองน้ำใส เสิร์ฟเย็น", "url": "https://www.visiontimes.com/2025/07/31/international-cucumber-recipes.html", "added": "2026-05-26 08:53"}, {"id": 71, "name_th": "Cucumber Yogurt Smoothie", "name_en": "Cucumber Yogurt Smoothie", "desc_en": "Blended cucumber, yogurt, honey, and mint.", "country_th": "สากล", "country_en": "International", "flag": "🌍", "ingredients_th": "แตงกวา, โยเกิร์ต, น้ำผึ้ง, มินต์, น้ำแข็ง", "method_th": "ปั่นรวมเป็นสมูทตี้เย็น", "url": "https://food52.com/story/24423-best-cucumber-recipes", "added": "2026-05-26 08:53"}, {"id": 72, "name_th": "Israeli Salad", "name_en": "Israeli Salad", "desc_en": "Finely diced cucumber, tomato, onion with olive oil and lemon.", "country_th": "อิสราเอล", "country_en": "Israel", "flag": "🇮🇱", "ingredients_th": "แตงกวา, มะเขือเทศ, หัวหอม, ผักชีฝรั่ง, น้ำมันมะกอก, มะนาว", "method_th": "หั่นเต๋าเล็กผักทั้งหมด คลุกน้ำสลัด", "url": "https://www.themediterraneandish.com/cucumber-recipes/", "added": "2026-05-26 08:53"}, {"id": 73, "name_th": "Cucumber Feta Salad", "name_en": "Cucumber Feta Salad", "desc_en": "Mediterranean cucumber salad with feta, olives, oregano.", "country_th": "เมดิเตอร์เรเนียน", "country_en": "Mediterranean", "flag": "🌊", "ingredients_th": "แตงกวา, ฟีต้า, มะกอกดำ, ออริกาโน, น้ำมันมะกอก", "method_th": "หั่นแตงกวาคลุกกับฟีต้าและเครื่องปรุง", "url": "https://www.themediterraneandish.com/cucumber-recipes/", "added": "2026-05-26 08:53"}, {"id": 74, "name_th": "Cucumber Tomato Onion Salad", "name_en": "Cucumber Tomato Onion Salad", "desc_en": "Classic light salad with vinegar and oil.", "country_th": "สากล", "country_en": "International", "flag": "🌍", "ingredients_th": "แตงกวา, มะเขือเทศ, หัวหอมแดง, น้ำมันมะกอก, น้ำส้มไวน์", "method_th": "หั่นบาง คลุกกับน้ำสลัด พักให้เข้ารส", "url": "https://www.themediterraneandish.com/cucumber-recipes/", "added": "2026-05-26 08:53"}, {"id": 75, "name_th": "Smacked Cucumber with Sesame", "name_en": "Smacked Cucumber with Sesame", "desc_en": "Smashed cucumber tossed with sesame oil, soy, and garlic.", "country_th": "จีน/อเมริกัน", "country_en": "Chinese-American", "flag": "🇨🇳", "ingredients_th": "แตงกวา, น้ำมันงา, ซีอิ๊ว, น้ำส้มข้าว, กระเทียม, งาคั่ว", "method_th": "ทุบแตงกวา หั่นชิ้น คลุกซอสงา", "url": "https://www.thekitchn.com/cucumber-recipes-22926223", "added": "2026-05-26 08:53"}, {"id": 76, "name_th": "Cucumber Sushi Bowl", "name_en": "Cucumber Sushi Bowl", "desc_en": "Sushi rice bowl topped with cucumber, salmon, avocado.", "country_th": "สากล (Asian-inspired)", "country_en": "International (Asian)", "flag": "🥢", "ingredients_th": "ข้าวซูชิ, แตงกวา, แซลมอน, อะโวคาโด, ซีอิ๊ว, งา", "method_th": "วางทุกอย่างในชาม ราดซอสซีอิ๊วงา", "url": "https://www.themediterraneandish.com/cucumber-recipes/", "added": "2026-05-26 08:53"}, {"id": 77, "name_th": "Cucumber Boats appetizer", "name_en": "Cucumber Boats", "desc_en": "Hollowed cucumber halves stuffed with tuna or cream cheese.", "country_th": "สากล", "country_en": "International", "flag": "🌍", "ingredients_th": "แตงกวาผ่ายาว, ทูน่า/แซลมอน/ครีมชีส, มะนาว, ผักชี", "method_th": "คว้านไส้ ใส่ไส้ตามชอบ เสิร์ฟเป็นเรียกน้ำย่อย", "url": "https://food52.com/story/24423-best-cucumber-recipes", "added": "2026-05-26 08:53"}, {"id": 78, "name_th": "Cucumber Avocado Sushi (Veg)", "name_en": "Cucumber Avocado Sushi", "desc_en": "Vegan sushi roll of cucumber, avocado, and carrot.", "country_th": "ญี่ปุ่น/มังสวิรัติ", "country_en": "Japan/Vegan", "flag": "🇯🇵", "ingredients_th": "ข้าว, สาหร่าย, แตงกวา, อะโวคาโด, แครอท", "method_th": "ม้วนข้าวกับผัก ตัดเป็นชิ้น", "url": "https://www.thekitchn.com/cucumber-recipes-22926223", "added": "2026-05-26 08:53"}, {"id": 79, "name_th": "Asian Cucumber Salad", "name_en": "Asian Cucumber Salad", "desc_en": "Cucumber tossed with rice vinegar, soy, sesame, and chili.", "country_th": "เอเชีย-ฟิวชั่น", "country_en": "Asian Fusion", "flag": "🥢", "ingredients_th": "แตงกวา, น้ำส้มข้าว, น้ำตาล, ซีอิ๊ว, น้ำมันงา, พริกแดง, งา", "method_th": "หั่นแตงกวา คลุกซอสเอเชียเปรี้ยวหวาน", "url": "https://flavorfuleats.com/20-cucumber-recipes/", "added": "2026-05-26 08:53"}, {"id": 80, "name_th": "Cucumber Hummus Snack Plate", "name_en": "Cucumber Hummus Snack Plate", "desc_en": "Cucumber rounds topped with hummus and olives.", "country_th": "เมดิเตอร์เรเนียน", "country_en": "Mediterranean", "flag": "🌊", "ingredients_th": "แตงกวาฝาน, ฮัมมัส, มะกอก, พิต้า", "method_th": "วางฮัมมัสบนแตงกวาฝาน เสิร์ฟเป็นของว่าง", "url": "https://www.themediterraneandish.com/cucumber-recipes/", "added": "2026-05-26 08:53"}, {"id": 81, "name_th": "Cucumber Salsa", "name_en": "Cucumber Salsa", "desc_en": "Mexican-inspired chunky cucumber salsa with jalapeño and lime.", "country_th": "เม็กซิกัน", "country_en": "Mexican", "flag": "🇲🇽", "ingredients_th": "แตงกวา, มะเขือเทศ, ฮาลาปิโน, ผักชี, มะนาว, หัวหอม", "method_th": "สับเต๋าทั้งหมด คลุกรวมกับน้ำมะนาวและเกลือ", "url": "https://flavorfuleats.com/20-cucumber-recipes/", "added": "2026-05-26 08:53"}, {"id": 82, "name_th": "Sesame Cucumber Noodle Salad", "name_en": "Sesame Cucumber Noodle Salad", "desc_en": "Soba noodles with cucumber and creamy sesame dressing.", "country_th": "เอเชีย-ฟิวชั่น", "country_en": "Asian Fusion", "flag": "🥢", "ingredients_th": "เส้นโซบะ, แตงกวา, ซอสงา, ถั่วลิสงป่น, ต้นหอม", "method_th": "ลวกเส้น คลุกกับแตงกวาและซอสงา", "url": "https://www.thekitchn.com/cucumber-recipes-22926223", "added": "2026-05-26 08:53"}, {"id": 83, "name_th": "Cucumber Watermelon Salad", "name_en": "Cucumber Watermelon Salad", "desc_en": "Sweet-savory salad with watermelon, cucumber, feta, mint.", "country_th": "สากล", "country_en": "International", "flag": "🌍", "ingredients_th": "แตงโม, แตงกวา, ฟีต้า, มินต์, น้ำมันมะกอก, มะนาว", "method_th": "หั่นเต๋าแตงโมและแตงกวา คลุกกับฟีต้าและมินต์", "url": "https://food52.com/story/24423-best-cucumber-recipes", "added": "2026-05-26 08:53"}, {"id": 84, "name_th": "Hungarian Uborkasaláta Creamy", "name_en": "Hungarian Creamy Uborkasaláta", "desc_en": "Cucumber salad with sour cream, vinegar, sugar, paprika.", "country_th": "ฮังการี", "country_en": "Hungary", "flag": "🇭🇺", "ingredients_th": "แตงกวา, ครีมเปรี้ยว, น้ำส้ม, น้ำตาล, ปาปริก้า, กระเทียม", "method_th": "หั่นแตงกวาบางมาก คลุกครีมเปรี้ยวและเครื่องปรุง", "url": "https://www.visiontimes.com/2025/07/31/international-cucumber-recipes.html", "added": "2026-05-26 08:53"}, {"id": 85, "name_th": "Burmese Cucumber Salad (Thakhwa Thoke)", "name_en": "Burmese Cucumber Salad (Thakhwa Thoke)", "desc_en": "Burmese-style cucumber salad with shallots, green chili, sesame, and tangy-savory dressing.", "country_th": "พม่า (เมียนมาร์)", "country_en": "Myanmar", "flag": "🇲🇲", "ingredients_th": "แตงกวา, หอมแดงสีม่วง, พริกเขียว, งาคั่ว, น้ำมันงา, น้ำส้มสายชู, มะนาว, หอมเจียว", "method_th": "หั่นแตงกวาและหอมแดงบางๆ คลุกกับน้ำมันงา น้ำส้มสายชู มะนาว เกลือ น้ำตาล โรยงาและหอมเจียวก่อนเสิร์ฟ", "url": "https://grantourismotravels.com/burmese-cucumber-salad-recipe/", "added": "2026-05-26 09:10"}, {"id": 86, "name_th": "Ensaladang Pipino", "name_en": "Ensaladang Pipino", "desc_en": "Filipino cucumber-tomato salad with vinegar, ginger, and onion.", "country_th": "ฟิลิปปินส์", "country_en": "Philippines", "flag": "🇵🇭", "ingredients_th": "แตงกวา, มะเขือเทศ, หัวหอม, น้ำส้มสายชู, ขิง, เกลือ, น้ำตาล", "method_th": "หั่นแตงกวาและมะเขือเทศ คลุกกับน้ำสลัดน้ำส้มสายชูผสมขิงและน้ำตาลเล็กน้อย เสิร์ฟคู่อาหารทอด/ย่าง", "url": "https://www.kawalingpinoy.com/ensaladang-pipino/", "added": "2026-05-26 09:10"}, {"id": 87, "name_th": "Khalpi (Nepali Fermented Cucumber Pickle)", "name_en": "Khalpi — Nepali Cucumber Pickle", "desc_en": "Fermented Nepali cucumber pickle with mustard oil, turmeric, and sesame.", "country_th": "เนปาล", "country_en": "Nepal", "flag": "🇳🇵", "ingredients_th": "แตงกวาแก่, ขมิ้น, พริกแห้ง, งาดำคั่ว, เมล็ดเฟนูกรีก, น้ำมันมัสตาร์ด, มะนาว", "method_th": "ตากแตงกวาให้แห้งหมาด คลุกขมิ้น เกลือ ใส่เครื่องปรุงและน้ำมันมัสตาร์ด หมักให้เปรี้ยว 1-2 วัน", "url": "http://tasteofnepal.blogspot.com/2014/10/pickled-cucumber-khalpi-achaar.html", "added": "2026-05-26 09:10"}, {"id": 88, "name_th": "Lalapan (Indonesian Raw Veggie Platter)", "name_en": "Lalapan", "desc_en": "Sundanese raw vegetable platter with cucumber, lemon basil and sambal.", "country_th": "อินโดนีเซีย", "country_en": "Indonesia", "flag": "🇮🇩", "ingredients_th": "แตงกวา, ผักกาดหอม, ใบกะเพรา (kemangi), ถั่วฝักยาว, มะเขือเทศ, ซัมบัล", "method_th": "จัดผักสดรวมแตงกวาฝานเป็นชิ้น เสิร์ฟพร้อมน้ำพริกซัมบัลและอาหารหลัก เช่น ไก่ย่าง ปลาทอด", "url": "https://www.cookmeindonesian.com/lalapan-indonesian-side-salad/", "added": "2026-05-26 09:10"}, {"id": 89, "name_th": "Salata Baladi", "name_en": "Salata Baladi", "desc_en": "Egyptian cucumber-tomato salad with parsley, lemon and dried mint.", "country_th": "อียิปต์", "country_en": "Egypt", "flag": "🇪🇬", "ingredients_th": "แตงกวา, มะเขือเทศ, ผักชีฝรั่ง, หัวหอมแดง, น้ำมะนาว, น้ำส้มสายชู, มินต์แห้ง", "method_th": "หั่นแตงกวา มะเขือเทศ หัวหอมเป็นชิ้นเล็ก คลุกกับน้ำมะนาว น้ำส้มสายชู โรยมินต์แห้งและผักชี เสิร์ฟทันที", "url": "https://wanderzestblog.com/egyptian-cucumber-and-tomato-salad/", "added": "2026-05-26 09:10"}, {"id": 90, "name_th": "Ethiopian Cucumber Tomato Salad", "name_en": "Ethiopian Cucumber Tomato Salad", "desc_en": "Ethiopian salad of cucumber, tomato, jalapeño with lemon and balsamic.", "country_th": "เอธิโอเปีย", "country_en": "Ethiopia", "flag": "🇪🇹", "ingredients_th": "แตงกวา, มะเขือเทศ, หัวหอม, ฮาลาปิโน, น้ำมะนาว, น้ำส้มสายชูบัลซามิก, น้ำมันมะกอก", "method_th": "หั่นเต๋าแตงกวา มะเขือเทศ หอมและพริก คลุกกับน้ำมะนาวและน้ำส้มบัลซามิก เสิร์ฟเย็น", "url": "https://togetherwomenrise.org/recipes/ethiopian-cucumber-and-tomato-salad/", "added": "2026-05-26 09:10"}, {"id": 91, "name_th": "Peruvian Cucumber Salad (Ensalada de Pepino)", "name_en": "Peruvian Cucumber Salad", "desc_en": "Peruvian salad with cucumber, jalapeño, aji amarillo, lime, feta and avocado.", "country_th": "เปรู", "country_en": "Peru", "flag": "🇵🇪", "ingredients_th": "แตงกวา, หัวหอมแดง, ฮาลาปิโน, ผักชี, ดิลล์, มะนาว, ฟีต้า, อะโวคาโด, อาฮีอามาริโย", "method_th": "หั่นแตงกวาบาง คลุกหอมแดงและพริก ราดน้ำสลัดมะนาวผสมอาฮีอามาริโย โรยฟีต้าและอะโวคาโด", "url": "https://www.thegeneticchef.com/peruvian-cucumber-salad/", "added": "2026-05-26 09:10"}, {"id": 92, "name_th": "Brazilian Cucumber-Avocado Boat", "name_en": "Brazilian Cucumber-Avocado Boat", "desc_en": "Marinated cucumber-pepper salad served in avocado shells.", "country_th": "บราซิล", "country_en": "Brazil", "flag": "🇧🇷", "ingredients_th": "แตงกวา, อะโวคาโด, พริกหวาน, น้ำสลัดอเมริกาใต้ (น้ำมัน น้ำส้ม กระเทียม)", "method_th": "หั่นแตงกวาเป็นเต๋า หมักกับน้ำสลัด 1 ชั่วโมง ตักใส่ครึ่งอะโวคาโดเสิร์ฟเป็นเรือ", "url": "http://www.dvo.com/recipe_pages/worldraw/Brazilian_Cucumber_Salad.php", "added": "2026-05-26 09:10"}, {"id": 93, "name_th": "Gurkensalat (German Cucumber Salad)", "name_en": "Gurkensalat", "desc_en": "German/Austrian cucumber salad with dill, vinegar-oil or sour cream dressing.", "country_th": "เยอรมัน/ออสเตรีย", "country_en": "Germany/Austria", "flag": "🇩🇪", "ingredients_th": "แตงกวา, หัวหอม, ดิลล์สด, น้ำส้มสายชู, น้ำมัน (หรือครีมเปรี้ยว), น้ำตาล, เกลือ", "method_th": "ฝานแตงกวาบางๆ เกลือทิ้งไว้คายน้ำ บีบแล้วคลุกน้ำสลัดน้ำส้ม-น้ำมันหรือครีมเปรี้ยว แช่เย็น เสิร์ฟกับชนิทเซล", "url": "https://www.daringgourmet.com/german-cucumber-salad-gurkensalat/", "added": "2026-05-26 09:10"}, {"id": 94, "name_th": "Pressgurka (Swedish Pressed Cucumber)", "name_en": "Pressgurka", "desc_en": "Swedish pressed cucumber salad — sweet-sour, served with meatballs or stew.", "country_th": "สวีเดน", "country_en": "Sweden", "flag": "🇸🇪", "ingredients_th": "แตงกวา, น้ำส้มสายชูขาว, น้ำตาล, พริกไทย, ผักชีฝรั่งหรือดิลล์", "method_th": "ฝานแตงกวาบางมาก โรยเกลือกดทับรีดน้ำออก ราดน้ำส้มและน้ำตาล แช่เย็นเสิร์ฟคู่มีตบอลหรือสตู", "url": "https://jamilghar.com/pressgurka/", "added": "2026-05-26 09:10"}, {"id": 95, "name_th": "Sri Lankan Cucumber Curry (Pipinge Curry)", "name_en": "Sri Lankan Cucumber Curry", "desc_en": "Sri Lankan coconut curry with tender cucumber and warm spices — served over rice.", "country_th": "ศรีลังกา", "country_en": "Sri Lanka", "flag": "🇱🇰", "ingredients_th": "แตงกวา, กะทิ, ผงแกง, ขมิ้น, ใบแกง, หอม, กระเทียม, เม็ดมัสตาร์ด, พริก", "method_th": "ผัดเครื่องเทศกับเม็ดมัสตาร์ดและใบแกง ใส่แตงกวาหั่นชิ้น เติมกะทิเคี่ยวเบาๆ จนแตงนุ่ม เสิร์ฟกับข้าว", "url": "https://www.kaveyeats.com/leenas-cucumber-curry", "added": "2026-05-26 10:10"}, {"id": 96, "name_th": "Pipinna Sambol (Sri Lankan Cucumber Sambol)", "name_en": "Pipinna Sambol", "desc_en": "Sri Lankan fresh cucumber-coconut relish — bright, tangy, slightly spicy.", "country_th": "ศรีลังกา", "country_en": "Sri Lanka", "flag": "🇱🇰", "ingredients_th": "แตงกวา, มะพร้าวขูด, หอมแดง, พริกเขียว, น้ำมะนาว, เกลือ", "method_th": "หั่นแตงเป็นเต๋าเล็ก คลุกกับมะพร้าวขูด หอมแดง พริก น้ำมะนาวและเกลือ เสิร์ฟเป็นเครื่องเคียงกับข้าวและแกง", "url": "https://www.anomaskitchen.com/cucumber-salad-pipinna-sambol/", "added": "2026-05-26 10:10"}, {"id": 97, "name_th": "Yamitsuki Kyuri (Addictive Japanese Cucumber)", "name_en": "Yamitsuki Kyuri", "desc_en": "Japanese izakaya \"addictive\" smashed cucumber marinated in soy, sesame, garlic and chili.", "country_th": "ญี่ปุ่น", "country_en": "Japan", "flag": "🇯🇵", "ingredients_th": "แตงกวาญี่ปุ่น, เกลือ, ซอสถั่วเหลือง, น้ำส้มสายชู, น้ำตาล, น้ำมันงา, กระเทียม, พริกแห้ง, งา", "method_th": "ทุบแตงกวาแล้วโรยเกลือพักให้คายน้ำ บีบแห้ง คลุกซอสถั่วเหลือง น้ำมันงา กระเทียมและพริก หมักเย็นเสิร์ฟเป็นกับแกล้มอิซากายะ", "url": "https://www.wineenthusiast.com/recipe/yamitsuki-kyuri-addictive-cucumber-salad/", "added": "2026-05-26 10:10"}, {"id": 98, "name_th": "Khyar Bi Laban (Lebanese Cucumber Yogurt Salad)", "name_en": "Khyar Bi Laban", "desc_en": "Lebanese cucumber yogurt salad with mint and garlic — cooling Levantine mezze.", "country_th": "เลบานอน", "country_en": "Lebanon", "flag": "🇱🇧", "ingredients_th": "แตงกวา, โยเกิร์ตข้น, กระเทียม, มินต์แห้ง, น้ำมะนาว, เกลือ", "method_th": "หั่นแตงเป็นชิ้นเล็ก ผสมกับโยเกิร์ต กระเทียมบด น้ำมะนาว มินต์แห้งและเกลือ แช่เย็นก่อนเสิร์ฟเป็นเมเซ่", "url": "https://www.simplyleb.com/recipe/lebanese-cucumber-yogurt-salad/", "added": "2026-05-26 10:10"}, {"id": 99, "name_th": "Egyptian Spicy Pickled Cucumber", "name_en": "Egyptian Spicy Pickled Cucumber", "desc_en": "Quick 3-hour Egyptian fridge pickles with chili and garlic — crunchy and tangy.", "country_th": "อียิปต์", "country_en": "Egypt", "flag": "🇪🇬", "ingredients_th": "แตงกวาเปอร์เซีย, น้ำส้มสายชูขาว, เกลือ, พริกแห้ง, กระเทียม, น้ำเดือด", "method_th": "จัดแตงกวาในขวด เติมกระเทียม พริก เกลือ เทน้ำส้มกับน้ำเดือดลงไป แช่ตู้เย็น 3 ชั่วโมงพร้อมเสิร์ฟ", "url": "https://thematbakh.com/no-cook-refrigerator-pickles-egyptian-style/", "added": "2026-05-26 10:10"}, {"id": 100, "name_th": "Kerabu Timun (Malaysian Spicy Cucumber Salad)", "name_en": "Kerabu Timun", "desc_en": "Malaysian spicy cucumber salad with sambal belacan, dried shrimp and kaffir lime.", "country_th": "มาเลเซีย", "country_en": "Malaysia", "flag": "🇲🇾", "ingredients_th": "แตงกวา, หอมแดง, กุ้งแห้งบด, ซัมบัลเบลาจัน, น้ำมะนาว, น้ำตาลปี๊บ, ใบมะกรูดซอย", "method_th": "หั่นแตงกวาหั่นแว่น คลุกกับหอมแดง กุ้งแห้ง ซัมบัลเบลาจัน น้ำมะนาวและน้ำตาลปี๊บ โรยใบมะกรูด เสิร์ฟเป็นเครื่องเคียงข้าวมันบริยานี", "url": "https://www.malaysianchinesekitchen.com/kerabu-timun-spicy-cucumber-salad/", "added": "2026-05-26 10:10"}, {"id": 101, "name_th": "Armenian Cucumber & Tomato Salad", "name_en": "Armenian Cucumber & Tomato Salad", "desc_en": "Armenian summer salad with mint, parsley and lemon — served with lavash.", "country_th": "อาร์เมเนีย", "country_en": "Armenia", "flag": "🇦🇲", "ingredients_th": "แตงกวาอาร์เมเนียน, มะเขือเทศ, ต้นหอม, พาร์สลีย์, มินต์สด, น้ำมะนาว, น้ำมันมะกอก, เกลือ", "method_th": "หั่นแตงและมะเขือเทศเป็นชิ้น คลุกกับต้นหอมซอย พาร์สลีย์และมินต์ ราดน้ำมันมะกอกและน้ำมะนาว เสิร์ฟเป็นเมเซ่กับลาวาช", "url": "https://kalejunkie.com/armenian-cucumber-tomato-salad/", "added": "2026-05-26 10:10"}, {"id": 102, "name_th": "Pickled Armenian Cucumbers", "name_en": "Pickled Armenian Cucumbers", "desc_en": "Armenian dill-and-garlic refrigerator pickles — crisp and bright.", "country_th": "อาร์เมเนีย", "country_en": "Armenia", "flag": "🇦🇲", "ingredients_th": "แตงกวาอาร์เมเนียน, น้ำส้มสายชูขาว, น้ำ, เกลือ, น้ำตาล, ดิลล์, กระเทียม, พริกไทยเม็ด", "method_th": "ต้มน้ำส้ม น้ำ เกลือและน้ำตาลให้ละลาย เทลงในขวดที่ใส่แตงกวา ดิลล์และกระเทียม ปิดฝาแช่ตู้เย็นอย่างน้อย 1 วัน", "url": "https://thestuffedgrapeleaf.com/pickled-armenian-cucumbers/", "added": "2026-05-26 10:10"}, {"id": 103, "name_th": "Thum Mak Thang (Lao Spicy Cucumber Salad)", "name_en": "Thum Mak Thang", "desc_en": "Lao pounded cucumber salad with chili, lime, fish sauce — punchy and refreshing.", "country_th": "ลาว", "country_en": "Laos", "flag": "🇱🇦", "ingredients_th": "แตงกวา, กระเทียม, พริกขี้หนู, น้ำมะนาว, น้ำปลา, น้ำตาล, มะเขือเทศ, ปลาร้า (เลือกใส่), งา", "method_th": "ตำกระเทียมและพริกในครก เติมน้ำปลา น้ำมะนาว น้ำตาล (และปลาร้า) ใส่มะเขือเทศและแตงกวาหั่นแว่น ตำคลุกเบาๆ ให้เข้ากัน", "url": "https://hungryinthailand.com/spicy-lao-cucumber-salad-recipe/", "added": "2026-05-26 10:10"}, {"id": 104, "name_th": "Nhoam Trasak (Cambodian Cucumber Salad)", "name_en": "Nhoam Trasak", "desc_en": "Cambodian cucumber salad with shrimp, mint and peanuts in fish sauce-lime dressing.", "country_th": "กัมพูชา", "country_en": "Cambodia", "flag": "🇰🇭", "ingredients_th": "แตงกวา, หอมแดง, กุ้งแห้งหรือกุ้งสด, ใบสะระแหน่, ผักชี, น้ำปลา, น้ำมะนาว, พริก, กระเทียม, น้ำตาลปี๊บ, ถั่วลิสง", "method_th": "ผสมแตงกวาฝานบางกับหอมแดงและกุ้ง ราดน้ำสลัดน้ำปลา-มะนาว-กระเทียม-พริก โรยสะระแหน่ ผักชีและถั่วลิสงคั่ว", "url": "https://grantourismotravels.com/cambodian-cucumber-salad-recipe-nhoam-trasak/", "added": "2026-05-26 10:10"}];
+/* ---------- i18n strings ---------- */
 const I18N = {
   th: {
-    brand:"เมนูแตงร้าน",
-    eyebrow:"🌿 รวมเมนูที่มีแตงร้าน",
-    hero_title:"<span class='accent'>แตงร้าน</span> สู่จานอร่อย<br>จากทั่วทุกมุมโลก",
-    hero_sub:"รวมสูตรอาหารไทยและนานาชาติที่ใช้แตงร้าน/แตงกวาเป็นส่วนประกอบ ค้นหา กรอง และเปิดสูตรเต็มจากแหล่งที่มาได้ทันที",
-    stat_total:"เมนู",
-    stat_countries:"ประเทศ",
-    stat_updated:"อัปเดต",
-    search_ph:"ค้นหาชื่อเมนู ส่วนประกอบ หรือประเทศ…",
-    all_countries:"— ทุกประเทศ —",
-    empty_title:"ไม่พบเมนูที่ตรงกับการค้นหา",
-    empty_sub:"ลองล้างคำค้นหาหรือเลือกประเทศอื่น",
-    m_country:"ประเทศ",
-    m_ingredients:"ส่วนประกอบ",
-    m_method:"วิธีทำ",
-    m_source:"ดูสูตรเต็มจากแหล่งที่มา",
-    footer_made:"สร้างด้วยใจสำหรับคนรักแตงร้าน",
-    footer_data:"ข้อมูลอัปเดตอัตโนมัติทุก 1 ชั่วโมง",
-    view_recipe:"ดูสูตร",
+    'eyebrow': '🥒 รวมเมนูแตงกวา · ทั่วโลก',
+    'title-html': 'เมนูแตงกวา <span class="accent">จากครัวทุกมุมโลก</span>',
+    'lede': '104 สูตรอาหารและเครื่องดื่ม จากกว่า 50 ประเทศ ตั้งแต่ยำแตงร้านไทย กิมจิเกาหลี ไปจนค็อกเทลแตงกวา — คลิกที่แผนที่หรือชิปประเทศเพื่อสำรวจ',
+    'stat-recipes': 'เมนู',
+    'stat-countries': 'ประเทศ',
+    'stat-thai': 'สูตรไทย',
+    'map-title': '🗺️ แผนที่เมนูแตงกวา',
+    'map-sub': 'คลิกประเทศที่ระบายสี — สีเข้มกว่า = มีเมนูมากกว่า',
+    'map-hint': '💡 ประเทศที่ไม่อยู่ในแผนที่ เช่น "International / Cocktail" จะแสดงในรายการด้านล่าง',
+    'legend-few': 'น้อย',
+    'legend-many': 'มาก',
+    'search-ph': 'ค้นหาเมนู วัตถุดิบ หรือประเทศ…',
+    'result-word': 'เมนู',
+    'all-chip': 'ทั้งหมด',
+    'sort-id': 'เริ่มต้น',
+    'sort-name': 'ชื่อ A→Z',
+    'sort-country': 'ประเทศ',
+    'empty-title': 'ยังไม่เจอเมนูที่ใช่',
+    'empty-sub': 'ลองค้นคำอื่น หรือกดปุ่ม "ทั้งหมด" ดูเมนูเต็ม',
+    'modal-ing': 'วัตถุดิบ',
+    'modal-method': 'วิธีทำ',
+    'modal-link': 'ดูสูตรเต็มที่แหล่งที่มา',
+    'active-prefix': 'กำลังดู: '
   },
   en: {
-    brand:"Cucumber Menu",
-    eyebrow:"🌿 Dishes featuring cucumber",
-    hero_title:"From <span class='accent'>cucumber</span> to delicious<br>dishes around the world",
-    hero_sub:"A bilingual collection of Thai and international recipes featuring cucumber. Search, filter, and jump to the full recipe at the source.",
-    stat_total:"Dishes",
-    stat_countries:"Countries",
-    stat_updated:"Updated",
-    search_ph:"Search dishes, ingredients, or countries…",
-    all_countries:"— All countries —",
-    empty_title:"No dishes match your search",
-    empty_sub:"Try clearing the query or choosing another country",
-    m_country:"Country",
-    m_ingredients:"Ingredients",
-    m_method:"Method",
-    m_source:"View full recipe at source",
-    footer_made:"Made with love for cucumber lovers",
-    footer_data:"Data refreshes automatically every hour",
-    view_recipe:"View recipe",
+    'eyebrow': '🥒 Cucumber recipes · worldwide',
+    'title-html': 'Cucumber dishes <span class="accent">from kitchens around the world</span>',
+    'lede': '104 recipes and drinks from 50+ countries — from Thai cucumber salad to Korean kimchi to cucumber cocktails. Click a country on the map or a chip below to explore.',
+    'stat-recipes': 'recipes',
+    'stat-countries': 'countries',
+    'stat-thai': 'Thai dishes',
+    'map-title': '🗺️ World Cucumber Map',
+    'map-sub': 'Click any colored country — darker = more recipes',
+    'map-hint': '💡 Non-geographic entries (e.g., "International / Cocktail") appear in the list below.',
+    'legend-few': 'few',
+    'legend-many': 'many',
+    'search-ph': 'Search a dish, ingredient, or country…',
+    'result-word': 'recipes',
+    'all-chip': 'All',
+    'sort-id': 'Default',
+    'sort-name': 'Name A→Z',
+    'sort-country': 'Country',
+    'empty-title': 'No matches found',
+    'empty-sub': 'Try a different search, or hit "All" to see everything.',
+    'modal-ing': 'Ingredients',
+    'modal-method': 'Method',
+    'modal-link': 'See full recipe at source',
+    'active-prefix': 'Showing: '
   }
 };
+
+/* ---------- Country name → ISO numeric (matches world-atlas TopoJSON) ---------- */
+const COUNTRY_ISO = {
+  'Thailand': '764',
+  'Thailand (Isan)': '764',
+  'Thailand (South)': '764',
+  'Thai-Chinese': '764',
+  'Thai-Vietnamese': '764',
+  'Lebanon': '422',
+  'Japan': '392',
+  'Korea': '410',
+  'India': '356',
+  'India (South)': '356',
+  'Vietnam': '704',
+  'USA': '840',
+  'USA/Japan': '840',
+  'Chinese-American': '840',
+  'Japan/Vegan': '392',
+  'Greece': '300',
+  'Iran': '364',
+  'Hungary': '348',
+  'China': '156',
+  'Indonesia': '360',
+  'United Kingdom': '826',
+  'Egypt': '818',
+  'Sri Lanka': '144',
+  'Armenia': '051',
+  'Turkey': '792',
+  'Spain': '724',
+  'Spain (Cocktail)': '724',
+  'Poland': '616',
+  'Germany': '276',
+  'Germany/Austria': '276',
+  'Bulgaria': '100',
+  'Russia': '643',
+  'Malaysia/Indonesia': '458',
+  'จาเมกา': '388',
+  'Israel': '376',
+  'Mexican': '484',
+  'Myanmar': '104',
+  'Philippines': '608',
+  'Nepal': '524',
+  'Ethiopia': '231',
+  'Peru': '604',
+  'Brazil': '076',
+  'Sweden': '752',
+  'Malaysia': '458',
+  'Laos': '418',
+  'Cambodia': '116'
+};
+
+/* ---------- State ---------- */
+let DATA = [];
 let lang = 'th';
+let activeCountry = null;
+let activeIso = null;
+let searchQuery = '';
+let sortBy = 'id';
 
-const ICONS = ["🥒","🍲","🥗","🍱","🌶️","🥢","🍛","🍝","🍜","🍣","🍹","🍸","🥘","🍵","🥪","🌯"];
+/* ---------- Boot ---------- */
+async function boot() {
+  const res = await fetch('data.json');
+  DATA = await res.json();
 
-function applyI18n(){
-  document.documentElement.lang = lang;
-  document.querySelectorAll('[data-i18n]').forEach(el=>{
-    const k = el.dataset.i18n;
-    if(I18N[lang][k]) el.textContent = I18N[lang][k];
-  });
-  document.querySelectorAll('[data-i18n-html]').forEach(el=>{
-    const k = el.dataset.i18nHtml;
-    if(I18N[lang][k]) el.innerHTML = I18N[lang][k];
-  });
-  document.getElementById('q').placeholder = I18N[lang].search_ph;
-  document.querySelectorAll('.lang-switch button').forEach(b=>b.classList.toggle('active', b.dataset.lang===lang));
-  // Refresh country dropdown labels
-  buildCountryFilter();
+  document.getElementById('stat-recipes').textContent = DATA.length;
+  const countrySet = new Set(DATA.map(r => r.country_en));
+  document.getElementById('stat-countries').textContent = countrySet.size + '+';
+  document.getElementById('stat-thai').textContent = DATA.filter(r => r.country_en.startsWith('Thai') || r.country_en === 'Thailand').length;
+
+  buildChips();
+  buildMap();
   render();
+  bindEvents();
 }
 
-function buildCountryFilter(){
-  const sel = document.getElementById('country');
-  const cur = sel.value;
-  const countries = [...new Set(DATA.map(d => lang==='th' ? d.country_th : d.country_en))].sort();
-  sel.innerHTML = `<option value="">${I18N[lang].all_countries}</option>` + countries.map(c=>`<option value="${c}">${c}</option>`).join('');
-  sel.value = cur;
+/* ---------- Chips ---------- */
+function buildChips() {
+  const counts = {};
+  DATA.forEach(r => counts[r.country_en] = (counts[r.country_en] || 0) + 1);
+  const sorted = Object.entries(counts).sort((a,b) => b[1] - a[1]);
+  const top = sorted.slice(0, 14);
+
+  const c = document.getElementById('chips');
+  c.innerHTML = '';
+  c.appendChild(chipButton('__all__', I18N[lang]['all-chip'], DATA.length));
+  top.forEach(([country, n]) => {
+    const sample = DATA.find(r => r.country_en === country);
+    const label = (sample.flag || '') + ' ' + (lang === 'th' ? sample.country_th : country);
+    c.appendChild(chipButton(country, label, n));
+  });
+  updateChipsActive();
 }
 
-function makeCard(d, i){
-  const title = lang==='th' ? d.name_th : d.name_en;
-  const subtitle = lang==='th' ? d.name_en : d.name_th;
-  const country = lang==='th' ? d.country_th : d.country_en;
-  const desc = lang==='th' ? (d.ingredients_th||'').slice(0,140)+'…' : (d.desc_en || d.method_th || '');
-  const glyph = ICONS[i % ICONS.length];
-  return `
-    <article class="card" data-id="${d.id}">
-      <div class="card-head">
-        <div class="flag">${d.flag} ${country}</div>
-        <div class="glyph">${glyph}</div>
-      </div>
-      <div class="card-body">
-        <h3 class="card-title">${title}</h3>
-        <div class="card-sub">${subtitle}</div>
-        <p class="card-desc">${desc}</p>
-        <div class="card-actions">
-          <a href="${d.url}" target="_blank" rel="noopener">${I18N[lang].view_recipe} →</a>
-          <span class="id-pill">#${String(d.id).padStart(3,'0')}</span>
-        </div>
-      </div>
-    </article>`;
+function chipButton(key, label, n) {
+  const b = document.createElement('button');
+  b.className = 'chip';
+  b.dataset.key = key;
+  b.innerHTML = `${label} <span class="count">${n}</span>`;
+  b.addEventListener('click', () => {
+    activeCountry = (key === '__all__') ? null : key;
+    activeIso = activeCountry ? COUNTRY_ISO[activeCountry] : null;
+    render();
+    updateChipsActive();
+    updateMapSelection();
+  });
+  return b;
 }
 
-let activeChip = '';
-function buildChips(){
-  const groups = [
-    {key:'', label:{th:'ทั้งหมด', en:'All'}},
-    {key:'thai', label:{th:'ไทย 🇹🇭', en:'Thai 🇹🇭'}},
-    {key:'asian', label:{th:'เอเชีย 🥢', en:'Asian 🥢'}},
-    {key:'med', label:{th:'เมดิเตอร์เรเนียน 🌊', en:'Mediterranean 🌊'}},
-    {key:'eu', label:{th:'ยุโรป 🇪🇺', en:'European 🇪🇺'}},
-    {key:'drink', label:{th:'เครื่องดื่ม/ค็อกเทล 🍹', en:'Drinks / Cocktails 🍹'}},
-    {key:'pickle', label:{th:'ของดอง 🥒', en:'Pickles 🥒'}},
-  ];
-  document.getElementById('chips').innerHTML = groups.map(g=>
-    `<button class="chip ${activeChip===g.key?'active':''}" data-key="${g.key}">${g.label[lang]}</button>`
-  ).join('');
-  document.querySelectorAll('.chip').forEach(c=>{
-    c.onclick = ()=>{ activeChip = c.dataset.key; buildChips(); render(); };
+function updateChipsActive() {
+  document.querySelectorAll('.chip').forEach(b => {
+    const k = b.dataset.key;
+    b.classList.toggle('active',
+      (activeCountry === null && k === '__all__') || (k === activeCountry)
+    );
   });
 }
 
-function matchGroup(d, key){
-  if(!key) return true;
-  const c = d.country_th + ' ' + d.country_en;
-  const n = d.name_th + ' ' + d.name_en;
-  if(key==='thai') return c.includes('ไทย') || c.includes('Thai');
-  if(key==='asian') return /(ญี่ปุ่น|เกาหลี|จีน|อินเดีย|อินโดนีเซีย|มาเลเซีย|เวียดนาม|เอเชีย|Japan|Korea|China|India|Indonesia|Malaysia|Vietnam|Asian)/.test(c);
-  if(key==='med') return /(เมดิเตอร์|กรีก|เลบานอน|ตุรกี|อิสราเอล|Mediterranean|Greece|Lebanon|Turkey|Israel)/.test(c);
-  if(key==='eu') return /(โปแลนด์|ฮังการี|เยอรมัน|บัลแกเรีย|รัสเซีย|สเปน|อังกฤษ|Poland|Hungary|Germany|Bulgaria|Russia|Spain|United Kingdom)/.test(c);
-  if(key==='drink') return /(ค็อกเทล|Cocktail|Lemonade|Smoothie|Juice|Water|Martini|Gin|Margarita|Pimm|น้ำ)/i.test(n);
-  if(key==='pickle') return /(ดอง|Pickle|Acar|Kimchi|Sobagi)/i.test(n);
-  return true;
+/* ---------- Map ---------- */
+async function buildMap() {
+  const svg = d3.select('#worldmap');
+  const w = 980, h = 480;
+  const proj = d3.geoNaturalEarth1().scale(180).translate([w/2, h/2 + 20]);
+  const path = d3.geoPath(proj);
+
+  const isoCounts = {};
+  DATA.forEach(r => {
+    const iso = COUNTRY_ISO[r.country_en];
+    if (iso) isoCounts[iso] = (isoCounts[iso] || 0) + 1;
+  });
+  const maxC = Math.max(1, ...Object.values(isoCounts));
+  const color = d3.scaleSequential().domain([0, maxC]).interpolator(d3.interpolate('#f0e8e0', '#6cbfa3'));
+
+  let world;
+  try {
+    world = await fetch('https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json').then(r => r.json());
+  } catch (e) {
+    console.warn('Map data failed to load', e);
+    document.querySelector('.map-section').style.display = 'none';
+    return;
+  }
+  const countries = topojson.feature(world, world.objects.countries).features;
+
+  const tip = document.getElementById('maptip');
+  const mapWrap = document.querySelector('.map-wrap');
+
+  svg.selectAll('path.country')
+    .data(countries)
+    .enter().append('path')
+    .attr('d', path)
+    .attr('class', d => 'country' + (isoCounts[String(d.id).padStart(3,'0')] || isoCounts[d.id] ? ' has-recipes' : ''))
+    .attr('data-iso', d => String(d.id).padStart(3,'0'))
+    .attr('fill', d => {
+      const id = String(d.id).padStart(3,'0');
+      const n = isoCounts[id] || isoCounts[d.id];
+      return n ? color(n) : '#f0e8e0';
+    })
+    .on('mouseover', function(e, d) {
+      const id = String(d.id).padStart(3,'0');
+      const n = isoCounts[id] || isoCounts[d.id];
+      if (!n) return;
+      const sample = DATA.find(r => COUNTRY_ISO[r.country_en] === id);
+      const name = sample ? (lang === 'th' ? sample.country_th : sample.country_en) : (d.properties && d.properties.name);
+      const flag = sample ? sample.flag : '';
+      tip.innerHTML = `${flag} <b>${name}</b> · <span class="tip-count">${n} ${I18N[lang]['result-word']}</span>`;
+      tip.style.opacity = 1;
+    })
+    .on('mousemove', function(e) {
+      const wrapRect = mapWrap.getBoundingClientRect();
+      tip.style.left = (e.clientX - wrapRect.left + 14) + 'px';
+      tip.style.top  = (e.clientY - wrapRect.top  - 36) + 'px';
+    })
+    .on('mouseout', () => { tip.style.opacity = 0; })
+    .on('click', function(e, d) {
+      const id = String(d.id).padStart(3,'0');
+      const n = isoCounts[id] || isoCounts[d.id];
+      if (!n) return;
+      const sample = DATA.find(r => COUNTRY_ISO[r.country_en] === id);
+      if (!sample) return;
+      if (activeCountry === sample.country_en) {
+        activeCountry = null; activeIso = null;
+      } else {
+        activeCountry = sample.country_en;
+        activeIso = id;
+      }
+      render();
+      updateChipsActive();
+      updateMapSelection();
+      document.querySelector('.controls').scrollIntoView({ behavior:'smooth', block:'start' });
+    });
 }
 
-function render(){
-  const q = document.getElementById('q').value.trim().toLowerCase();
-  const cf = document.getElementById('country').value;
-  const filtered = DATA.filter(d=>{
-    if(cf){
-      const c = lang==='th' ? d.country_th : d.country_en;
-      if(c !== cf) return false;
+function updateMapSelection() {
+  document.querySelectorAll('#worldmap .country').forEach(el => {
+    el.classList.toggle('selected', activeIso && el.dataset.iso === activeIso);
+  });
+}
+
+/* ---------- Filtering ---------- */
+function filtered() {
+  let list = DATA;
+  if (activeCountry) {
+    if (activeIso) {
+      list = list.filter(r => COUNTRY_ISO[r.country_en] === activeIso);
+    } else {
+      list = list.filter(r => r.country_en === activeCountry);
     }
-    if(!matchGroup(d, activeChip)) return false;
-    if(!q) return true;
-    const hay = [d.name_th, d.name_en, d.country_th, d.country_en, d.ingredients_th, d.method_th].join(' ').toLowerCase();
-    return hay.includes(q);
-  });
+  }
+  if (searchQuery) {
+    const q = searchQuery.toLowerCase();
+    list = list.filter(r =>
+      (r.name_th || '').toLowerCase().includes(q) ||
+      (r.name_en || '').toLowerCase().includes(q) ||
+      (r.country_th || '').toLowerCase().includes(q) ||
+      (r.country_en || '').toLowerCase().includes(q) ||
+      (r.ingredients_th || '').toLowerCase().includes(q) ||
+      (r.desc_en || '').toLowerCase().includes(q)
+    );
+  }
+  if (sortBy === 'name') {
+    list = [...list].sort((a,b) => (lang === 'th' ? a.name_th.localeCompare(b.name_th, 'th') : a.name_en.localeCompare(b.name_en)));
+  } else if (sortBy === 'country') {
+    list = [...list].sort((a,b) => a.country_en.localeCompare(b.country_en));
+  }
+  return list;
+}
+
+const TINTS = ['#ffe8e1','#e6f4ee','#f0e8ff','#fff4d6','#ffe1f0','#e1f0ff','#fef7ed'];
+function tintFor(country) {
+  let h = 0;
+  for (const c of country) h = (h * 31 + c.charCodeAt(0)) >>> 0;
+  return TINTS[h % TINTS.length];
+}
+
+function render() {
+  const list = filtered();
   const grid = document.getElementById('grid');
-  grid.innerHTML = filtered.map((d,i)=>makeCard(d,i)).join('');
-  document.getElementById('empty').style.display = filtered.length ? 'none' : 'block';
-  // hook card click
-  grid.querySelectorAll('.card').forEach(card=>{
-    card.addEventListener('click', e=>{
-      if(e.target.closest('a')) return; // let link clicks pass
-      openModal(+card.dataset.id);
+  const empty = document.getElementById('empty');
+  document.getElementById('result-count').textContent = list.length;
+
+  const af = document.getElementById('active-filter');
+  if (activeCountry) {
+    const sample = DATA.find(r => r.country_en === activeCountry);
+    const label = sample ? `${sample.flag} ${lang === 'th' ? sample.country_th : sample.country_en}` : activeCountry;
+    af.textContent = I18N[lang]['active-prefix'] + label;
+  } else {
+    af.textContent = '';
+  }
+
+  if (list.length === 0) {
+    grid.innerHTML = '';
+    empty.style.display = 'block';
+    return;
+  }
+  empty.style.display = 'none';
+
+  grid.innerHTML = list.map(r => `
+    <article class="card" style="--card-tint:${tintFor(r.country_en)}" data-id="${r.id}">
+      <div class="card-top">
+        <span class="flag">${r.flag || '🍽️'}</span>
+        <span class="country-tag">${lang === 'th' ? r.country_th : r.country_en}</span>
+      </div>
+      <h3>${lang === 'th' ? r.name_th : r.name_en}</h3>
+      <div class="alt-name">${lang === 'th' ? r.name_en : r.name_th}</div>
+      <p class="desc">${r.desc_en || ''}</p>
+      <div class="ings">🥢 ${r.ingredients_th}</div>
+    </article>
+  `).join('');
+
+  grid.querySelectorAll('.card').forEach(c => {
+    c.addEventListener('click', () => openModal(parseInt(c.dataset.id)));
+  });
+}
+
+/* ---------- Modal ---------- */
+function openModal(id) {
+  const r = DATA.find(x => x.id === id);
+  if (!r) return;
+  const body = document.getElementById('modal-body');
+  const ings = (r.ingredients_th || '').split(',').map(s => s.trim()).filter(Boolean);
+  body.innerHTML = `
+    <button class="modal-close" id="modal-close" aria-label="close">✕</button>
+    <span class="modal-flag">${r.flag || '🍽️'}</span>
+    <div class="modal-country">${lang === 'th' ? r.country_th : r.country_en}</div>
+    <h2>${lang === 'th' ? r.name_th : r.name_en}</h2>
+    <p class="alt">${lang === 'th' ? r.name_en : r.name_th}</p>
+    ${r.desc_en ? `<p class="desc-en">${r.desc_en}</p>` : ''}
+    <section>
+      <h4>${I18N[lang]['modal-ing']}</h4>
+      <div class="ingredient-list">${ings.map(i => `<span class="ing-tag">${i}</span>`).join('')}</div>
+    </section>
+    <section>
+      <h4>${I18N[lang]['modal-method']}</h4>
+      <div class="method-text">${r.method_th || ''}</div>
+    </section>
+    ${r.url ? `<a class="modal-link" href="${r.url}" target="_blank" rel="noopener">${I18N[lang]['modal-link']} →</a>` : ''}
+  `;
+  document.getElementById('modal').classList.add('open');
+  document.body.style.overflow = 'hidden';
+  body.querySelector('#modal-close').addEventListener('click', closeModal);
+}
+
+function closeModal() {
+  document.getElementById('modal').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+/* ---------- Events ---------- */
+function bindEvents() {
+  document.querySelectorAll('.lang-toggle button').forEach(b => {
+    b.addEventListener('click', () => {
+      lang = b.dataset.lang;
+      document.documentElement.lang = lang;
+      document.querySelectorAll('.lang-toggle button').forEach(x => x.classList.toggle('active', x === b));
+      applyI18n();
+      buildChips();
+      render();
     });
   });
+
+  const s = document.getElementById('search');
+  const cs = document.getElementById('clear-search');
+  s.addEventListener('input', () => {
+    searchQuery = s.value.trim();
+    cs.classList.toggle('show', !!searchQuery);
+    render();
+  });
+  cs.addEventListener('click', () => {
+    s.value = ''; searchQuery = '';
+    cs.classList.remove('show');
+    s.focus(); render();
+  });
+
+  document.getElementById('sort').addEventListener('change', e => {
+    sortBy = e.target.value;
+    render();
+  });
+
+  document.getElementById('modal').addEventListener('click', e => {
+    if (e.target.id === 'modal') closeModal();
+  });
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') closeModal();
+  });
 }
 
-function openModal(id){
-  const d = DATA.find(x=>x.id===id); if(!d) return;
-  document.getElementById('m-title').textContent = lang==='th' ? d.name_th : d.name_en;
-  document.getElementById('m-sub').textContent = lang==='th' ? d.name_en : d.name_th;
-  document.getElementById('m-country').textContent = `${d.flag} ` + (lang==='th' ? d.country_th : d.country_en);
-  document.getElementById('m-ingr').textContent = d.ingredients_th;
-  document.getElementById('m-method').textContent = d.method_th;
-  document.getElementById('m-src').href = d.url;
-  document.getElementById('modal').classList.add('open');
+function applyI18n() {
+  const t = I18N[lang];
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const k = el.dataset.i18n;
+    if (!t[k]) return;
+    if (k === 'title-html') el.innerHTML = t[k];
+    else el.textContent = t[k];
+  });
+  document.querySelectorAll('[data-i18n-ph]').forEach(el => {
+    const k = el.dataset.i18nPh;
+    if (t[k]) el.setAttribute('placeholder', t[k]);
+  });
+  const sel = document.getElementById('sort');
+  sel.options[0].textContent = t['sort-id'];
+  sel.options[1].textContent = t['sort-name'];
+  sel.options[2].textContent = t['sort-country'];
 }
-function closeModal(){ document.getElementById('modal').classList.remove('open'); }
-document.addEventListener('keydown', e=>{ if(e.key==='Escape') closeModal(); });
 
-// stats
-document.getElementById('stat-total').textContent = DATA.length;
-document.getElementById('stat-countries').textContent = new Set(DATA.map(d=>d.country_th)).size;
-document.getElementById('stat-updated').textContent = "2026-05-26";
-
-// bind language switch
-document.querySelectorAll('.lang-switch button').forEach(b=>{
-  b.onclick = ()=>{ lang = b.dataset.lang; applyI18n(); };
+boot().catch(err => {
+  console.error(err);
+  document.getElementById('grid').innerHTML = '<p style="text-align:center;color:#c44;padding:40px">โหลดข้อมูลไม่สำเร็จ — ลองรีเฟรชอีกครั้ง</p>';
 });
-document.getElementById('q').addEventListener('input', render);
-document.getElementById('country').addEventListener('change', render);
-
-buildChips();
-applyI18n();
 </script>
 </body>
 </html>
