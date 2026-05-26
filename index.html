@@ -3,10 +3,10 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Cucumber Atlas · 104 เมนูแตงกวาจากทั่วโลก</title>
-<meta name="description" content="แผนที่เมนูแตงกวา/แตงร้านจาก 50+ ประเทศ — สูตรไทย เมดิเตอร์เรเนียน เอเชีย ค็อกเทล และอีกมากมาย">
+<title>Cucumber Atlas · 208 เมนูแตงกวาจากทั่วโลก</title>
+<meta name="description" content="แผนที่เมนูแตงกวา/แตงร้านจาก 95 ประเทศ · 15 หมวดหมู่ — สูตรไทย เมดิเตอร์เรเนียน เอเชีย ค็อกเทล และอีกมากมาย">
 <meta property="og:title" content="Cucumber Atlas 🥒">
-<meta property="og:description" content="104 cucumber recipes from around the world">
+<meta property="og:description" content="208 cucumber recipes from 95 countries">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%A5%92%3C/text%3E%3C/svg%3E">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -329,6 +329,46 @@
   }
   .results-bar strong { color: var(--ink); font-weight: 700; }
 
+  /* ---------- Category chips (separate row) ---------- */
+  .cat-bar {
+    max-width: 1280px;
+    margin: 16px auto 0;
+    padding: 0 24px;
+  }
+  .cat-bar-inner {
+    display: flex; gap: 8px;
+    overflow-x: auto;
+    padding: 4px 0 12px;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: thin;
+  }
+  .cat-bar-inner::-webkit-scrollbar { height: 6px; }
+  .cat-bar-inner::-webkit-scrollbar-thumb { background: #00000020; border-radius: 3px; }
+  .cat-chip {
+    border: 0;
+    padding: 10px 16px;
+    border-radius: 14px;
+    background: #fff;
+    color: var(--ink);
+    font: 600 13px 'Plus Jakarta Sans', 'Sarabun', sans-serif;
+    cursor: pointer;
+    box-shadow: var(--shadow-sm);
+    transition: .18s;
+    white-space: nowrap;
+    display: flex; align-items: center; gap: 8px;
+    flex-shrink: 0;
+  }
+  .cat-chip .cat-emoji { font-size: 18px; line-height: 1; }
+  .cat-chip .cat-count {
+    background: #00000010; padding: 1px 8px; border-radius: 999px; font-size: 11px;
+  }
+  .cat-chip:hover { transform: translateY(-2px); box-shadow: var(--shadow-md); }
+  .cat-chip.active {
+    background: linear-gradient(135deg, var(--mint-deep), var(--lavender-deep));
+    color: #fff;
+  }
+  .cat-chip.active .cat-count { background: #ffffff25; color: #fff; }
+
   /* ---------- Recipe grid ---------- */
   .grid {
     max-width: 1280px; margin: 16px auto 80px;
@@ -340,61 +380,101 @@
   .card {
     background: #fff;
     border-radius: var(--radius);
-    padding: 22px;
     box-shadow: var(--shadow-sm);
     cursor: pointer;
     transition: .25s cubic-bezier(.2,.8,.2,1);
-    display: flex; flex-direction: column; gap: 10px;
+    display: flex; flex-direction: column;
     position: relative;
     overflow: hidden;
     border: 2px solid transparent;
   }
-  .card::before {
-    content: '';
-    position: absolute; inset: 0;
-    background: var(--card-tint, transparent);
-    opacity: .55;
-    z-index: 0;
-    pointer-events: none;
-  }
-  .card > * { position: relative; z-index: 1; }
   .card:hover {
-    transform: translateY(-4px) rotate(-.4deg);
+    transform: translateY(-6px) rotate(-.3deg);
     box-shadow: var(--shadow-lg);
     border-color: #ffffff;
   }
+  .card-img-wrap {
+    width: 100%;
+    aspect-ratio: 3 / 2;
+    background: var(--card-tint, #f5e9d9);
+    position: relative;
+    overflow: hidden;
+  }
+  .card-img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform .5s;
+  }
+  .card:hover .card-img { transform: scale(1.06); }
+  .card-img-overlay {
+    position: absolute; inset: 0;
+    display: flex; align-items: flex-start; justify-content: space-between;
+    padding: 12px;
+    pointer-events: none;
+  }
+  .cat-pill {
+    background: #ffffffee;
+    backdrop-filter: blur(4px);
+    padding: 5px 11px;
+    border-radius: 999px;
+    font-size: 11px; font-weight: 700;
+    color: var(--ink);
+    display: flex; align-items: center; gap: 5px;
+    box-shadow: 0 2px 6px #0002;
+  }
+  .card-body {
+    padding: 18px 20px 20px;
+    display: flex; flex-direction: column;
+    gap: 8px;
+    flex: 1;
+    background: #fff;
+  }
   .card-top {
     display: flex; align-items: center; justify-content: space-between;
+    margin-top: -36px;
+    position: relative;
+    z-index: 2;
   }
   .flag {
-    font-size: 32px; line-height: 1;
-    filter: drop-shadow(0 2px 4px #0002);
+    font-size: 36px; line-height: 1;
+    filter: drop-shadow(0 3px 6px #0003);
+    background: #fff;
+    padding: 4px 8px;
+    border-radius: 14px;
+    box-shadow: var(--shadow-sm);
   }
   .country-tag {
-    font-size: 11px; font-weight: 600;
+    font-size: 11px; font-weight: 700;
     letter-spacing: .04em;
     color: var(--ink-soft);
-    background: #ffffff90;
-    padding: 4px 10px;
+    background: #fff;
+    padding: 5px 11px;
     border-radius: 999px;
     text-transform: uppercase;
+    box-shadow: var(--shadow-sm);
   }
   .card h3 {
     font-family: 'Fraunces', serif;
     font-weight: 700;
-    font-size: 19px;
+    font-size: 18px;
     line-height: 1.22;
     margin: 4px 0 0;
     letter-spacing: -.01em;
+    color: var(--ink);
   }
   .card .alt-name {
-    font-size: 13px;
+    font-size: 12.5px;
     color: var(--ink-mute);
     margin: -2px 0 0;
     font-style: italic;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
   }
   .card .desc {
-    font-size: 13.5px;
+    font-size: 13px;
     color: var(--ink-soft);
     line-height: 1.5;
     margin: 4px 0 0;
@@ -413,6 +493,29 @@
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
     overflow: hidden;
+  }
+
+  /* Modal image */
+  .modal-img-wrap {
+    width: calc(100% + 72px);
+    margin: -36px -36px 24px;
+    aspect-ratio: 16/9;
+    overflow: hidden;
+    border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+    position: relative;
+  }
+  .modal-img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+  }
+  .modal-img-fade {
+    position: absolute; inset: auto 0 0 0;
+    height: 60%;
+    background: linear-gradient(to bottom, transparent, var(--bg));
+    pointer-events: none;
+  }
+  @media (max-width: 640px) {
+    .modal-img-wrap { width: calc(100% + 48px); margin: -24px -24px 18px; }
   }
 
   .no-results {
@@ -577,14 +680,14 @@
   <span class="hero-eyebrow" data-i18n="eyebrow">🥒 รวมเมนูแตงกวา · ทั่วโลก</span>
   <h1 data-i18n="title-html">เมนูแตงกวา <span class="accent">จากครัวทุกมุมโลก</span></h1>
   <p class="lede" data-i18n="lede">
-    104 สูตรอาหารและเครื่องดื่ม จากกว่า 50 ประเทศ
+    208 สูตรอาหารและเครื่องดื่ม จากกว่า 95 ประเทศ · 15 หมวดหมู่
     ตั้งแต่ยำแตงร้านไทย กิมจิเกาหลี ไปจนค็อกเทลแตงกวา —
-    คลิกที่แผนที่หรือชิปประเทศเพื่อสำรวจ
+    คลิกที่แผนที่ ชิปประเทศ หรือหมวดหมู่เพื่อสำรวจ
   </p>
   <div class="stats">
-    <div class="stat"><span class="stat-num" id="stat-recipes">104</span><span class="stat-lbl" data-i18n="stat-recipes">เมนู</span></div>
-    <div class="stat"><span class="stat-num" id="stat-countries">50+</span><span class="stat-lbl" data-i18n="stat-countries">ประเทศ</span></div>
-    <div class="stat"><span class="stat-num" id="stat-thai">23</span><span class="stat-lbl" data-i18n="stat-thai">สูตรไทย</span></div>
+    <div class="stat"><span class="stat-num" id="stat-recipes">208</span><span class="stat-lbl" data-i18n="stat-recipes">เมนู</span></div>
+    <div class="stat"><span class="stat-num" id="stat-countries">95</span><span class="stat-lbl" data-i18n="stat-countries">ประเทศ</span></div>
+    <div class="stat"><span class="stat-num" id="stat-cats">15</span><span class="stat-lbl" data-i18n="stat-cats">หมวดหมู่</span></div>
   </div>
 </header>
 
@@ -619,9 +722,14 @@
       <option value="id">เริ่มต้น</option>
       <option value="name">ชื่อ A→Z</option>
       <option value="country">ประเทศ</option>
+      <option value="category">หมวดหมู่</option>
     </select>
   </div>
   <div class="chips" id="chips"></div>
+</section>
+
+<section class="cat-bar">
+  <div class="cat-bar-inner" id="cat-bar"></div>
 </section>
 
 <div class="results-bar">
@@ -653,10 +761,10 @@ const I18N = {
   th: {
     'eyebrow': '🥒 รวมเมนูแตงกวา · ทั่วโลก',
     'title-html': 'เมนูแตงกวา <span class="accent">จากครัวทุกมุมโลก</span>',
-    'lede': '104 สูตรอาหารและเครื่องดื่ม จากกว่า 50 ประเทศ ตั้งแต่ยำแตงร้านไทย กิมจิเกาหลี ไปจนค็อกเทลแตงกวา — คลิกที่แผนที่หรือชิปประเทศเพื่อสำรวจ',
+    'lede': '208 สูตรอาหารและเครื่องดื่ม จากกว่า 95 ประเทศ · 15 หมวดหมู่ ตั้งแต่ยำแตงร้านไทย กิมจิเกาหลี ไปจนค็อกเทลแตงกวา — คลิกที่แผนที่ ชิปประเทศ หรือหมวดหมู่เพื่อสำรวจ',
     'stat-recipes': 'เมนู',
     'stat-countries': 'ประเทศ',
-    'stat-thai': 'สูตรไทย',
+    'stat-cats': 'หมวดหมู่',
     'map-title': '🗺️ แผนที่เมนูแตงกวา',
     'map-sub': 'คลิกประเทศที่ระบายสี — สีเข้มกว่า = มีเมนูมากกว่า',
     'map-hint': '💡 ประเทศที่ไม่อยู่ในแผนที่ เช่น "International / Cocktail" จะแสดงในรายการด้านล่าง',
@@ -665,9 +773,11 @@ const I18N = {
     'search-ph': 'ค้นหาเมนู วัตถุดิบ หรือประเทศ…',
     'result-word': 'เมนู',
     'all-chip': 'ทั้งหมด',
+    'all-cat': '🍽️ ทุกหมวดหมู่',
     'sort-id': 'เริ่มต้น',
     'sort-name': 'ชื่อ A→Z',
     'sort-country': 'ประเทศ',
+    'sort-cat': 'หมวดหมู่',
     'empty-title': 'ยังไม่เจอเมนูที่ใช่',
     'empty-sub': 'ลองค้นคำอื่น หรือกดปุ่ม "ทั้งหมด" ดูเมนูเต็ม',
     'modal-ing': 'วัตถุดิบ',
@@ -678,10 +788,10 @@ const I18N = {
   en: {
     'eyebrow': '🥒 Cucumber recipes · worldwide',
     'title-html': 'Cucumber dishes <span class="accent">from kitchens around the world</span>',
-    'lede': '104 recipes and drinks from 50+ countries — from Thai cucumber salad to Korean kimchi to cucumber cocktails. Click a country on the map or a chip below to explore.',
+    'lede': '208 recipes and drinks from 95+ countries across 15 categories — from Thai cucumber salad to Korean kimchi to cucumber cocktails. Click the map, a country chip, or a category to explore.',
     'stat-recipes': 'recipes',
     'stat-countries': 'countries',
-    'stat-thai': 'Thai dishes',
+    'stat-cats': 'categories',
     'map-title': '🗺️ World Cucumber Map',
     'map-sub': 'Click any colored country — darker = more recipes',
     'map-hint': '💡 Non-geographic entries (e.g., "International / Cocktail") appear in the list below.',
@@ -690,9 +800,11 @@ const I18N = {
     'search-ph': 'Search a dish, ingredient, or country…',
     'result-word': 'recipes',
     'all-chip': 'All',
+    'all-cat': '🍽️ All categories',
     'sort-id': 'Default',
     'sort-name': 'Name A→Z',
     'sort-country': 'Country',
+    'sort-cat': 'Category',
     'empty-title': 'No matches found',
     'empty-sub': 'Try a different search, or hit "All" to see everything.',
     'modal-ing': 'Ingredients',
@@ -702,63 +814,20 @@ const I18N = {
   }
 };
 
-/* ---------- Country name → ISO numeric (matches world-atlas TopoJSON) ---------- */
-const COUNTRY_ISO = {
-  'Thailand': '764',
-  'Thailand (Isan)': '764',
-  'Thailand (South)': '764',
-  'Thai-Chinese': '764',
-  'Thai-Vietnamese': '764',
-  'Lebanon': '422',
-  'Japan': '392',
-  'Korea': '410',
-  'India': '356',
-  'India (South)': '356',
-  'Vietnam': '704',
-  'USA': '840',
-  'USA/Japan': '840',
-  'Chinese-American': '840',
-  'Japan/Vegan': '392',
-  'Greece': '300',
-  'Iran': '364',
-  'Hungary': '348',
-  'China': '156',
-  'Indonesia': '360',
-  'United Kingdom': '826',
-  'Egypt': '818',
-  'Sri Lanka': '144',
-  'Armenia': '051',
-  'Turkey': '792',
-  'Spain': '724',
-  'Spain (Cocktail)': '724',
-  'Poland': '616',
-  'Germany': '276',
-  'Germany/Austria': '276',
-  'Bulgaria': '100',
-  'Russia': '643',
-  'Malaysia/Indonesia': '458',
-  'จาเมกา': '388',
-  'Israel': '376',
-  'Mexican': '484',
-  'Myanmar': '104',
-  'Philippines': '608',
-  'Nepal': '524',
-  'Ethiopia': '231',
-  'Peru': '604',
-  'Brazil': '076',
-  'Sweden': '752',
-  'Malaysia': '458',
-  'Laos': '418',
-  'Cambodia': '116'
-};
-
 /* ---------- State ---------- */
 let DATA = [];
 let lang = 'th';
-let activeCountry = null;
-let activeIso = null;
+let activeCountry = null;      // country_en string or null
+let activeIso = null;          // iso numeric string or null (derived)
+let activeCategory = null;     // category_th or null
 let searchQuery = '';
 let sortBy = 'id';
+
+// Helper: get iso for a country_en (look up in data)
+function isoForCountry(country_en) {
+  const r = DATA.find(x => x.country_en === country_en);
+  return r ? r.iso : null;
+}
 
 /* ---------- Boot ---------- */
 async function boot() {
@@ -767,10 +836,12 @@ async function boot() {
 
   document.getElementById('stat-recipes').textContent = DATA.length;
   const countrySet = new Set(DATA.map(r => r.country_en));
-  document.getElementById('stat-countries').textContent = countrySet.size + '+';
-  document.getElementById('stat-thai').textContent = DATA.filter(r => r.country_en.startsWith('Thai') || r.country_en === 'Thailand').length;
+  document.getElementById('stat-countries').textContent = countrySet.size;
+  const catSet = new Set(DATA.map(r => r.category_en));
+  document.getElementById('stat-cats').textContent = catSet.size;
 
   buildChips();
+  buildCatBar();
   buildMap();
   render();
   bindEvents();
@@ -801,12 +872,61 @@ function chipButton(key, label, n) {
   b.innerHTML = `${label} <span class="count">${n}</span>`;
   b.addEventListener('click', () => {
     activeCountry = (key === '__all__') ? null : key;
-    activeIso = activeCountry ? COUNTRY_ISO[activeCountry] : null;
+    activeIso = activeCountry ? isoForCountry(activeCountry) : null;
     render();
     updateChipsActive();
     updateMapSelection();
   });
   return b;
+}
+
+/* ---------- Category bar ---------- */
+function buildCatBar() {
+  const counts = {};
+  DATA.forEach(r => {
+    const k = r.category_th;
+    if (!counts[k]) counts[k] = { th: r.category_th, en: r.category_en, emoji: r.category_emoji, n: 0 };
+    counts[k].n++;
+  });
+  const sorted = Object.values(counts).sort((a,b) => b.n - a.n);
+
+  const bar = document.getElementById('cat-bar');
+  bar.innerHTML = '';
+
+  // "All" button
+  const allBtn = document.createElement('button');
+  allBtn.className = 'cat-chip';
+  allBtn.dataset.key = '__all_cat__';
+  allBtn.innerHTML = `<span class="cat-emoji">🍽️</span><span>${lang === 'th' ? 'ทุกหมวดหมู่' : 'All categories'}</span><span class="cat-count">${DATA.length}</span>`;
+  allBtn.addEventListener('click', () => {
+    activeCategory = null;
+    render();
+    updateCatActive();
+  });
+  bar.appendChild(allBtn);
+
+  sorted.forEach(c => {
+    const b = document.createElement('button');
+    b.className = 'cat-chip';
+    b.dataset.key = c.th;
+    b.innerHTML = `<span class="cat-emoji">${c.emoji}</span><span>${lang === 'th' ? c.th : c.en}</span><span class="cat-count">${c.n}</span>`;
+    b.addEventListener('click', () => {
+      activeCategory = (activeCategory === c.th) ? null : c.th;
+      render();
+      updateCatActive();
+    });
+    bar.appendChild(b);
+  });
+  updateCatActive();
+}
+
+function updateCatActive() {
+  document.querySelectorAll('.cat-chip').forEach(b => {
+    const k = b.dataset.key;
+    b.classList.toggle('active',
+      (activeCategory === null && k === '__all_cat__') || (k === activeCategory)
+    );
+  });
 }
 
 function updateChipsActive() {
@@ -827,8 +947,7 @@ async function buildMap() {
 
   const isoCounts = {};
   DATA.forEach(r => {
-    const iso = COUNTRY_ISO[r.country_en];
-    if (iso) isoCounts[iso] = (isoCounts[iso] || 0) + 1;
+    if (r.iso) isoCounts[r.iso] = (isoCounts[r.iso] || 0) + 1;
   });
   const maxC = Math.max(1, ...Object.values(isoCounts));
   const color = d3.scaleSequential().domain([0, maxC]).interpolator(d3.interpolate('#f0e8e0', '#6cbfa3'));
@@ -861,7 +980,7 @@ async function buildMap() {
       const id = String(d.id).padStart(3,'0');
       const n = isoCounts[id] || isoCounts[d.id];
       if (!n) return;
-      const sample = DATA.find(r => COUNTRY_ISO[r.country_en] === id);
+      const sample = DATA.find(r => r.iso === id);
       const name = sample ? (lang === 'th' ? sample.country_th : sample.country_en) : (d.properties && d.properties.name);
       const flag = sample ? sample.flag : '';
       tip.innerHTML = `${flag} <b>${name}</b> · <span class="tip-count">${n} ${I18N[lang]['result-word']}</span>`;
@@ -877,7 +996,7 @@ async function buildMap() {
       const id = String(d.id).padStart(3,'0');
       const n = isoCounts[id] || isoCounts[d.id];
       if (!n) return;
-      const sample = DATA.find(r => COUNTRY_ISO[r.country_en] === id);
+      const sample = DATA.find(r => r.iso === id);
       if (!sample) return;
       if (activeCountry === sample.country_en) {
         activeCountry = null; activeIso = null;
@@ -903,10 +1022,13 @@ function filtered() {
   let list = DATA;
   if (activeCountry) {
     if (activeIso) {
-      list = list.filter(r => COUNTRY_ISO[r.country_en] === activeIso);
+      list = list.filter(r => r.iso === activeIso);
     } else {
       list = list.filter(r => r.country_en === activeCountry);
     }
+  }
+  if (activeCategory) {
+    list = list.filter(r => r.category_th === activeCategory);
   }
   if (searchQuery) {
     const q = searchQuery.toLowerCase();
@@ -916,13 +1038,17 @@ function filtered() {
       (r.country_th || '').toLowerCase().includes(q) ||
       (r.country_en || '').toLowerCase().includes(q) ||
       (r.ingredients_th || '').toLowerCase().includes(q) ||
-      (r.desc_en || '').toLowerCase().includes(q)
+      (r.desc_en || '').toLowerCase().includes(q) ||
+      (r.category_th || '').toLowerCase().includes(q) ||
+      (r.category_en || '').toLowerCase().includes(q)
     );
   }
   if (sortBy === 'name') {
     list = [...list].sort((a,b) => (lang === 'th' ? a.name_th.localeCompare(b.name_th, 'th') : a.name_en.localeCompare(b.name_en)));
   } else if (sortBy === 'country') {
     list = [...list].sort((a,b) => a.country_en.localeCompare(b.country_en));
+  } else if (sortBy === 'category') {
+    list = [...list].sort((a,b) => a.category_en.localeCompare(b.category_en));
   }
   return list;
 }
@@ -958,14 +1084,22 @@ function render() {
 
   grid.innerHTML = list.map(r => `
     <article class="card" style="--card-tint:${tintFor(r.country_en)}" data-id="${r.id}">
-      <div class="card-top">
-        <span class="flag">${r.flag || '🍽️'}</span>
-        <span class="country-tag">${lang === 'th' ? r.country_th : r.country_en}</span>
+      <div class="card-img-wrap">
+        ${r.image ? `<img class="card-img" src="${r.image}" alt="${escapeAttr(r.name_en || r.name_th)}" loading="lazy" onerror="this.style.display='none'">` : ''}
+        <div class="card-img-overlay">
+          <span class="cat-pill"><span>${r.category_emoji || '🍽️'}</span> ${lang === 'th' ? r.category_th : r.category_en}</span>
+        </div>
       </div>
-      <h3>${lang === 'th' ? r.name_th : r.name_en}</h3>
-      <div class="alt-name">${lang === 'th' ? r.name_en : r.name_th}</div>
-      <p class="desc">${r.desc_en || ''}</p>
-      <div class="ings">🥢 ${r.ingredients_th}</div>
+      <div class="card-body">
+        <div class="card-top">
+          <span class="flag">${r.flag || '🍽️'}</span>
+          <span class="country-tag">${lang === 'th' ? r.country_th : r.country_en}</span>
+        </div>
+        <h3>${lang === 'th' ? r.name_th : r.name_en}</h3>
+        <div class="alt-name">${lang === 'th' ? r.name_en : r.name_th}</div>
+        ${r.desc_en ? `<p class="desc">${r.desc_en}</p>` : ''}
+        <div class="ings">🥢 ${r.ingredients_th}</div>
+      </div>
     </article>
   `).join('');
 
@@ -975,6 +1109,10 @@ function render() {
 }
 
 /* ---------- Modal ---------- */
+function escapeAttr(s) {
+  return String(s || '').replace(/"/g, '&quot;').replace(/</g, '&lt;');
+}
+
 function openModal(id) {
   const r = DATA.find(x => x.id === id);
   if (!r) return;
@@ -982,8 +1120,14 @@ function openModal(id) {
   const ings = (r.ingredients_th || '').split(',').map(s => s.trim()).filter(Boolean);
   body.innerHTML = `
     <button class="modal-close" id="modal-close" aria-label="close">✕</button>
+    ${r.image ? `
+      <div class="modal-img-wrap">
+        <img class="modal-img" src="${r.image}" alt="${escapeAttr(r.name_en || r.name_th)}" onerror="this.parentElement.style.display='none'">
+        <div class="modal-img-fade"></div>
+      </div>
+    ` : ''}
     <span class="modal-flag">${r.flag || '🍽️'}</span>
-    <div class="modal-country">${lang === 'th' ? r.country_th : r.country_en}</div>
+    <div class="modal-country">${lang === 'th' ? r.country_th : r.country_en} · ${r.category_emoji || ''} ${lang === 'th' ? r.category_th : r.category_en}</div>
     <h2>${lang === 'th' ? r.name_th : r.name_en}</h2>
     <p class="alt">${lang === 'th' ? r.name_en : r.name_th}</p>
     ${r.desc_en ? `<p class="desc-en">${r.desc_en}</p>` : ''}
@@ -1016,6 +1160,7 @@ function bindEvents() {
       document.querySelectorAll('.lang-toggle button').forEach(x => x.classList.toggle('active', x === b));
       applyI18n();
       buildChips();
+      buildCatBar();
       render();
     });
   });
@@ -1062,6 +1207,7 @@ function applyI18n() {
   sel.options[0].textContent = t['sort-id'];
   sel.options[1].textContent = t['sort-name'];
   sel.options[2].textContent = t['sort-country'];
+  sel.options[3].textContent = t['sort-cat'];
 }
 
 boot().catch(err => {
