@@ -1,0 +1,1219 @@
+<!doctype html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Cucumber Atlas · 208 เมนูแตงกวาจากทั่วโลก</title>
+<meta name="description" content="แผนที่เมนูแตงกวา/แตงร้านจาก 95 ประเทศ · 15 หมวดหมู่ — สูตรไทย เมดิเตอร์เรเนียน เอเชีย ค็อกเทล และอีกมากมาย">
+<meta property="og:title" content="Cucumber Atlas 🥒">
+<meta property="og:description" content="208 cucumber recipes from 95 countries">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%A5%92%3C/text%3E%3C/svg%3E">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400..900;1,9..144,400..800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Sarabun:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+  /* ---------- Tokens ---------- */
+  :root {
+    --bg: #fef7ed;           /* cream */
+    --bg-2: #ffe8e1;         /* peach mist */
+    --bg-3: #e6f4ee;         /* mint mist */
+    --surface: #ffffffcc;
+    --ink: #2d2438;          /* deep plum */
+    --ink-soft: #5b4d6b;
+    --ink-mute: #8a7c97;
+    --line: #e9dcd2;
+    --mint: #b8e6d8;
+    --mint-deep: #6cbfa3;
+    --peach: #ffcaa6;
+    --peach-deep: #ff9b78;
+    --pink: #ffc1cc;
+    --pink-deep: #f48ba2;
+    --lavender: #d9cdf5;
+    --lavender-deep: #9b86d6;
+    --lemon: #ffe79a;
+    --shadow-sm: 0 2px 8px #2d24381a;
+    --shadow-md: 0 8px 24px #2d24381f;
+    --shadow-lg: 0 18px 48px #2d243826;
+    --radius-sm: 12px;
+    --radius: 20px;
+    --radius-lg: 32px;
+  }
+
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    font-family: 'Plus Jakarta Sans', 'Sarabun', system-ui, sans-serif;
+    font-size: 16px;
+    line-height: 1.55;
+    color: var(--ink);
+    background: var(--bg);
+    background-image:
+      radial-gradient(900px 600px at 8% -10%, #ffd6c2 0%, transparent 60%),
+      radial-gradient(800px 500px at 95% 5%, #d6efe3 0%, transparent 55%),
+      radial-gradient(700px 500px at 50% 110%, #e9defb 0%, transparent 60%);
+    overflow-x: hidden;
+  }
+
+  /* ---------- Nav ---------- */
+  nav {
+    position: sticky; top: 0; z-index: 50;
+    backdrop-filter: blur(14px);
+    background: #fff8;
+    border-bottom: 1px solid #ffffff80;
+    padding: 12px 20px;
+  }
+  .nav-inner {
+    max-width: 1280px; margin: 0 auto;
+    display: flex; align-items: center; gap: 16px;
+  }
+  .brand {
+    display: flex; align-items: center; gap: 10px;
+    font-family: 'Fraunces', serif;
+    font-weight: 700; font-size: 22px;
+    color: var(--ink);
+    letter-spacing: -.02em;
+  }
+  .brand-emoji {
+    font-size: 28px; display: inline-block;
+    transform-origin: 50% 60%;
+    animation: wobble 6s ease-in-out infinite;
+  }
+  @keyframes wobble {
+    0%,100% { transform: rotate(-6deg); }
+    50%     { transform: rotate(8deg); }
+  }
+  .lang-toggle {
+    margin-left: auto;
+    display: flex; gap: 4px;
+    background: #fff;
+    padding: 4px; border-radius: 999px;
+    box-shadow: var(--shadow-sm);
+  }
+  .lang-toggle button {
+    border: 0; background: transparent;
+    padding: 6px 14px; border-radius: 999px;
+    cursor: pointer;
+    font: 600 14px 'Plus Jakarta Sans', sans-serif;
+    color: var(--ink-mute);
+    transition: .2s;
+  }
+  .lang-toggle button.active {
+    background: var(--ink);
+    color: #fff;
+  }
+
+  /* ---------- Hero ---------- */
+  .hero {
+    max-width: 1280px; margin: 0 auto;
+    padding: 60px 24px 32px;
+    position: relative;
+  }
+  .hero-eyebrow {
+    display: inline-block;
+    font: 600 13px 'Plus Jakarta Sans';
+    letter-spacing: .14em; text-transform: uppercase;
+    color: var(--mint-deep);
+    background: #fff;
+    padding: 8px 16px; border-radius: 999px;
+    box-shadow: var(--shadow-sm);
+    margin-bottom: 20px;
+  }
+  .hero h1 {
+    font-family: 'Fraunces', serif;
+    font-weight: 800; font-style: italic;
+    font-size: clamp(44px, 7vw, 86px);
+    line-height: 1.02; letter-spacing: -.03em;
+    margin: 0 0 18px;
+    color: var(--ink);
+  }
+  .hero h1 .accent {
+    font-style: normal;
+    background: linear-gradient(120deg, var(--mint-deep), var(--lavender-deep) 55%, var(--peach-deep));
+    -webkit-background-clip: text; background-clip: text; color: transparent;
+  }
+  .hero p.lede {
+    font-size: clamp(16px, 1.6vw, 19px);
+    color: var(--ink-soft);
+    max-width: 620px; margin: 0 0 32px;
+  }
+  .stats {
+    display: flex; flex-wrap: wrap; gap: 12px;
+    margin-top: 8px;
+  }
+  .stat {
+    background: #fff;
+    border-radius: var(--radius);
+    padding: 14px 20px;
+    box-shadow: var(--shadow-sm);
+    display: flex; align-items: baseline; gap: 10px;
+  }
+  .stat-num {
+    font-family: 'Fraunces', serif; font-weight: 800;
+    font-size: 28px; line-height: 1;
+    color: var(--ink);
+  }
+  .stat-lbl { font-size: 13px; color: var(--ink-mute); font-weight: 500; }
+  .stat:nth-child(1) { background: linear-gradient(135deg, #fff, var(--mint) 200%); }
+  .stat:nth-child(2) { background: linear-gradient(135deg, #fff, var(--peach) 200%); }
+  .stat:nth-child(3) { background: linear-gradient(135deg, #fff, var(--lavender) 200%); }
+
+  /* ---------- Map section ---------- */
+  .map-section {
+    max-width: 1280px; margin: 24px auto 0;
+    padding: 0 24px;
+  }
+  .map-card {
+    background: #fff;
+    border-radius: var(--radius-lg);
+    padding: 24px;
+    box-shadow: var(--shadow-md);
+    position: relative;
+    overflow: hidden;
+  }
+  .map-head {
+    display: flex; align-items: flex-end; justify-content: space-between;
+    gap: 16px; flex-wrap: wrap; margin-bottom: 12px;
+  }
+  .map-head h2 {
+    font-family: 'Fraunces', serif; font-weight: 700;
+    font-size: 26px; margin: 0; letter-spacing: -.02em;
+  }
+  .map-head p {
+    margin: 4px 0 0; color: var(--ink-mute); font-size: 14px;
+  }
+  .map-legend {
+    display: flex; align-items: center; gap: 8px;
+    font-size: 12px; color: var(--ink-mute);
+  }
+  .legend-grad {
+    width: 120px; height: 10px; border-radius: 5px;
+    background: linear-gradient(90deg, #f3eee9, var(--mint-deep));
+  }
+  .map-wrap {
+    width: 100%;
+    aspect-ratio: 2 / 1;
+    max-height: 480px;
+    position: relative;
+  }
+  #worldmap { width: 100%; height: 100%; display: block; }
+  #worldmap .country {
+    fill: #f0e8e0;
+    stroke: #fff;
+    stroke-width: .5;
+    transition: fill .2s;
+    cursor: default;
+  }
+  #worldmap .country.has-recipes { cursor: pointer; }
+  #worldmap .country.has-recipes:hover {
+    fill: var(--peach-deep) !important;
+    filter: drop-shadow(0 2px 4px #ff9b7855);
+  }
+  #worldmap .country.selected {
+    fill: var(--lavender-deep) !important;
+  }
+  .map-tip {
+    position: absolute;
+    background: var(--ink);
+    color: #fff;
+    padding: 8px 12px;
+    border-radius: 10px;
+    font-size: 13px;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity .15s;
+    z-index: 5;
+    box-shadow: var(--shadow-md);
+    white-space: nowrap;
+  }
+  .map-tip .tip-count { font-weight: 700; color: var(--peach); }
+  .map-empty-hint {
+    margin-top: 8px;
+    font-size: 12px;
+    color: var(--ink-mute);
+    text-align: center;
+  }
+
+  /* ---------- Controls ---------- */
+  .controls {
+    max-width: 1280px; margin: 28px auto 0;
+    padding: 0 24px;
+  }
+  .controls-row {
+    display: flex; gap: 12px; flex-wrap: wrap; align-items: center;
+  }
+  .search-box {
+    flex: 1 1 280px;
+    position: relative;
+  }
+  .search-box input {
+    width: 100%;
+    padding: 14px 18px 14px 48px;
+    border: 0;
+    border-radius: 999px;
+    background: #fff;
+    box-shadow: var(--shadow-sm);
+    font: 500 15px 'Plus Jakarta Sans', 'Sarabun', sans-serif;
+    color: var(--ink);
+    outline: none;
+    transition: box-shadow .2s;
+  }
+  .search-box input:focus {
+    box-shadow: 0 0 0 3px var(--mint), var(--shadow-md);
+  }
+  .search-box::before {
+    content: '🔍';
+    position: absolute; left: 18px; top: 50%;
+    transform: translateY(-50%);
+    font-size: 16px; opacity: .55;
+  }
+  .clear-search {
+    position: absolute; right: 8px; top: 50%;
+    transform: translateY(-50%);
+    border: 0; background: var(--bg-2);
+    width: 30px; height: 30px; border-radius: 50%;
+    cursor: pointer; font-size: 14px;
+    display: none;
+  }
+  .clear-search.show { display: flex; align-items: center; justify-content: center; }
+
+  .sort-select {
+    padding: 12px 38px 12px 18px;
+    border: 0; border-radius: 999px;
+    background: #fff;
+    box-shadow: var(--shadow-sm);
+    font: 600 14px 'Plus Jakarta Sans', sans-serif;
+    color: var(--ink);
+    cursor: pointer;
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg width='10' height='6' viewBox='0 0 10 6' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%232d2438' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 16px center;
+  }
+
+  .chips {
+    margin-top: 14px;
+    display: flex; flex-wrap: wrap; gap: 8px;
+  }
+  .chip {
+    border: 0;
+    padding: 8px 14px;
+    border-radius: 999px;
+    background: #fff;
+    color: var(--ink-soft);
+    font: 600 13px 'Plus Jakarta Sans', 'Sarabun', sans-serif;
+    cursor: pointer;
+    box-shadow: var(--shadow-sm);
+    transition: .15s;
+    white-space: nowrap;
+  }
+  .chip:hover { transform: translateY(-1px); }
+  .chip.active { background: var(--ink); color: #fff; }
+  .chip .count {
+    margin-left: 6px;
+    background: #00000010;
+    padding: 1px 7px;
+    border-radius: 999px;
+    font-size: 11px;
+  }
+  .chip.active .count { background: #ffffff25; color: #fff; }
+
+  .results-bar {
+    max-width: 1280px; margin: 24px auto 0;
+    padding: 0 24px;
+    display: flex; align-items: center; justify-content: space-between;
+    font-size: 14px; color: var(--ink-mute);
+    flex-wrap: wrap; gap: 8px;
+  }
+  .results-bar strong { color: var(--ink); font-weight: 700; }
+
+  /* ---------- Category chips (separate row) ---------- */
+  .cat-bar {
+    max-width: 1280px;
+    margin: 16px auto 0;
+    padding: 0 24px;
+  }
+  .cat-bar-inner {
+    display: flex; gap: 8px;
+    overflow-x: auto;
+    padding: 4px 0 12px;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: thin;
+  }
+  .cat-bar-inner::-webkit-scrollbar { height: 6px; }
+  .cat-bar-inner::-webkit-scrollbar-thumb { background: #00000020; border-radius: 3px; }
+  .cat-chip {
+    border: 0;
+    padding: 10px 16px;
+    border-radius: 14px;
+    background: #fff;
+    color: var(--ink);
+    font: 600 13px 'Plus Jakarta Sans', 'Sarabun', sans-serif;
+    cursor: pointer;
+    box-shadow: var(--shadow-sm);
+    transition: .18s;
+    white-space: nowrap;
+    display: flex; align-items: center; gap: 8px;
+    flex-shrink: 0;
+  }
+  .cat-chip .cat-emoji { font-size: 18px; line-height: 1; }
+  .cat-chip .cat-count {
+    background: #00000010; padding: 1px 8px; border-radius: 999px; font-size: 11px;
+  }
+  .cat-chip:hover { transform: translateY(-2px); box-shadow: var(--shadow-md); }
+  .cat-chip.active {
+    background: linear-gradient(135deg, var(--mint-deep), var(--lavender-deep));
+    color: #fff;
+  }
+  .cat-chip.active .cat-count { background: #ffffff25; color: #fff; }
+
+  /* ---------- Recipe grid ---------- */
+  .grid {
+    max-width: 1280px; margin: 16px auto 80px;
+    padding: 0 24px;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 18px;
+  }
+  .card {
+    background: #fff;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-sm);
+    cursor: pointer;
+    transition: .25s cubic-bezier(.2,.8,.2,1);
+    display: flex; flex-direction: column;
+    position: relative;
+    overflow: hidden;
+    border: 2px solid transparent;
+  }
+  .card:hover {
+    transform: translateY(-6px) rotate(-.3deg);
+    box-shadow: var(--shadow-lg);
+    border-color: #ffffff;
+  }
+  .card-img-wrap {
+    width: 100%;
+    aspect-ratio: 3 / 2;
+    background: var(--card-tint, #f5e9d9);
+    position: relative;
+    overflow: hidden;
+  }
+  .card-img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform .5s;
+  }
+  .card:hover .card-img { transform: scale(1.06); }
+  .card-img-overlay {
+    position: absolute; inset: 0;
+    display: flex; align-items: flex-start; justify-content: space-between;
+    padding: 12px;
+    pointer-events: none;
+  }
+  .cat-pill {
+    background: #ffffffee;
+    backdrop-filter: blur(4px);
+    padding: 5px 11px;
+    border-radius: 999px;
+    font-size: 11px; font-weight: 700;
+    color: var(--ink);
+    display: flex; align-items: center; gap: 5px;
+    box-shadow: 0 2px 6px #0002;
+  }
+  .card-body {
+    padding: 18px 20px 20px;
+    display: flex; flex-direction: column;
+    gap: 8px;
+    flex: 1;
+    background: #fff;
+  }
+  .card-top {
+    display: flex; align-items: center; justify-content: space-between;
+    margin-top: -36px;
+    position: relative;
+    z-index: 2;
+  }
+  .flag {
+    font-size: 36px; line-height: 1;
+    filter: drop-shadow(0 3px 6px #0003);
+    background: #fff;
+    padding: 4px 8px;
+    border-radius: 14px;
+    box-shadow: var(--shadow-sm);
+  }
+  .country-tag {
+    font-size: 11px; font-weight: 700;
+    letter-spacing: .04em;
+    color: var(--ink-soft);
+    background: #fff;
+    padding: 5px 11px;
+    border-radius: 999px;
+    text-transform: uppercase;
+    box-shadow: var(--shadow-sm);
+  }
+  .card h3 {
+    font-family: 'Fraunces', serif;
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 1.22;
+    margin: 4px 0 0;
+    letter-spacing: -.01em;
+    color: var(--ink);
+  }
+  .card .alt-name {
+    font-size: 12.5px;
+    color: var(--ink-mute);
+    margin: -2px 0 0;
+    font-style: italic;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  .card .desc {
+    font-size: 13px;
+    color: var(--ink-soft);
+    line-height: 1.5;
+    margin: 4px 0 0;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  .card .ings {
+    margin-top: auto;
+    padding-top: 12px;
+    border-top: 1px dashed #00000015;
+    font-size: 12px;
+    color: var(--ink-mute);
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  /* Modal image */
+  .modal-img-wrap {
+    width: calc(100% + 72px);
+    margin: -36px -36px 24px;
+    aspect-ratio: 16/9;
+    overflow: hidden;
+    border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+    position: relative;
+  }
+  .modal-img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+  }
+  .modal-img-fade {
+    position: absolute; inset: auto 0 0 0;
+    height: 60%;
+    background: linear-gradient(to bottom, transparent, var(--bg));
+    pointer-events: none;
+  }
+  @media (max-width: 640px) {
+    .modal-img-wrap { width: calc(100% + 48px); margin: -24px -24px 18px; }
+  }
+
+  .no-results {
+    text-align: center;
+    padding: 80px 20px;
+    color: var(--ink-mute);
+  }
+  .no-results .emoji { font-size: 48px; margin-bottom: 12px; }
+  .no-results h3 {
+    font-family: 'Fraunces', serif;
+    font-size: 24px; color: var(--ink); margin: 0 0 6px;
+  }
+
+  /* ---------- Modal ---------- */
+  .modal-bg {
+    position: fixed; inset: 0;
+    background: #2d243899;
+    backdrop-filter: blur(8px);
+    display: none;
+    align-items: center; justify-content: center;
+    z-index: 100;
+    padding: 20px;
+    animation: fadeIn .25s ease;
+  }
+  .modal-bg.open { display: flex; }
+  @keyframes fadeIn { from { opacity: 0 } }
+  .modal {
+    background: var(--bg);
+    background-image:
+      radial-gradient(500px 300px at 10% -20%, #ffd6c2 0%, transparent 60%),
+      radial-gradient(400px 240px at 110% 110%, #d6efe3 0%, transparent 60%);
+    border-radius: var(--radius-lg);
+    max-width: 720px; width: 100%;
+    max-height: 90vh; overflow-y: auto;
+    padding: 36px;
+    position: relative;
+    box-shadow: var(--shadow-lg);
+    animation: slideUp .35s cubic-bezier(.2,.8,.2,1);
+  }
+  @keyframes slideUp { from { transform: translateY(24px); opacity: 0; } }
+  .modal-close {
+    position: absolute; top: 16px; right: 16px;
+    width: 38px; height: 38px;
+    border: 0; border-radius: 50%;
+    background: #fff; color: var(--ink);
+    font-size: 22px; cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    box-shadow: var(--shadow-sm);
+    transition: .15s;
+  }
+  .modal-close:hover { transform: rotate(90deg); }
+  .modal-flag {
+    font-size: 56px; line-height: 1;
+    margin-bottom: 14px;
+    display: inline-block;
+    filter: drop-shadow(0 4px 8px #0002);
+  }
+  .modal-country {
+    font-size: 12px; font-weight: 700;
+    letter-spacing: .14em; text-transform: uppercase;
+    color: var(--peach-deep);
+    margin-bottom: 6px;
+  }
+  .modal h2 {
+    font-family: 'Fraunces', serif; font-weight: 800;
+    font-size: clamp(26px, 4vw, 36px);
+    line-height: 1.1; letter-spacing: -.02em;
+    margin: 0 0 6px;
+  }
+  .modal .alt {
+    color: var(--ink-soft); font-size: 16px; font-style: italic;
+    margin: 0 0 18px;
+  }
+  .modal .desc-en {
+    font-size: 16px; line-height: 1.55;
+    color: var(--ink-soft);
+    padding: 14px 18px;
+    background: #ffffffaa;
+    border-radius: var(--radius-sm);
+    margin-bottom: 24px;
+  }
+  .modal section { margin-bottom: 22px; }
+  .modal section h4 {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 12px; font-weight: 700;
+    letter-spacing: .12em; text-transform: uppercase;
+    color: var(--mint-deep);
+    margin: 0 0 10px;
+    display: flex; align-items: center; gap: 8px;
+  }
+  .modal section h4::before {
+    content: ''; width: 24px; height: 2px;
+    background: var(--mint-deep); border-radius: 2px;
+  }
+  .ingredient-list {
+    display: flex; flex-wrap: wrap; gap: 8px;
+  }
+  .ing-tag {
+    background: #fff;
+    padding: 6px 12px;
+    border-radius: 999px;
+    font-size: 13px;
+    color: var(--ink);
+    box-shadow: var(--shadow-sm);
+  }
+  .method-text {
+    font-size: 15px; line-height: 1.7;
+    color: var(--ink);
+    background: #fff;
+    padding: 18px;
+    border-radius: var(--radius-sm);
+    box-shadow: var(--shadow-sm);
+  }
+  .modal-link {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: var(--ink); color: #fff;
+    padding: 12px 22px;
+    border-radius: 999px;
+    text-decoration: none;
+    font-weight: 600; font-size: 14px;
+    transition: .15s;
+  }
+  .modal-link:hover { transform: translateY(-2px); box-shadow: var(--shadow-md); }
+
+  /* ---------- Footer ---------- */
+  footer {
+    max-width: 1280px; margin: 0 auto;
+    padding: 40px 24px 60px;
+    text-align: center;
+    color: var(--ink-mute);
+    font-size: 13px;
+  }
+  footer .heart { color: var(--pink-deep); }
+  footer a { color: inherit; }
+
+  /* ---------- Mobile ---------- */
+  @media (max-width: 640px) {
+    .hero { padding: 36px 20px 20px; }
+    .map-card { padding: 16px; border-radius: var(--radius); }
+    .map-wrap { aspect-ratio: 16 / 11; }
+    .modal { padding: 24px; border-radius: var(--radius); }
+    .stat-num { font-size: 22px; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <div class="brand">
+      <span class="brand-emoji">🥒</span>
+      <span>Cucumber Atlas</span>
+    </div>
+    <div class="lang-toggle" role="tablist" aria-label="language">
+      <button data-lang="th" class="active" type="button">ไทย</button>
+      <button data-lang="en" type="button">EN</button>
+    </div>
+  </div>
+</nav>
+
+<header class="hero">
+  <span class="hero-eyebrow" data-i18n="eyebrow">🥒 รวมเมนูแตงกวา · ทั่วโลก</span>
+  <h1 data-i18n="title-html">เมนูแตงกวา <span class="accent">จากครัวทุกมุมโลก</span></h1>
+  <p class="lede" data-i18n="lede">
+    208 สูตรอาหารและเครื่องดื่ม จากกว่า 95 ประเทศ · 15 หมวดหมู่
+    ตั้งแต่ยำแตงร้านไทย กิมจิเกาหลี ไปจนค็อกเทลแตงกวา —
+    คลิกที่แผนที่ ชิปประเทศ หรือหมวดหมู่เพื่อสำรวจ
+  </p>
+  <div class="stats">
+    <div class="stat"><span class="stat-num" id="stat-recipes">208</span><span class="stat-lbl" data-i18n="stat-recipes">เมนู</span></div>
+    <div class="stat"><span class="stat-num" id="stat-countries">95</span><span class="stat-lbl" data-i18n="stat-countries">ประเทศ</span></div>
+    <div class="stat"><span class="stat-num" id="stat-cats">15</span><span class="stat-lbl" data-i18n="stat-cats">หมวดหมู่</span></div>
+  </div>
+</header>
+
+<section class="map-section">
+  <div class="map-card">
+    <div class="map-head">
+      <div>
+        <h2 data-i18n="map-title">🗺️ แผนที่เมนูแตงกวา</h2>
+        <p data-i18n="map-sub">คลิกประเทศที่ระบายสี — สีเข้มกว่า = มีเมนูมากกว่า</p>
+      </div>
+      <div class="map-legend">
+        <span data-i18n="legend-few">น้อย</span>
+        <span class="legend-grad"></span>
+        <span data-i18n="legend-many">มาก</span>
+      </div>
+    </div>
+    <div class="map-wrap">
+      <svg id="worldmap" viewBox="0 0 980 480" preserveAspectRatio="xMidYMid meet"></svg>
+      <div class="map-tip" id="maptip"></div>
+    </div>
+    <div class="map-empty-hint" data-i18n="map-hint">💡 ประเทศที่ไม่อยู่ในแผนที่ เช่น "International / Cocktail" จะแสดงในรายการด้านล่าง</div>
+  </div>
+</section>
+
+<section class="controls">
+  <div class="controls-row">
+    <div class="search-box">
+      <input id="search" type="search" placeholder="ค้นหาเมนู วัตถุดิบ หรือประเทศ…" data-i18n-ph="search-ph" aria-label="search">
+      <button class="clear-search" id="clear-search" aria-label="clear">✕</button>
+    </div>
+    <select class="sort-select" id="sort">
+      <option value="id">เริ่มต้น</option>
+      <option value="name">ชื่อ A→Z</option>
+      <option value="country">ประเทศ</option>
+      <option value="category">หมวดหมู่</option>
+    </select>
+  </div>
+  <div class="chips" id="chips"></div>
+</section>
+
+<section class="cat-bar">
+  <div class="cat-bar-inner" id="cat-bar"></div>
+</section>
+
+<div class="results-bar">
+  <div>พบ <strong id="result-count">0</strong> <span data-i18n="result-word">เมนู</span></div>
+  <div id="active-filter" style="font-style:italic;"></div>
+</div>
+
+<main class="grid" id="grid"></main>
+
+<div class="no-results" id="empty" style="display:none">
+  <div class="emoji">🥒❓</div>
+  <h3 data-i18n="empty-title">ยังไม่เจอเมนูที่ใช่</h3>
+  <p data-i18n="empty-sub">ลองค้นคำอื่น หรือกดปุ่ม "ทั้งหมด" ดูเมนูเต็ม</p>
+</div>
+
+<div class="modal-bg" id="modal" role="dialog" aria-modal="true">
+  <div class="modal" id="modal-body"></div>
+</div>
+
+<footer>
+  <div>🥒 Cucumber Atlas · made with <span class="heart">♥</span> · <a href="https://github.com/suksanfongfon/cucumber-menu">github</a></div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/d3@7/dist/d3.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/topojson-client@3/dist/topojson-client.min.js"></script>
+<script>
+/* ---------- i18n strings ---------- */
+const I18N = {
+  th: {
+    'eyebrow': '🥒 รวมเมนูแตงกวา · ทั่วโลก',
+    'title-html': 'เมนูแตงกวา <span class="accent">จากครัวทุกมุมโลก</span>',
+    'lede': '208 สูตรอาหารและเครื่องดื่ม จากกว่า 95 ประเทศ · 15 หมวดหมู่ ตั้งแต่ยำแตงร้านไทย กิมจิเกาหลี ไปจนค็อกเทลแตงกวา — คลิกที่แผนที่ ชิปประเทศ หรือหมวดหมู่เพื่อสำรวจ',
+    'stat-recipes': 'เมนู',
+    'stat-countries': 'ประเทศ',
+    'stat-cats': 'หมวดหมู่',
+    'map-title': '🗺️ แผนที่เมนูแตงกวา',
+    'map-sub': 'คลิกประเทศที่ระบายสี — สีเข้มกว่า = มีเมนูมากกว่า',
+    'map-hint': '💡 ประเทศที่ไม่อยู่ในแผนที่ เช่น "International / Cocktail" จะแสดงในรายการด้านล่าง',
+    'legend-few': 'น้อย',
+    'legend-many': 'มาก',
+    'search-ph': 'ค้นหาเมนู วัตถุดิบ หรือประเทศ…',
+    'result-word': 'เมนู',
+    'all-chip': 'ทั้งหมด',
+    'all-cat': '🍽️ ทุกหมวดหมู่',
+    'sort-id': 'เริ่มต้น',
+    'sort-name': 'ชื่อ A→Z',
+    'sort-country': 'ประเทศ',
+    'sort-cat': 'หมวดหมู่',
+    'empty-title': 'ยังไม่เจอเมนูที่ใช่',
+    'empty-sub': 'ลองค้นคำอื่น หรือกดปุ่ม "ทั้งหมด" ดูเมนูเต็ม',
+    'modal-ing': 'วัตถุดิบ',
+    'modal-method': 'วิธีทำ',
+    'modal-link': 'ดูสูตรเต็มที่แหล่งที่มา',
+    'active-prefix': 'กำลังดู: '
+  },
+  en: {
+    'eyebrow': '🥒 Cucumber recipes · worldwide',
+    'title-html': 'Cucumber dishes <span class="accent">from kitchens around the world</span>',
+    'lede': '208 recipes and drinks from 95+ countries across 15 categories — from Thai cucumber salad to Korean kimchi to cucumber cocktails. Click the map, a country chip, or a category to explore.',
+    'stat-recipes': 'recipes',
+    'stat-countries': 'countries',
+    'stat-cats': 'categories',
+    'map-title': '🗺️ World Cucumber Map',
+    'map-sub': 'Click any colored country — darker = more recipes',
+    'map-hint': '💡 Non-geographic entries (e.g., "International / Cocktail") appear in the list below.',
+    'legend-few': 'few',
+    'legend-many': 'many',
+    'search-ph': 'Search a dish, ingredient, or country…',
+    'result-word': 'recipes',
+    'all-chip': 'All',
+    'all-cat': '🍽️ All categories',
+    'sort-id': 'Default',
+    'sort-name': 'Name A→Z',
+    'sort-country': 'Country',
+    'sort-cat': 'Category',
+    'empty-title': 'No matches found',
+    'empty-sub': 'Try a different search, or hit "All" to see everything.',
+    'modal-ing': 'Ingredients',
+    'modal-method': 'Method',
+    'modal-link': 'See full recipe at source',
+    'active-prefix': 'Showing: '
+  }
+};
+
+/* ---------- State ---------- */
+let DATA = [];
+let lang = 'th';
+let activeCountry = null;      // country_en string or null
+let activeIso = null;          // iso numeric string or null (derived)
+let activeCategory = null;     // category_th or null
+let searchQuery = '';
+let sortBy = 'id';
+
+// Helper: get iso for a country_en (look up in data)
+function isoForCountry(country_en) {
+  const r = DATA.find(x => x.country_en === country_en);
+  return r ? r.iso : null;
+}
+
+/* ---------- Boot ---------- */
+async function boot() {
+  const res = await fetch('data.json');
+  DATA = await res.json();
+
+  document.getElementById('stat-recipes').textContent = DATA.length;
+  const countrySet = new Set(DATA.map(r => r.country_en));
+  document.getElementById('stat-countries').textContent = countrySet.size;
+  const catSet = new Set(DATA.map(r => r.category_en));
+  document.getElementById('stat-cats').textContent = catSet.size;
+
+  buildChips();
+  buildCatBar();
+  buildMap();
+  render();
+  bindEvents();
+}
+
+/* ---------- Chips ---------- */
+function buildChips() {
+  const counts = {};
+  DATA.forEach(r => counts[r.country_en] = (counts[r.country_en] || 0) + 1);
+  const sorted = Object.entries(counts).sort((a,b) => b[1] - a[1]);
+  const top = sorted.slice(0, 14);
+
+  const c = document.getElementById('chips');
+  c.innerHTML = '';
+  c.appendChild(chipButton('__all__', I18N[lang]['all-chip'], DATA.length));
+  top.forEach(([country, n]) => {
+    const sample = DATA.find(r => r.country_en === country);
+    const label = (sample.flag || '') + ' ' + (lang === 'th' ? sample.country_th : country);
+    c.appendChild(chipButton(country, label, n));
+  });
+  updateChipsActive();
+}
+
+function chipButton(key, label, n) {
+  const b = document.createElement('button');
+  b.className = 'chip';
+  b.dataset.key = key;
+  b.innerHTML = `${label} <span class="count">${n}</span>`;
+  b.addEventListener('click', () => {
+    activeCountry = (key === '__all__') ? null : key;
+    activeIso = activeCountry ? isoForCountry(activeCountry) : null;
+    render();
+    updateChipsActive();
+    updateMapSelection();
+  });
+  return b;
+}
+
+/* ---------- Category bar ---------- */
+function buildCatBar() {
+  const counts = {};
+  DATA.forEach(r => {
+    const k = r.category_th;
+    if (!counts[k]) counts[k] = { th: r.category_th, en: r.category_en, emoji: r.category_emoji, n: 0 };
+    counts[k].n++;
+  });
+  const sorted = Object.values(counts).sort((a,b) => b.n - a.n);
+
+  const bar = document.getElementById('cat-bar');
+  bar.innerHTML = '';
+
+  // "All" button
+  const allBtn = document.createElement('button');
+  allBtn.className = 'cat-chip';
+  allBtn.dataset.key = '__all_cat__';
+  allBtn.innerHTML = `<span class="cat-emoji">🍽️</span><span>${lang === 'th' ? 'ทุกหมวดหมู่' : 'All categories'}</span><span class="cat-count">${DATA.length}</span>`;
+  allBtn.addEventListener('click', () => {
+    activeCategory = null;
+    render();
+    updateCatActive();
+  });
+  bar.appendChild(allBtn);
+
+  sorted.forEach(c => {
+    const b = document.createElement('button');
+    b.className = 'cat-chip';
+    b.dataset.key = c.th;
+    b.innerHTML = `<span class="cat-emoji">${c.emoji}</span><span>${lang === 'th' ? c.th : c.en}</span><span class="cat-count">${c.n}</span>`;
+    b.addEventListener('click', () => {
+      activeCategory = (activeCategory === c.th) ? null : c.th;
+      render();
+      updateCatActive();
+    });
+    bar.appendChild(b);
+  });
+  updateCatActive();
+}
+
+function updateCatActive() {
+  document.querySelectorAll('.cat-chip').forEach(b => {
+    const k = b.dataset.key;
+    b.classList.toggle('active',
+      (activeCategory === null && k === '__all_cat__') || (k === activeCategory)
+    );
+  });
+}
+
+function updateChipsActive() {
+  document.querySelectorAll('.chip').forEach(b => {
+    const k = b.dataset.key;
+    b.classList.toggle('active',
+      (activeCountry === null && k === '__all__') || (k === activeCountry)
+    );
+  });
+}
+
+/* ---------- Map ---------- */
+async function buildMap() {
+  const svg = d3.select('#worldmap');
+  const w = 980, h = 480;
+  const proj = d3.geoNaturalEarth1().scale(180).translate([w/2, h/2 + 20]);
+  const path = d3.geoPath(proj);
+
+  const isoCounts = {};
+  DATA.forEach(r => {
+    if (r.iso) isoCounts[r.iso] = (isoCounts[r.iso] || 0) + 1;
+  });
+  const maxC = Math.max(1, ...Object.values(isoCounts));
+  const color = d3.scaleSequential().domain([0, maxC]).interpolator(d3.interpolate('#f0e8e0', '#6cbfa3'));
+
+  let world;
+  try {
+    world = await fetch('https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json').then(r => r.json());
+  } catch (e) {
+    console.warn('Map data failed to load', e);
+    document.querySelector('.map-section').style.display = 'none';
+    return;
+  }
+  const countries = topojson.feature(world, world.objects.countries).features;
+
+  const tip = document.getElementById('maptip');
+  const mapWrap = document.querySelector('.map-wrap');
+
+  svg.selectAll('path.country')
+    .data(countries)
+    .enter().append('path')
+    .attr('d', path)
+    .attr('class', d => 'country' + (isoCounts[String(d.id).padStart(3,'0')] || isoCounts[d.id] ? ' has-recipes' : ''))
+    .attr('data-iso', d => String(d.id).padStart(3,'0'))
+    .attr('fill', d => {
+      const id = String(d.id).padStart(3,'0');
+      const n = isoCounts[id] || isoCounts[d.id];
+      return n ? color(n) : '#f0e8e0';
+    })
+    .on('mouseover', function(e, d) {
+      const id = String(d.id).padStart(3,'0');
+      const n = isoCounts[id] || isoCounts[d.id];
+      if (!n) return;
+      const sample = DATA.find(r => r.iso === id);
+      const name = sample ? (lang === 'th' ? sample.country_th : sample.country_en) : (d.properties && d.properties.name);
+      const flag = sample ? sample.flag : '';
+      tip.innerHTML = `${flag} <b>${name}</b> · <span class="tip-count">${n} ${I18N[lang]['result-word']}</span>`;
+      tip.style.opacity = 1;
+    })
+    .on('mousemove', function(e) {
+      const wrapRect = mapWrap.getBoundingClientRect();
+      tip.style.left = (e.clientX - wrapRect.left + 14) + 'px';
+      tip.style.top  = (e.clientY - wrapRect.top  - 36) + 'px';
+    })
+    .on('mouseout', () => { tip.style.opacity = 0; })
+    .on('click', function(e, d) {
+      const id = String(d.id).padStart(3,'0');
+      const n = isoCounts[id] || isoCounts[d.id];
+      if (!n) return;
+      const sample = DATA.find(r => r.iso === id);
+      if (!sample) return;
+      if (activeCountry === sample.country_en) {
+        activeCountry = null; activeIso = null;
+      } else {
+        activeCountry = sample.country_en;
+        activeIso = id;
+      }
+      render();
+      updateChipsActive();
+      updateMapSelection();
+      document.querySelector('.controls').scrollIntoView({ behavior:'smooth', block:'start' });
+    });
+}
+
+function updateMapSelection() {
+  document.querySelectorAll('#worldmap .country').forEach(el => {
+    el.classList.toggle('selected', activeIso && el.dataset.iso === activeIso);
+  });
+}
+
+/* ---------- Filtering ---------- */
+function filtered() {
+  let list = DATA;
+  if (activeCountry) {
+    if (activeIso) {
+      list = list.filter(r => r.iso === activeIso);
+    } else {
+      list = list.filter(r => r.country_en === activeCountry);
+    }
+  }
+  if (activeCategory) {
+    list = list.filter(r => r.category_th === activeCategory);
+  }
+  if (searchQuery) {
+    const q = searchQuery.toLowerCase();
+    list = list.filter(r =>
+      (r.name_th || '').toLowerCase().includes(q) ||
+      (r.name_en || '').toLowerCase().includes(q) ||
+      (r.country_th || '').toLowerCase().includes(q) ||
+      (r.country_en || '').toLowerCase().includes(q) ||
+      (r.ingredients_th || '').toLowerCase().includes(q) ||
+      (r.desc_en || '').toLowerCase().includes(q) ||
+      (r.category_th || '').toLowerCase().includes(q) ||
+      (r.category_en || '').toLowerCase().includes(q)
+    );
+  }
+  if (sortBy === 'name') {
+    list = [...list].sort((a,b) => (lang === 'th' ? a.name_th.localeCompare(b.name_th, 'th') : a.name_en.localeCompare(b.name_en)));
+  } else if (sortBy === 'country') {
+    list = [...list].sort((a,b) => a.country_en.localeCompare(b.country_en));
+  } else if (sortBy === 'category') {
+    list = [...list].sort((a,b) => a.category_en.localeCompare(b.category_en));
+  }
+  return list;
+}
+
+const TINTS = ['#ffe8e1','#e6f4ee','#f0e8ff','#fff4d6','#ffe1f0','#e1f0ff','#fef7ed'];
+function tintFor(country) {
+  let h = 0;
+  for (const c of country) h = (h * 31 + c.charCodeAt(0)) >>> 0;
+  return TINTS[h % TINTS.length];
+}
+
+function render() {
+  const list = filtered();
+  const grid = document.getElementById('grid');
+  const empty = document.getElementById('empty');
+  document.getElementById('result-count').textContent = list.length;
+
+  const af = document.getElementById('active-filter');
+  if (activeCountry) {
+    const sample = DATA.find(r => r.country_en === activeCountry);
+    const label = sample ? `${sample.flag} ${lang === 'th' ? sample.country_th : sample.country_en}` : activeCountry;
+    af.textContent = I18N[lang]['active-prefix'] + label;
+  } else {
+    af.textContent = '';
+  }
+
+  if (list.length === 0) {
+    grid.innerHTML = '';
+    empty.style.display = 'block';
+    return;
+  }
+  empty.style.display = 'none';
+
+  grid.innerHTML = list.map(r => `
+    <article class="card" style="--card-tint:${tintFor(r.country_en)}" data-id="${r.id}">
+      <div class="card-img-wrap">
+        ${r.image ? `<img class="card-img" src="${r.image}" alt="${escapeAttr(r.name_en || r.name_th)}" loading="lazy" onerror="this.style.display='none'">` : ''}
+        <div class="card-img-overlay">
+          <span class="cat-pill"><span>${r.category_emoji || '🍽️'}</span> ${lang === 'th' ? r.category_th : r.category_en}</span>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="card-top">
+          <span class="flag">${r.flag || '🍽️'}</span>
+          <span class="country-tag">${lang === 'th' ? r.country_th : r.country_en}</span>
+        </div>
+        <h3>${lang === 'th' ? r.name_th : r.name_en}</h3>
+        <div class="alt-name">${lang === 'th' ? r.name_en : r.name_th}</div>
+        ${r.desc_en ? `<p class="desc">${r.desc_en}</p>` : ''}
+        <div class="ings">🥢 ${r.ingredients_th}</div>
+      </div>
+    </article>
+  `).join('');
+
+  grid.querySelectorAll('.card').forEach(c => {
+    c.addEventListener('click', () => openModal(parseInt(c.dataset.id)));
+  });
+}
+
+/* ---------- Modal ---------- */
+function escapeAttr(s) {
+  return String(s || '').replace(/"/g, '&quot;').replace(/</g, '&lt;');
+}
+
+function openModal(id) {
+  const r = DATA.find(x => x.id === id);
+  if (!r) return;
+  const body = document.getElementById('modal-body');
+  const ings = (r.ingredients_th || '').split(',').map(s => s.trim()).filter(Boolean);
+  body.innerHTML = `
+    <button class="modal-close" id="modal-close" aria-label="close">✕</button>
+    ${r.image ? `
+      <div class="modal-img-wrap">
+        <img class="modal-img" src="${r.image}" alt="${escapeAttr(r.name_en || r.name_th)}" onerror="this.parentElement.style.display='none'">
+        <div class="modal-img-fade"></div>
+      </div>
+    ` : ''}
+    <span class="modal-flag">${r.flag || '🍽️'}</span>
+    <div class="modal-country">${lang === 'th' ? r.country_th : r.country_en} · ${r.category_emoji || ''} ${lang === 'th' ? r.category_th : r.category_en}</div>
+    <h2>${lang === 'th' ? r.name_th : r.name_en}</h2>
+    <p class="alt">${lang === 'th' ? r.name_en : r.name_th}</p>
+    ${r.desc_en ? `<p class="desc-en">${r.desc_en}</p>` : ''}
+    <section>
+      <h4>${I18N[lang]['modal-ing']}</h4>
+      <div class="ingredient-list">${ings.map(i => `<span class="ing-tag">${i}</span>`).join('')}</div>
+    </section>
+    <section>
+      <h4>${I18N[lang]['modal-method']}</h4>
+      <div class="method-text">${r.method_th || ''}</div>
+    </section>
+    ${r.url ? `<a class="modal-link" href="${r.url}" target="_blank" rel="noopener">${I18N[lang]['modal-link']} →</a>` : ''}
+  `;
+  document.getElementById('modal').classList.add('open');
+  document.body.style.overflow = 'hidden';
+  body.querySelector('#modal-close').addEventListener('click', closeModal);
+}
+
+function closeModal() {
+  document.getElementById('modal').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+/* ---------- Events ---------- */
+function bindEvents() {
+  document.querySelectorAll('.lang-toggle button').forEach(b => {
+    b.addEventListener('click', () => {
+      lang = b.dataset.lang;
+      document.documentElement.lang = lang;
+      document.querySelectorAll('.lang-toggle button').forEach(x => x.classList.toggle('active', x === b));
+      applyI18n();
+      buildChips();
+      buildCatBar();
+      render();
+    });
+  });
+
+  const s = document.getElementById('search');
+  const cs = document.getElementById('clear-search');
+  s.addEventListener('input', () => {
+    searchQuery = s.value.trim();
+    cs.classList.toggle('show', !!searchQuery);
+    render();
+  });
+  cs.addEventListener('click', () => {
+    s.value = ''; searchQuery = '';
+    cs.classList.remove('show');
+    s.focus(); render();
+  });
+
+  document.getElementById('sort').addEventListener('change', e => {
+    sortBy = e.target.value;
+    render();
+  });
+
+  document.getElementById('modal').addEventListener('click', e => {
+    if (e.target.id === 'modal') closeModal();
+  });
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') closeModal();
+  });
+}
+
+function applyI18n() {
+  const t = I18N[lang];
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const k = el.dataset.i18n;
+    if (!t[k]) return;
+    if (k === 'title-html') el.innerHTML = t[k];
+    else el.textContent = t[k];
+  });
+  document.querySelectorAll('[data-i18n-ph]').forEach(el => {
+    const k = el.dataset.i18nPh;
+    if (t[k]) el.setAttribute('placeholder', t[k]);
+  });
+  const sel = document.getElementById('sort');
+  sel.options[0].textContent = t['sort-id'];
+  sel.options[1].textContent = t['sort-name'];
+  sel.options[2].textContent = t['sort-country'];
+  sel.options[3].textContent = t['sort-cat'];
+}
+
+boot().catch(err => {
+  console.error(err);
+  document.getElementById('grid').innerHTML = '<p style="text-align:center;color:#c44;padding:40px">โหลดข้อมูลไม่สำเร็จ — ลองรีเฟรชอีกครั้ง</p>';
+});
+</script>
+</body>
+</html>
